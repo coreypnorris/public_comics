@@ -1,18 +1,38 @@
 <div class='row'>
   <ol class='breadcrumb'>
     <li><%= link_to "Home", root_url %></li>
-    <li class="active"><%= @page.issue.title.name %> # <%= @page.issue.number %></li>
+    <li class="active">Page <%= @page.number %></li>
   </ol>
 </div>
 
 
-<div class="page-header text-center">
+<header class="page-header text-center">
   <h2><%= @page.issue.title.name %> # <%= @page.issue.number %></h2>
-</div>
+</header>
 
+<div class="row text-center">
+  <% if @page.number > 1 %>
+    <div class="col-sm-6">
+      <p><%= link_to "Previous Page", title_issue_page_path(@title, @issue, @page.number-1) %></p>
+    </div>
+    <div class="col-sm-6">
+      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.number+1) %></p>
+    </div>
+
+  <% else %>
+    <div class="col-sm-12">
+      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.number+1) %></p>
+    </div>
+  <% end %>
+</div>
 
 <div class="row text-center">
   <div class='col-sm-12'>
     <%= image_tag(@page.image) %>
   </div>
 </div>
+
+
+
+
+

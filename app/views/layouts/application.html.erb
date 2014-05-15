@@ -9,26 +9,20 @@
 <body>
 
 <div class="container">
-    <div class="row">
-      <h1>Public Comics</h1>
-    </div>
+  <div class="row">
+    <h1>Public Comics</h1>
+    <p>Read comicbooks from the public domain</p>
+  </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, id: "flash_#{name}" %>
-        <% end %>
-        <%= yield %>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <hr>
-      <p class="pull-right">
-        <%= link_to "Future Link" %>
-      </p>
+  <div class="row">
+    <div class="col-sm-12">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}" %>
+      <% end %>
+      <%= yield %>
     </div>
   </div>
+</div>
 
 </body>
 </html>
