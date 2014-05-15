@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: public_comics_development
+
+test:
+  adapter: postgresql
+  database: public_comics_test
