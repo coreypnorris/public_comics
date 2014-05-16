@@ -9,4 +9,6 @@ PublicComics::Application.routes.draw do
   resources :issues
   resources :pages
   resources :genres
+
+  match 'title/issue/page', :to => 'pages#show', :via => :post
 end

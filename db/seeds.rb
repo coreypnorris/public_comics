@@ -79,7 +79,7 @@ horror.titles << tales_of_horror = Title.create(name: "Tales Of Horror")
 
 tales_of_horror.issues << toh_one = Issue.create(number: 1, cover: "http://furycomics.com/Tales_Of_Horror/001/i/Comic_Book_Cover_For_Tales_Of_Horror_Issue_1.jpg")
 
-toh_one.pages << toh_p_one = Page.create(image: "http://furycomics.com/Captain_Marvel_Adventures/005/i/67.jpg", number: 1)
+toh_one.pages << toh_p_one = Page.create(image: "http://furycomics.com/Tales_Of_Horror/001/i/Comic_Book_Cover_For_Tales_Of_Horror_Issue_1.jpg", number: 1)
 toh_one.pages << toh_p_two = Page.create(image: "http://furycomics.com/Tales_Of_Horror/001/i/1.jpg", number: 2)
 toh_one.pages << toh_p_three = Page.create(image: "http://furycomics.com/Tales_Of_Horror/001/i/2.jpg", number: 3)
 toh_one.pages << toh_p_four = Page.create(image: "http://furycomics.com/Tales_Of_Horror/001/i/3.jpg", number: 4)
