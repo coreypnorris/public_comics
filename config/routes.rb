@@ -8,4 +8,5 @@ PublicComics::Application.routes.draw do
   end
   resources :issues
   resources :pages
+  resources :genres
 end
