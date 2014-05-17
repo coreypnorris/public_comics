@@ -1,0 +1,24 @@
+<div class='row'>
+  <ol class='breadcrumb'>
+    <li class='active'>Titles</li>
+  </ol>
+</div>
+
+<div class='row text-center'>
+  <div class='col-sm-12'>
+    <ul class="list-unstyled">
+      <% @titles.each do |title| %>
+        <% title.issues.each do |issue| %>
+        <div class="col-sm-3">
+          <%= image_tag("#{issue.cover}", :class => "img-thumbnail img-responsive", :id => "cover") %>
+          <li><%= link_to "#{title.name} ##{issue.number}", title_issue_page_path(title, issue, issue.pages.first), :class => "text-center" %></li>
+
+          <%= link_to "#{title.genre.name}", genre_path(title.genre), :class => "label label-primary" %>
+        </div>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+

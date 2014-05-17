@@ -1,7 +1,7 @@
 class TitlesController < ApplicationController
 
   def index
-    @titles = Title.all
+    @titles = Title.search(params[:search].titleize)
   end
 
   def new

@@ -10,8 +10,18 @@
 
 <div class="container">
   <div class="row">
-    <h1>Public Comics</h1>
-    <p>Read comicbooks from the public domain</p>
+
+
+    <h1><%= link_to "Public Comics", root_url %></h1>
+
+    <%= form_tag titles_path, :method => 'get' do  %>
+      <p>Read comicbooks from the public domain
+        <span class="pull-right">
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search", :name => nil %>
+        </span>
+      </p>
+    <% end %>
   </div>
 
   <div class="row">
