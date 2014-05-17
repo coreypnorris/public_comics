@@ -130,6 +130,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
@@ -150,3 +151,4 @@ DEPENDENCIES
   shoulda-matchers
   turbolinks
   uglifier
+  will_paginate

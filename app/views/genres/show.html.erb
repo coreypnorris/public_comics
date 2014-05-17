@@ -12,7 +12,7 @@
       <% @genre.titles.each do |title| %>
         <% title.issues.each do |issue| %>
         <div class="col-sm-3">
-          <%= image_tag("#{issue.cover}", :class => "img-thumbnail") %>
+          <%= image_tag("#{issue.cover}", :class => "img-thumbnail", :id => "cover") %>
           <li><%= link_to "#{title.name} ##{issue.number}", title_issue_page_path(title, issue, issue.pages.first), :class => "text-center" %></li>
 
           <%= link_to "#{title.genre.name}", genre_path(title.genre), :class => "label label-primary" %>
