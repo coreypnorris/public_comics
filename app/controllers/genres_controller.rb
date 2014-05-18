@@ -1,5 +1,7 @@
 class GenresController < ApplicationController
 
+  require 'will_paginate/array'
+
   def index
     @genres = Genre.all
   end
@@ -21,6 +23,14 @@ class GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
+    @issues = []
+
+    @genre.titles.each do |title|
+      title.issues.each do |issue|
+        @issues << issue
+      end
+    end
+    @issues = @issues.paginate(:per_page => 3, :page => params[:page])
   end
 
   def edit
