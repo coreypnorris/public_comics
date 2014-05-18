@@ -11,6 +11,7 @@ class GenresController < ApplicationController
         @issues << issue
       end
     end
+    @issues = @issues.sort_by { |issue| issue.created_at }
     @issues = @issues.paginate(:per_page => 3, :page => params[:page])
   end
 
