@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
         @issues << issue
       end
     end
-    @issues = @issues.paginate(:per_page => 2, :page => params[:page])
+    @issues = @issues.paginate(:per_page => 3, :page => params[:page])
   end
 
 end
