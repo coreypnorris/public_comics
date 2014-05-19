@@ -7,9 +7,9 @@ class Title < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+      Title.where('name LIKE ?', "%#{search}%")
     else
-      find(:all)
+      Title.all
     end
   end
 end
