@@ -6,33 +6,65 @@
 </div>
 
 
-<header class="page-header text-center">
+<header class="text-center">
   <h2><%= @page.issue.title.name %> # <%= @page.issue.number %></h2>
 </header>
 
 <div class="row text-center">
-  <% if @page.number > 1 %>
-    <div class="col-sm-6">
-      <p><%= link_to "Previous Page", title_issue_page_path(@title, @issue, @page.id-1), data: { keybinding: "left" } %></p>
+  <% if @page === @issue.pages.first %>
+
+    <div class="col-sm-3 active">
+      <p><del>First Page</del></p>
     </div>
 
-    <% if @page === @issue.pages.last %>
-      <div class="col-sm-6">
+    <div class="col-sm-3 active">
+      <p><del>Previous Page</del></p>
+    </div>
 
-      </div>
-    <% else %>
-      <div class="col-sm-6">
-        <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1), data: { keybinding: "right" } %></p>
-      </div>
-    <% end %>
+    <div class="col-sm-3">
+      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1), data: { keybinding: "right" } %> (right arrow)</p>
+    </div>
+
+    <div class="col-sm-3">
+      <p><%= link_to "Last Page", title_issue_page_path(@title, @issue, @issue.pages.last.id), data: { keybinding: "shift+right" } %> (shift + right arrow)</p>
+    </div>
+
+  <% elsif @page === @issue.pages.last %>
+
+    <div class="col-sm-3 active">
+      <p><%= link_to "First Page", title_issue_page_path(@title, @issue, @issue.pages.first.id), data: { keybinding: "shift+left" } %> (shift + left arrow)</p>
+    </div>
+
+    <div class="col-sm-3 active">
+      <p><%= link_to "Previous Page", title_issue_page_path(@title, @issue, @page.id-1), data: { keybinding: "left" } %> (left arrow)</p>
+    </div>
+
+    <div class="col-sm-3">
+      <p><del>Next Page</del></p>
+    </div>
+
+    <div class="col-sm-3">
+      <p><del>Last Page</del></p>
+    </div>
 
   <% else %>
-    <div class="col-sm-6">
 
+    <div class="col-sm-3 active">
+      <p><%= link_to "First Page", title_issue_page_path(@title, @issue, @issue.pages.first.id), data: { keybinding: "shift+left" } %> (shift + left arrow)</p>
     </div>
-    <div class="col-sm-6">
-      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1), data: { keybinding: "right" } %></p>
+
+    <div class="col-sm-3 active">
+      <p><%= link_to "Previous Page", title_issue_page_path(@title, @issue, @page.id-1), data: { keybinding: "left" } %> (left arrow)</p>
     </div>
+
+    <div class="col-sm-3">
+      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1), data: { keybinding: "right" } %> (right arrow)</p>
+    </div>
+
+    <div class="col-sm-3">
+      <p><%= link_to "Last Page", title_issue_page_path(@title, @issue, @issue.pages.last.id), data: { keybinding: "shift+right" } %> (shift + right arrow)</p>
+    </div>
+
   <% end %>
 </div>
 
