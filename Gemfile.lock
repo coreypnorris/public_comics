@@ -62,6 +62,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (4.7.5)
+    mousetrap-rails (1.4.6)
     multi_json (1.10.0)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -142,6 +143,7 @@ DEPENDENCIES
   coffee-rails
   factory_girl_rails
   jquery-rails
+  mousetrap-rails
   pg
   quiet_assets
   rails

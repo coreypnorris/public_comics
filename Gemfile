@@ -9,6 +9,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'will_paginate'
+gem 'mousetrap-rails'
 
 
 group :development do

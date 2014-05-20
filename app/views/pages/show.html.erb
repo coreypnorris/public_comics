@@ -13,10 +13,10 @@
 <div class="row text-center">
   <% if @page.number > 1 %>
     <div class="col-sm-6">
-      <p><%= link_to "Previous Page", title_issue_page_path(@title, @issue, @page.id-1) %></p>
+      <p><%= link_to "Previous Page", title_issue_page_path(@title, @issue, @page.id-1), data: { keybinding: "left" } %></p>
     </div>
     <div class="col-sm-6">
-      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1) %></p>
+      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1), data: { keybinding: "right" } %></p>
     </div>
 
   <% else %>
@@ -24,7 +24,7 @@
 
     </div>
     <div class="col-sm-6">
-      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1) %></p>
+      <p><%= link_to "Next Page", title_issue_page_path(@title, @issue, @page.id+1), data: { keybinding: "right" } %></p>
     </div>
   <% end %>
 </div>
