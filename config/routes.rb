@@ -1,5 +1,5 @@
 PublicComics::Application.routes.draw do
-  root to: 'welcome#index'
+
 
   resources :titles, only: [:index] do
     resources :issues, only: [:index] do
@@ -8,5 +8,5 @@ PublicComics::Application.routes.draw do
   end
 
   resources :genres, only: [:show]
-
+  root to: 'welcome#index'
 end
