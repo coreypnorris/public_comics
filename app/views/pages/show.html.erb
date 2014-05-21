@@ -63,7 +63,8 @@
 
 <div class="row text-center">
   <div class='col-sm-12'>
-    <%= image_tag(@page.image) %>
+
+    <%= link_to (image_tag(@page.image)), title_issue_page_path(@title, @issue, @page.id+1) %>
   </div>
 </div>
 
