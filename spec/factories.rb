@@ -8,4 +8,10 @@ FactoryGirl.define do
     genre
   end
 
+  factory :issue do
+    number 1
+    sequence(:cover) { |n| "comic_cover_url#{n}" }
+    title
+  end
+
 end
