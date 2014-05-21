@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :genre do
-    name 'Example Genre'
+    sequence(:name) { |n| "Comic #{n}" }
   end
 
   factory :title do
