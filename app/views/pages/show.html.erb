@@ -1,70 +1,19 @@
 <p class="pull-right"><%= @page.number %>/<%= @page.issue.pages.last.number %></p>
-<header class="text-center">
+<header class="text-center" id="page-counter">
   <h2><%= @page.issue.title.name %> # <%= @page.issue.number %></h2>
 </header>
 
 <div class="row text-center">
-  <% if @page === @issue.pages.first %>
-
-    <div class="col-sm-3 active">
-      <p><del>First Page</del></p>
-    </div>
-
-    <div class="col-sm-3 active">
-      <p><del>Previous Page</del></p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Next Page", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" } %> (right arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Last Page", issue_page_path(@issue, @issue.pages.last.id), data: { keybinding: "shift+right" } %> (shift + right arrow)</p>
-    </div>
-
-  <% elsif @page === @issue.pages.last %>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "First Page", issue_page_path(@issue, @issue.pages.first.id), data: { keybinding: "shift+left" } %> (shift + left arrow)</p>
-    </div>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "Previous Page", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" } %> (left arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><del>Next Page</del></p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><del>Last Page</del></p>
-    </div>
-
-  <% else %>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "First Page", issue_page_path(@issue, @issue.pages.first.id), data: { keybinding: "shift+left" } %> (shift + left arrow)</p>
-    </div>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "Previous Page", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" } %> (left arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Next Page", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" } %> (right arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Last Page", issue_page_path(@issue, @issue.pages.last.id), data: { keybinding: "shift+right" } %> (shift + right arrow)</p>
-    </div>
-
-  <% end %>
+  <%= render 'comic_page' %>
 </div>
 
 <div class="row text-center">
   <div class='col-sm-12'>
-
-    <%= link_to (image_tag(@page.image)), issue_page_path(@issue, @page.id+1) %>
+    <% if @page != @page.issue.pages.last %>
+      <%= link_to (image_tag(@page.image)), issue_page_path(@issue, @page.id+1) %>
+    <% else %>
+      <%= image_tag @page.image %>
+    <% end %>
   </div>
 </div>
 
