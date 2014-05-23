@@ -1,3 +1,8 @@
+body {
+  background-image: url('sos.png');
+  background-color: #cccccc;
+}
+
 #cover {
   height: 300px;
 }
