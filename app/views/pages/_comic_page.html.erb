@@ -1,55 +1,27 @@
 <% if @page === @issue.pages.first %>
 
-    <div class="col-sm-3 active">
-      <p><del>First Page</del></p>
-    </div>
-
-    <div class="col-sm-3 active">
-      <p><del>Previous Page</del></p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Next Page", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" } %> (right arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Last Page", issue_page_path(@issue, @issue.pages.last.id), data: { keybinding: "shift+right" } %> (shift + right arrow)</p>
-    </div>
-
-  <% elsif @page === @issue.pages.last %>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "First Page", issue_page_path(@issue, @issue.pages.first.id), data: { keybinding: "shift+left" } %> (shift + left arrow)</p>
-    </div>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "Previous Page", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" } %> (left arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><del>Next Page</del></p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><del>Last Page</del></p>
-    </div>
-
-  <% else %>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "First Page", issue_page_path(@issue, @issue.pages.first.id), data: { keybinding: "shift+left" } %> (shift + left arrow)</p>
-    </div>
-
-    <div class="col-sm-3 active">
-      <p><%= link_to "Previous Page", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" } %> (left arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Next Page", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" } %> (right arrow)</p>
-    </div>
-
-    <div class="col-sm-3">
-      <p><%= link_to "Last Page", issue_page_path(@issue, @issue.pages.last.id), data: { keybinding: "shift+right" } %> (shift + right arrow)</p>
-    </div>
-
+  <p><
+  <%= link_to ">", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" }, class: "btn btn-xs btn-primary" %></p>
+  <%= form_tag issue_page_path, :method => :get do %>
+    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %></p>
+    <p><%= submit_tag('Go to Page', :class => "form-group") %></p>
   <% end %>
+
+<% elsif @page === @issue.pages.last %>
+
+  <p><%= link_to "<", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" }, class: "btn btn-xs btn-primary" %>></p>
+  <%= form_tag issue_page_path, :method => :get do %>
+    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %></p>
+    <p><%= submit_tag('Go to Page', :class => "form-group") %></p>
+  <% end %>
+
+<% else %>
+
+  <p><%= link_to "<", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" }, class: "btn btn-xs btn-primary" %>
+     <%= link_to ">", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" }, class: "btn btn-xs btn-primary" %></p>
+  <%= form_tag issue_page_path, :method => :get do %>
+    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %></p>
+    <p><%= submit_tag('Go to Page', :class => "form-group") %></p>
+  <% end %>
+
+<% end %>

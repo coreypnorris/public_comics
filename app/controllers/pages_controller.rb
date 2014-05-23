@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.find(params[:id])
+    @page = params[:page] ? Page.find(params[:page][:id].to_i) : Page.find(params[:id])
     @issue = @page.issue
     @title = @page.issue.title
   end
