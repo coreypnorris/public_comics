@@ -2,21 +2,20 @@
   <h2><%= @page.issue.title.name %> # <%= @page.issue.number %></h2>
 </header>
 
-<div class="row text-center">
-  <%= render('comic_page') %>
-</div>
-
-<div class="row text-center">
-  <div class='col-sm-12'>
+<div class="row">
+  <div class='col-sm-8 text-right'>
     <% if @page != @page.issue.pages.last %>
       <%= link_to (image_tag(@page.image)), issue_page_path(@issue, @page.id+1) %>
-      <p>You can use the arrow keys to switch pages</p>
     <% else %>
       <%= image_tag @page.image %>
-      <p>Use the arrow keys to switch pages</p>
     <% end %>
   </div>
+
+  <div class="col-sm-3 text-left">
+    <%= render('comic_page') %>
+  </div>
 </div>
+
 
 
 

@@ -3,25 +3,30 @@
   <p><
   <%= link_to ">", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" }, class: "btn btn-xs btn-primary" %></p>
   <%= form_tag issue_page_path, :method => :get do %>
-    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %></p>
-    <p><%= submit_tag('Go to Page', :class => "form-group") %></p>
+    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %>
+    <%= submit_tag('Go to Page', :class => "form-group") %></p>
   <% end %>
+  <p>Genre: <%= link_to "#{@issue.title.genre.name}", genre_path(@issue.title.genre), :class => "label label-primary" %></p>
+  <p>Tip: You can use the arrow keys to navigate the pages</p>
 
 <% elsif @page === @issue.pages.last %>
 
-  <p><%= link_to "<", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" }, class: "btn btn-xs btn-primary" %>></p>
+  <p><%= link_to "<", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" }, class: "btn btn-xs btn-primary" %> ></p>
   <%= form_tag issue_page_path, :method => :get do %>
-    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %></p>
-    <p><%= submit_tag('Go to Page', :class => "form-group") %></p>
+    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %>
+    <%= submit_tag('Go to Page', :class => "form-group") %></p>
   <% end %>
+  <p>Genre: <%= link_to "#{@issue.title.genre.name}", genre_path(@issue.title.genre), :class => "label label-primary" %></p>
+  <p>Tip: You can use the arrow keys to navigate the pages</p>
 
 <% else %>
 
   <p><%= link_to "<", issue_page_path(@issue, @page.id-1), data: { keybinding: "left" }, class: "btn btn-xs btn-primary" %>
-     <%= link_to ">", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" }, class: "btn btn-xs btn-primary" %></p>
+  <%= link_to ">", issue_page_path(@issue, @page.id+1), data: { keybinding: "right" }, class: "btn btn-xs btn-primary" %></p>
   <%= form_tag issue_page_path, :method => :get do %>
-    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %></p>
-    <p><%= submit_tag('Go to Page', :class => "form-group") %></p>
+    <p><%= collection_select(:page, :id, @issue.pages, :id, :number) %>
+    <%= submit_tag('Go to Page', :class => "form-group") %></p>
   <% end %>
-
+  <p>Genre: <%= link_to "#{@issue.title.genre.name}", genre_path(@issue.title.genre), :class => "label label-primary" %></p>
+  <p>Tip: You can use the arrow keys to navigate the pages</p>
 <% end %>
