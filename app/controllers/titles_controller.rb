@@ -12,7 +12,7 @@ class TitlesController < ApplicationController
       end
     end
     @issues = @issues.sort_by { |issue| issue.created_at }
-    @issues = @issues.reverse.paginate(:per_page => 4, :page => params[:page])
+    @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
   end
 
 private
