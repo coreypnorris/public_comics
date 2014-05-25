@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'will_paginate'
 gem 'mousetrap-rails'
+gem 'devise'
 
 
 group :development do

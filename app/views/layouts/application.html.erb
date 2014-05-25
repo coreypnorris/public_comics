@@ -16,11 +16,28 @@
       <p>Read comicbooks from the public domain</p>
     </div>
 
-    <div class="col-s-6 pull-right search-bar">
-      <%= form_tag titles_path, :method => 'get' do  %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
-      <% end %>
+    <div class="col-s-6 pull-right">
+      <div id="user_nav">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, id: "flash_#{name}" %>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <p>Welcome back <strong><%= current_user.username %></strong>.
+          <%= link_to 'Edit Profile', edit_user_registration_path %> |
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %></p>
+        <% else %>
+          <p><%= link_to "Sign Up", new_user_registration_path %> |
+          <%= link_to "Sign In", new_user_session_path %></p>
+        <% end %>
+      </div>
+
+      <div id="search-bar" class="pull-right">
+        <%= form_tag titles_path, :method => 'get' do  %>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
 
     <hr>
@@ -28,9 +45,6 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}" %>
-      <% end %>
       <%= yield %>
     </div>
   </div>
