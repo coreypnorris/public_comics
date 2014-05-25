@@ -11,16 +11,21 @@
 <div class="container">
   <div class="row">
 
-    <h1><%= link_to "Public Comics", root_url %></h1>
+    <div class="col-sm-6">
+      <h1><%= link_to "Public Comics", root_url %></h1>
+      <p>Read comicbooks from the public domain</p>
+    </div>
 
-    <%= form_tag titles_path, :method => 'get' do  %>
-      <p>Read comicbooks from the public domain
-        <span class="pull-right">
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
-        </span>
-      </p>
-    <% end %>
+    <div class="col-s-6 pull-right search-bar">
+      <%= form_tag titles_path, :method => 'get' do  %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
+      <% end %>
+      <p>Browse comics by genre <%= select("genre", "id", Genre.all.collect {|g| [ g.name, g.id ] }) %></p>
+    </div>
+
+
+
     <hr>
   </div>
 
@@ -46,3 +51,4 @@
 
 </body>
 </html>
+

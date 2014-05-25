@@ -7,11 +7,12 @@ PublicComics::Application.routes.draw do
     resources :pages, :name_prefix => "issue_"
   end
 
+  resources :genres, only: [:show]
   resources :pages, only: [:show]
 
-  resources :genres, only: [:show]
 
-  root to: 'welcome#index'
+  root to: "welcome#index"
+
 end
 
 
