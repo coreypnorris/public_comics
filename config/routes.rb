@@ -8,7 +8,7 @@ PublicComics::Application.routes.draw do
   end
 
   resources :genres, only: [:show]
-  resources :pages, only: [:show]
+  resources :pages, only: [:index, :show]
 
 
   root to: "welcome#index"

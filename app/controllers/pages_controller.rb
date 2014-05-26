@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
 
   def index
-    @pages = Page.all
+    @issue = Issue.find(params[:issue_id])
+    @pages = @issue.pages
   end
 
   def show
