@@ -3,7 +3,7 @@
 </header>
 
 <div class="row">
-  <div class="col-md-7 text-right">
+  <div class="col-md-7 text-right comic-nav">
     <% if @page != @page.issue.pages.last %>
       <%= link_to (image_tag(@page.image)), issue_page_path(@issue, @page.id+1) %>
     <% else %>
@@ -11,7 +11,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-5">
+  <div class="col-md-3 comic-nav">
     <%= render('comic_nav') %>
   </div>
 </div>
