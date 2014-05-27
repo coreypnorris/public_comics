@@ -3,9 +3,12 @@ class GenresController < ApplicationController
   require 'will_paginate/array'
 
   def show
-    @genre = Genre.find(params[:id])
+    if params[:genre]
+      @genre = Genre.find(params[:genre][:id])
+    else
+      @genre = Genre.find(params[:id])
+    end
     @issues = []
-
     @genre.titles.each do |title|
       title.issues.each do |issue|
         @issues << issue

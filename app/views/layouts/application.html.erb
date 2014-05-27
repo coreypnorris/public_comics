@@ -17,10 +17,15 @@
     </div>
 
     <div class="col-s-6 pull-right search-bar">
-      <%= form_tag titles_path, :method => 'get' do  %>
+      <p><%= form_tag titles_path, :method => 'get' do  %>
         <%= text_field_tag :search, params[:search] %>
         <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
-      <% end %>
+      <% end %></p>
+
+      <span class="pull-right"><%= form_tag genre_path(1), :method => :get do %>
+        <%= collection_select(:genre, :id, Genre.all, :id, :name, {:prompt => "Browse By Genre"}) %>
+        <%= submit_tag("Select", :class => "btn btn-primary") %>
+      <% end %></span>
     </div>
 
   </div>
