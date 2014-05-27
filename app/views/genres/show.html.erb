@@ -13,8 +13,6 @@
         <div class="col-sm-3">
           <%= link_to (image_tag("#{issue.cover}", :class => "img-thumbnail", :id => "cover")), issue_page_path(issue, issue.pages.first) %>
           <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
-
-          <%= link_to "#{issue.title.genre.name}", genre_path(issue.title.genre), :class => "label label-primary" %>
         </div>
       <% end %>
     </ul>
@@ -24,4 +22,3 @@
 <div class='row text-center'>
   <%= will_paginate @issues %>
 </div>
-
