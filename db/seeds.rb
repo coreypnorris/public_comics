@@ -970,3 +970,42 @@ toh_four.pages << page_thirtythree = Page.create(image: "http://furycomics.com/T
 toh_four.pages << page_thirtyfour = Page.create(image: "http://furycomics.com/Tales_Of_Horror/004/i/33.jpg", number: 34)
 toh_four.pages << page_thirtyfive = Page.create(image: "http://furycomics.com/Tales_Of_Horror/004/i/34.jpg", number: 35)
 toh_four.pages << page_thirtysix = Page.create(image: "http://furycomics.com/Tales_Of_Horror/004/i/35.jpg", number: 36)
+
+
+
+crime_smashers.issues << cs_three = Issue.create(number: 3, cover: "http://furycomics.com/Crime_Smashers/003/i/Comic_Book_Cover_For_Crime_Smashers_Issue_3.jpg")
+
+cs_three.pages << page_one = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/Comic_Book_Cover_For_Crime_Smashers_Issue_3.jpg", number: 1)
+cs_three.pages << page_two = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/1.jpg", number: 2)
+cs_three.pages << page_three = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/2.jpg", number: 3)
+cs_three.pages << page_four = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/3.jpg", number: 4)
+cs_three.pages << page_five = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/4.jpg", number: 5)
+cs_three.pages << page_six = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/5.jpg", number: 6)
+cs_three.pages << page_seven = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/6.jpg", number: 7)
+cs_three.pages << page_eight = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/7.jpg", number: 8)
+cs_three.pages << page_nine = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/8.jpg", number: 9)
+cs_three.pages << page_ten = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/9.jpg", number: 10)
+cs_three.pages << page_eleven = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/10.jpg", number: 11)
+cs_three.pages << page_twelve = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/11.jpg", number: 12)
+cs_three.pages << page_thirteen = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/12.jpg", number: 13)
+cs_three.pages << page_fourteen = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/13.jpg", number: 14)
+cs_three.pages << page_fifteen = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/14.jpg", number: 15)
+cs_three.pages << page_sixteen = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/15.jpg", number: 16)
+cs_three.pages << page_seventeen = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/16.jpg", number: 17)
+cs_three.pages << page_eighteen = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/17.jpg", number: 18)
+cs_three.pages << page_nineteen = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/18.jpg", number: 19)
+cs_three.pages << page_twenty = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/19.jpg", number: 20)
+cs_three.pages << page_twentyone = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/20.jpg", number: 21)
+cs_three.pages << page_twentytwo = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/21.jpg", number: 22)
+cs_three.pages << page_twentythree = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/22.jpg", number: 23)
+cs_three.pages << page_twentyfour = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/23.jpg", number: 24)
+cs_three.pages << page_twentyfive = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/24.jpg", number: 25)
+cs_three.pages << page_twentysix = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/25.jpg", number: 26)
+cs_three.pages << page_twentyseven = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/26.jpg", number: 27)
+cs_three.pages << page_twentyeight = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/27.jpg", number: 28)
+cs_three.pages << page_twentynine = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/28.jpg", number: 29)
+cs_three.pages << page_thirty = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/29.jpg", number: 30)
+cs_three.pages << page_thirtyone = Page.create(image: "http://furycomics.com/Crime_Smashers/003/i/30.jpg", number: 31)
+
+
+
