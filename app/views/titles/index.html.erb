@@ -7,7 +7,7 @@
     <ul class="list-unstyled">
       <% @issues.each do |issue| %>
         <div class="col-sm-3">
-          <%= image_tag("#{issue.cover}", :class => "img-thumbnail", :id => "cover") %>
+          <%= image_tag("#{issue.cover}", :class => "img-thumbnail", :id => "thumbnail") %>
           <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
 
           <%= link_to "#{issue.title.genre.name}", genre_path(issue.title.genre), :class => "label label-primary" %>
