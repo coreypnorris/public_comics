@@ -2,7 +2,7 @@
 
 A rails app for reading comicbooks available in the public domain.
 
-You can visit a live version of the site at http://dry-ridge-9561.herokuapp.com/
+You can visit a live version of the site at http://public-comics-9561.herokuapp.com/
 
 ####Features
 
