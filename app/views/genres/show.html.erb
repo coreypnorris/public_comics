@@ -1,4 +1,4 @@
-<header class="text-center">
+<header class="text-center" id="paginate-one">
   <h2><%= @genre.name %> Comics</h2>
 </header>
 
@@ -19,6 +19,6 @@
   </div>
 </div>
 
-<div class='row text-center'>
+<div class='row text-center' id="paginate-two">
   <%= will_paginate @issues %>
 </div>

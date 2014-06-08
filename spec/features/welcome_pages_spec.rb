@@ -24,16 +24,17 @@ feature "Viewing home page" do
   end
 
   scenario "User can use pagination links to see issues added earlier" do
-    issue_1 = FactoryGirl.create(:page).issue
-    issue_2 = FactoryGirl.create(:page).issue
-    issue_3 = FactoryGirl.create(:page).issue
-    issue_4 = FactoryGirl.create(:page).issue
-    issue_5 = FactoryGirl.create(:page).issue
+    old_issue = FactoryGirl.create(:page).issue
+    11.times { FactoryGirl.create(:page).issue }
+    new_issue = FactoryGirl.create(:page).issue
     visit root_path
-    click_link "Next"
 
-    page.should have_content issue_1.title.name
-    page.should_not have_content issue_5.title.name
+    within("#paginate-one") do
+        click_link "Next"
+    end
+
+    page.should have_content old_issue.title.name
+    page.should_not have_content new_issue.title.name
   end
 
   scenario "User can filter issues by genre" do

@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :genre do
-    sequence(:name) { |n| "Comic #{n}" }
+    sequence(:name) { |n| "Genre #{n}" }
   end
 
   factory :title do
     genre
-    sequence(:name) { |n| "Comic #{n}" }
+    sequence(:name) { |n| "Title #{n}" }
   end
 
   factory :issue do
