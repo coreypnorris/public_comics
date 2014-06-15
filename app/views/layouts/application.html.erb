@@ -22,7 +22,7 @@
           <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
         <% end %></p>
 
-        <span class="pull-right"><%= form_tag genre_path(1), :method => :get do %>
+        <span class="pull-right"><%= form_tag genre_path(99), :method => :get do %>
           <%= collection_select(:genre, :id, Genre.all, :id, :name, {:prompt => "Browse By Genre"}) %>
           <%= submit_tag("Select", :class => "btn btn-primary") %>
         <% end %></span>
