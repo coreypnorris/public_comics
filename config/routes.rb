@@ -1,4 +1,5 @@
 PublicComics::Application.routes.draw do
+  devise_for :users
   resources :titles, only: [:index] do
     resources :issues, :name_prefix => "title_"
   end
