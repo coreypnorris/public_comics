@@ -23,15 +23,9 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <% if current_user %>
-              <li>Submit</li>
-            <% end %>
-          </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to current_user.username, edit_user_registration_path %></li>
-              <li><a href="" id="score">(<%= current_user.score %>)</a></li>
+              <li><%= link_to current_user.email, edit_user_registration_path %></li>
               <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "sign up", new_user_registration_path %></li>
