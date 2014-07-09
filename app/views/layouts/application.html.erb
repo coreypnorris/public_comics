@@ -38,12 +38,6 @@
 
   <div class="container">
     <div class="row">
-
-      <div class="col-sm-6">
-        <h1><%= link_to "Public Comics", root_url %></h1>
-        <p>Read comicbooks from the public domain</p>
-      </div>
-
       <div class="col-s-6 pull-right search-bar">
         <p><%= form_tag titles_path, :method => 'get' do  %>
           <%= text_field_tag :search, params[:search] %>
@@ -55,7 +49,6 @@
           <%= submit_tag("Select", :class => "btn btn-primary") %>
         <% end %></span>
       </div>
-
     </div>
 
     <div class="row">
