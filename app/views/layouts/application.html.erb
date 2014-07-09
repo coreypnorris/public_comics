@@ -32,6 +32,14 @@
               <li><%= link_to "Sign In", new_user_session_path %></li>
             <% end %>
           </ul>
+
+          <%= form_tag titles_path, :method => 'get', :class => "navbar-form navbar-left", :role => "search" do  %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "Search" %>
+            </div>
+            <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+          <% end %>
+
         </div>
       </div>
     </nav>
@@ -39,11 +47,6 @@
   <div class="container">
     <div class="row">
       <div class="col-s-6 pull-right search-bar">
-        <p><%= form_tag titles_path, :method => 'get' do  %>
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
-        <% end %></p>
-
         <span class="pull-right"><%= form_tag genre_path(99), :method => :get do %>
           <%= collection_select(:genre, :id, Genre.all, :id, :name, {:prompt => "Browse By Genre"}) %>
           <%= submit_tag("Select", :class => "btn btn-primary") %>
@@ -51,14 +54,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, id: "flash_#{name}" %>
-        <% end %>
-        <%= yield %>
-      </div>
+    <div class="row-fluid">
+      <%= render "layouts/flash_messages", flash: flash %>
     </div>
+
+    <%= yield %>
 
     <div class="page-footer">
       <hr>
