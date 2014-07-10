@@ -6,6 +6,7 @@ PublicComics::Application.routes.draw do
 
   resources :issues, only: [:index] do
     resources :pages, :name_prefix => "issue_"
+    resources :comments, only: [:create]
   end
 
   resources :genres, only: [:show]
@@ -15,6 +16,3 @@ PublicComics::Application.routes.draw do
   root to: "welcome#index"
 
 end
-
-
-
