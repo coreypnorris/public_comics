@@ -2,9 +2,7 @@
   <%= comment.body %>
 </div>
 
-<p><u><%= link_to "reply", new_comment_path(:parent_id => comment), :class => "reply" %></u></p>
-
-<% sorted_children.each do |i| %>
+<% comment.children.each do |i| %>
   <% if i.has_children? == false %>
     <div class="nested_comments"> <%= render i %></div>
   <% end %>
