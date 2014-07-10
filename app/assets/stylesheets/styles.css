@@ -1,6 +1,10 @@
 body {
-  background-image: url('sos.png');
+  background-image: url('background.png');
   background-color: #cccccc;
+}
+
+.navbar {
+  background-image: url("navbar_background.png");
 }
 
 #thumbnail {
@@ -19,4 +23,8 @@ body {
 
 .comic-nav {
   margin-top: 15px;
+}
+
+.navbar a {
+  color: black !important;
 }
