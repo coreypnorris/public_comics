@@ -1,4 +1,5 @@
 <%= form_for([@issue, @comment]) do |f| %>
+  <%= f.hidden_field :id %>
   <p>
     <%= f.text_area :body, :rows => "6", :cols => "60" %>
   </p>
