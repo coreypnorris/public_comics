@@ -11,6 +11,7 @@ gem 'turbolinks'
 gem 'will_paginate'
 gem 'mousetrap-rails'
 gem 'devise'
+gem 'acts_as_commentable_with_threading'
 
 
 group :development do
