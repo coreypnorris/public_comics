@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     @page = params[:page] ? Page.find(params[:page][:id].to_i) : Page.find(params[:id])
     @issue = @page.issue
     @title = @page.issue.title
+    @comment = Comment.new
   end
 
 private
