@@ -1,27 +1,34 @@
-<header class="text-center" id="page-counter">
-  <h2><%= @page.issue.title.name %> # <%= @page.issue.number %></h2>
-</header>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h3 id="page-title"><%= @page.issue.title.name %> # <%= @page.issue.number %></h3>
+
+
+    <h3><%= render('comic_nav') %></h3>
+    </div>
+</div>
+
+<br>
 
 <div class="row">
-  <div class="col-md-7 text-right comic-nav">
+  <div class="col-md-12 text-center">
     <% if @page != @page.issue.pages.last %>
       <%= link_to (image_tag(@page.image)), issue_page_path(@issue, @page.id+1) %>
     <% else %>
       <%= image_tag @page.image %>
     <% end %>
   </div>
-
-  <div class="col-md-3 comic-nav">
-    <%= render('comic_nav') %>
-  </div>
 </div>
 
 <hr>
 
-<p><%= @page.issue.comments.count %> comments</p>
+<div class="row">
+  <div class="col-md-1">
+    <p><%= @page.issue.comments.count %> comments</p>
 
-<%= render "/pages/comment_form", object: @page.issue, object: @comment %>
+    <%= render "/pages/comment_form", object: @page.issue, object: @comment %>
 
-<ol>
-  <%= render @page.issue.root_comments %>
-</ol>
+    <ol>
+      <%= render @page.issue.root_comments %>
+    </ol>
+  </div>
+</div>

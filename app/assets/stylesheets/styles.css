@@ -1,6 +1,7 @@
 body {
   background-image: url('background.png');
   background-color: #cccccc;
+  font-family: "Comic Sans MS";
 }
 
 .navbar {
@@ -27,4 +28,8 @@ body {
 
 .navbar a {
   color: black !important;
+}
+
+#page-title {
+  margin-bottom: 0px;
 }
