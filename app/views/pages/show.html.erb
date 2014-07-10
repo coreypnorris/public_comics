@@ -19,3 +19,9 @@
 <hr>
 
 <p><%= @page.issue.comments.count %> comments</p>
+
+<%= render "/pages/comment_form", object: @page.issue, object: @comment %>
+
+<ol>
+  <%= render @page.issue.root_comments %>
+</ol>
