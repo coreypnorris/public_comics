@@ -2,18 +2,18 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!, only: [:create]
 
   def create
-    @parent = Post.find(params[:post_id]) if params[:post_id]
+    @parent = Issue.find(params[:issue_id]) if params[:issue_id]
     @parent = Comment.find(params[:comment][:parent_id]) if params[:comment][:parent_id]
-    @post = @parent.class == Post ? @parent : @parent.commentable
-    @comment = Comment.build_from( @post, current_user.id, comment_params[:body] )
+    @issue = @parent.class == Issue ? @parent : @parent.commentable
+    @comment = Comment.build_from( @issue, current_user.id, comment_params[:body] )
     if @comment.save
       current_user.comments << @comment
       flash[:notice] = "Your comment has been submitted."
-      if params[:post_id]
-        redirect_to post_path(@parent)
+      if params[:issue_id]
+        redirect_to issue_path(@parent)
       elsif params[:comment][:parent_id]
         @comment.move_to_child_of(@parent)
-        redirect_to post_path(@parent.commentable)
+        redirect_to issue_path(@parent.commentable)
       end
     else
       flash[:error] = "Something went wrong. Please try to save your comment again."
