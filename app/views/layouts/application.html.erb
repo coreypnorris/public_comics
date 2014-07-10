@@ -37,6 +37,7 @@
             <div class="form-group">
               <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "Search" %>
             </div>
+              <%= submit_tag "Search", style: "position: absolute; left: -9999px; width: 1px; height: 1px;" %>
           <% end %>
 
           <%= form_tag genre_path(0), :method => :get, :class => "navbar-form navbar-left", :role => "search" do %>
