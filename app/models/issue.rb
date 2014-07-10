@@ -5,6 +5,6 @@ class Issue < ActiveRecord::Base
   validates :cover, :presence => true
 
   has_many :pages
-  has_many :comments
+  has_many :comments, :as => :commentable
   belongs_to :title
 end
