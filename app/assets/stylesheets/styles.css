@@ -33,3 +33,8 @@ body {
 #page-title {
   margin-bottom: 0px;
 }
+
+#logged-in-as {
+  text-decoration: none;
+  cursor: text;
+}
