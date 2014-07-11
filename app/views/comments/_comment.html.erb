@@ -1,5 +1,6 @@
 <div class="content">
-  <%= comment.body %>
+  <%= comment.body %><br>
+   <p>-<%= comment.user.username %></p>
 </div>
 
 <% comment.children.each do |i| %>
