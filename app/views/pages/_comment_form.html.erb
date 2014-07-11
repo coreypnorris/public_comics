@@ -1,9 +1,10 @@
 <%= form_for([@issue, @comment]) do |f| %>
-  <%= f.hidden_field :id %>
-  <p>
+  <%= hidden_field_tag :page_id, @page.id %>
+  <div class="form-group">
     <%= f.text_area :body, :rows => "6", :cols => "60" %>
-  </p>
-  <p>
-    <%= f.submit "add comment" %>
-  </p>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= f.submit "Add Comment", :class => "btn btn-default" %>
+  </div>
 <% end %>

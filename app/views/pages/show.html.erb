@@ -17,14 +17,13 @@
   </div>
 </div>
 
-<hr>
+<br>
 
 <div class="row">
-  <div class="col-md-10">
-    <p><%= @page.issue.comments.count %> comments</p>
-    <%= render "/pages/comment_form", object: @page.issue, object: @comment %>
-    <ol>
-      <%= render @page.issue.root_comments %>
-    </ol>
+  <div class="text-center">
+    <p><%= @page.issue.comments.count %> Comments</p>
+    <%= render "/pages/comment_form", object: @page.issue, object: @comment, object: @page %>
+    <hr>
   </div>
+  <%= render @page.issue.root_comments %>
 </div>
