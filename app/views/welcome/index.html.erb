@@ -14,7 +14,7 @@
         <%= link_to (image_tag("#{issue.cover}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
         <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
 
-        <%= link_to "#{issue.title.genre.name}", genre_path(issue.title.genre), :class => "label label-primary" %>
+        <%= link_to "#{issue.title.genre.name}", genre_path(issue.title.genre), :class => "btn btn-xs btn-primary" %>
       </div>
       <% end %>
     </ul>
