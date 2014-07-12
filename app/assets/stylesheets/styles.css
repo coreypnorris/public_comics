@@ -38,3 +38,7 @@ body {
   text-decoration: none;
   cursor: text;
 }
+
+.subtext {
+  color: #828282;
+}
