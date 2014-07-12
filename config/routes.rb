@@ -11,8 +11,10 @@ PublicComics::Application.routes.draw do
 
   resources :genres, only: [:show]
   resources :pages, only: [:index, :show]
-
+  resources :users, :path => '', only: [:show]
 
   root to: "welcome#index"
+
+  match ":username", :to => "users#show", :via => :get
 
 end
