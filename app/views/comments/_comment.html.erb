@@ -1,6 +1,10 @@
-<div class="content">
-  <%= comment.body %><br>
-   <p>-<%= comment.user.username %></p>
+<div class="row">
+  <div class="col-md-4">
+    <p class="subtext"><%= link_to comment.user.username, "#" %> • <%= time_ago_in_words(comment.created_at) %> ago</p>
+    <div class="well well-md">
+      <%= comment.body %>
+    </div>
+  </div>
 </div>
 
 <% comment.children.each do |i| %>

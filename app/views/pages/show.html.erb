@@ -24,7 +24,7 @@
   <div class="text-center">
     <p><%= @page.issue.comments.count %> Comments</p>
     <%= render "/pages/comment_form", object: @page.issue, object: @comment, object: @page %>
-    <hr>
+
   </div>
   <%= render @page.issue.root_comments %>
 </div>
