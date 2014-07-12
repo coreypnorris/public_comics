@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true
   has_many :comments
+
+  def to_param
+    username
+  end
 end
