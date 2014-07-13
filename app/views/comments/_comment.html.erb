@@ -4,14 +4,17 @@
     <div class="well well-md">
       <%= comment.body %>
     </div>
+    <p><%= link_to "reply", new_comment_path(:parent_id => comment), :class => "reply" %></p>
   </div>
 </div>
 
-<% comment.children.each do |i| %>
-  <% if i.has_children? == false %>
-    <div class="nested_comments"> <%= render i %></div>
+<BR>
+
+<% comment.children.each do |child| %>
+  <% if child.has_children? == false %>
+    <div class="nested_comments"> <%= render child %></div>
   <% end %>
-  <% if i.has_children? == true %>
-    <div class="nested_comments"> <%= render i %></div>
+  <% if child.has_children? == true %>
+    <div class="nested_comments"> <%= render child %></div>
   <% end %>
 <% end %>
