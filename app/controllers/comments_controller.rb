@@ -1,6 +1,11 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, only: [:create]
 
+  def new
+    @comment = Comment.new(:parent_id => params[:parent_id])
+    @page = Page.find(params[:page_id])
+  end
+
   def create
     @parent = Issue.find(params[:issue_id]) if params[:issue_id]
     @parent = Comment.find(params[:comment][:parent_id]) if params[:comment][:parent_id]
