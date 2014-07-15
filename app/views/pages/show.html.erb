@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-md-12 text-center">
     <% if @page != @page.issue.pages.last %>
-      <%= link_to (image_tag(@page.image)), issue_page_path(@issue, @page.id+1) %>
+      <%= link_to (image_tag(@page.image)), issue_page_path(@issue, @page.number+1) %>
     <% else %>
       <%= image_tag @page.image %>
     <% end %>
