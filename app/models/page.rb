@@ -4,15 +4,6 @@ class Page < ActiveRecord::Base
 
   belongs_to :issue
 
-
-  def next
-    issue.pages.where("id > ?", id).order("id ASC").first
-  end
-
-  def prev
-    issue.pages.where("id < ?", id).order("id DESC").first
-  end
-
   def to_param
     number.to_s
   end
