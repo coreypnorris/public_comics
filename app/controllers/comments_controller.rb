@@ -16,7 +16,10 @@ class CommentsController < ApplicationController
       current_user.comments << @comment
       flash[:notice] = "Your comment has been submitted."
       if params[:issue_id]
-        redirect_to :back
+        respond_to do |format|
+          format.html { redirect_to :back }
+          format.js
+        end
       elsif params[:comment][:parent_id]
         @comment.move_to_child_of(@parent)
         redirect_to issue_path(@parent.commentable)
