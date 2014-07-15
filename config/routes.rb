@@ -2,11 +2,11 @@ PublicComics::Application.routes.draw do
   devise_for :user, :path => '', :path_names => { :sign_in => "sign_in", :sign_out => "sign_out", :sign_up => "sign_up" }
 
   resources :titles, only: [:index] do
-    resources :issues, :name_prefix => "title_"
+    resources :issues
   end
 
   resources :issues, only: [:index] do
-    resources :pages, :name_prefix => "issue_"
+    resources :pages
     resources :comments, only: [:create]
   end
 
@@ -16,7 +16,7 @@ PublicComics::Application.routes.draw do
 
   resources :genres, only: [:show]
   resources :pages, only: [:index, :show]
-  resources :users, :path => '', only: [:show]
+  resources :users, :path => 'profile', only: [:show]
 
   root to: "welcome#index"
 
