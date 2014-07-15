@@ -26,5 +26,5 @@
     <%= render "/comments/issue_comment_form" %>
 
   </div>
-  <%= render @page.issue.root_comments %>
+  <%= render @page.issue.root_comments.order("created_at ASC")%>
 </div>
