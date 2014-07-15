@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = params[:page] ? Page.find(params[:page][:id].to_i) : Page.find(params[:id])
+    @page = params[:page] ? Page.find(params[:page][:id].to_i) : Page.where(:issue_id => params[:issue_id].to_i, :number => params[:id]).first
     @issue = @page.issue
     @title = @page.issue.title
     @comment = Comment.new
