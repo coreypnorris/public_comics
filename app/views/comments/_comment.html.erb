@@ -4,7 +4,7 @@
     <div class="well well-md">
       <%= comment.body %>
     </div>
-    <p><%= link_to "reply", new_comment_path(:parent_id => comment, :page_id => @page), :id => "reply_link", :remote => true %></p>
+    <p><%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :remote => true %></p>
   </div>
 </div>
 
