@@ -12,4 +12,8 @@ class Page < ActiveRecord::Base
   def prev
     issue.pages.where("id < ?", id).order("id DESC").first
   end
+
+  def to_param
+    number.to_s
+  end
 end
