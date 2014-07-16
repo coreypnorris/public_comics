@@ -51,7 +51,19 @@ feature "Viewing a comic book page" do
     page.should have_css("img.thumbnail-#{page_2.number}")
     page.should have_css("img.thumbnail-#{page_3.number}")
   end
-end
 
-# page.first("#image-id-#{issue.pages.find_by_number(2)}").click
-# page.should have_css('img', text: "image1.jpg")
+  scenario "can use the genre button to view all titles with that genre" do
+    horror = FactoryGirl.create(:genre, :name => "Horror")
+    tomb_of_dracula = horror.titles.create(:name => "Tomb of Dracula")
+    western = FactoryGirl.create(:genre, :name => "Western")
+    two_gun_kid = western.titles.create(:name => "Two Gun Kid")
+    tomb_of_dracula_1 = tomb_of_dracula.issues.create(:number => 1, :cover =>"tomb_of_dracula_1_cover")
+    two_gun_kid_1 = two_gun_kid.issues.create(:number => 1, :cover =>"two_gun_kid_1_cover")
+    tomb_of_dracula_1.pages.create(:number => 1, :image => "page_1_image_url")
+    two_gun_kid_1.pages.create(:number => 1, :image => "page_1_image_url")
+    visit issue_page_path(tomb_of_dracula_1, tomb_of_dracula_1.pages.first)
+    find("#issue-genre-button").click
+    save_and_open_page
+    page.should have_css("img.#{tomb_of_dracula_1.title.name.delete(" ")}-#{tomb_of_dracula_1.number}")
+  end
+end
