@@ -12,7 +12,7 @@ gem 'will_paginate'
 gem 'mousetrap-rails'
 gem 'devise'
 gem 'acts_as_commentable_with_threading'
-
+gem 'pry'
 
 group :development do
   gem 'better_errors'
