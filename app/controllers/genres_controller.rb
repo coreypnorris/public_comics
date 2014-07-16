@@ -6,7 +6,7 @@ class GenresController < ApplicationController
     if params[:genre]
       @genre = Genre.find(params[:genre][:id])
     else
-      @genre = Genre.find(params[:id])
+      @genre = Genre.where(:name => params[:id]).first
     end
     @issues = []
     @genre.titles.each do |title|

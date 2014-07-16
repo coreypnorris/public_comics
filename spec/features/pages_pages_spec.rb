@@ -4,7 +4,6 @@ feature "Viewing a comic book page" do
   scenario "after choosing a book to read they can see the first page" do
     issue = FactoryGirl.create(:page).issue
     visit issue_page_path(issue, issue.pages.first)
-
     page.find('img')['src'].should have_content issue.pages.first.image
   end
 
@@ -23,6 +22,6 @@ feature "Viewing a comic book page" do
     visit issue_page_path(issue, issue.pages.first)
     select("3", :from => "page_id")
     click_button "Go to Page"
-    page.should have_content
+    page.find('img')['src'].should have_content issue.pages.find_by_number(3).image
   end
 end

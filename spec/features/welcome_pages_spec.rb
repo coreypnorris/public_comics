@@ -37,7 +37,7 @@ feature "Viewing home page" do
     page.should_not have_content new_issue.title.name
   end
 
-  scenario "User can filter issues by genre" do
+  scenario "User can filter issues by genre with genre buttons" do
     issue_1 = FactoryGirl.create(:page).issue
     issue_2 = FactoryGirl.create(:page).issue
     visit root_path
@@ -53,7 +53,8 @@ feature "Viewing home page" do
     fill_in 'search', with: issue_2.title.name
     click_button 'Search'
 
-    page.should_not have_content issue_1
+    page.should_not have_content issue_1.title.name
+    page.should have_content issue_2.title.name
   end
 
 end
