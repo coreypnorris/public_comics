@@ -24,7 +24,6 @@
   <div id="comments-div" class="text-center">
     <p><%= @page.issue.comments.count %> Comments</p>
     <%= render "/comments/issue_comment_form" %>
-
   </div>
   <%= render @page.issue.root_comments.order("created_at ASC")%>
 </div>
