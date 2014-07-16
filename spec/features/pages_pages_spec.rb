@@ -63,7 +63,7 @@ feature "Viewing a comic book page" do
     two_gun_kid_1.pages.create(:number => 1, :image => "page_1_image_url")
     visit issue_page_path(tomb_of_dracula_1, tomb_of_dracula_1.pages.first)
     find("#issue-genre-button").click
-    save_and_open_page
     page.should have_css("img.#{tomb_of_dracula_1.title.name.delete(" ")}-#{tomb_of_dracula_1.number}")
+    page.should_not have_css("img.#{two_gun_kid_1.title.name.delete(" ")}-#{two_gun_kid_1.number}")
   end
 end
