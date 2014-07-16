@@ -40,6 +40,17 @@ feature "Viewing a comic book page" do
     find("#next-arrow").click
     page.find('img')['src'].should have_content page_2.image
   end
+
+  scenario "can use the thumbnails button to view thumbnails of all the pages in the issue" do
+    issue = FactoryGirl.create(:page, :image => "page_1_image_url").issue
+    page_2 = issue.pages.create(:number => 2, :image => "page_2_image_url")
+    page_3 = issue.pages.create(:number => 3, :image => "page_3_image_url")
+    visit issue_page_path(issue, issue.pages.first)
+    find("#thumbnails-button").click
+    page.should have_css("img.thumbnail-#{issue.pages.first.number}")
+    page.should have_css("img.thumbnail-#{page_2.number}")
+    page.should have_css("img.thumbnail-#{page_3.number}")
+  end
 end
 
 # page.first("#image-id-#{issue.pages.find_by_number(2)}").click
