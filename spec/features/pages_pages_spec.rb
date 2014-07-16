@@ -7,21 +7,26 @@ feature "Viewing a comic book page" do
     page.find('img')['src'].should have_content issue.pages.first.image
   end
 
-  scenario "cannot go to the next page on the last page of a book" do
-    issue = FactoryGirl.create(:page).issue
-    visit issue_page_path(issue, issue.pages.last)
-    find('img').click
-
-    page.should have_content issue.title.name
+  scenario "clicking on the image takes the user to the next image" do
+    issue = FactoryGirl.create(:page, :image => "page_1_image_url").issue
+    page_2 = issue.pages.create(:number => 2, :image => "page_2_image_url")
+    page_3 = issue.pages.create(:number => 3, :image => "page_3_image_url")
+    visit issue_page_path(issue, issue.pages.first)
+    find("#image-id-#{issue.pages.first.id}").click
+    page.find('img')['src'].should have_content issue.pages.find_by_number(2).image
   end
 
-  scenario "can use the select dropdown to go to any page of the book they're reading" do
+  scenario "can use the select dropdown to go to any page of the issue" do
     issue = FactoryGirl.create(:page).issue
-    issue.pages << Page.create(:number => 2, :image => "page_2_image_url")
-    issue.pages << Page.create(:number => 3, :image => "page_3_image_url")
+    issue.pages << FactoryGirl.create(:page, :number => 2)
+    issue.pages << FactoryGirl.create(:page, :number => 3)
     visit issue_page_path(issue, issue.pages.first)
     select("3", :from => "page_id")
     click_button "Go to Page"
+    save_and_open_page
     page.find('img')['src'].should have_content issue.pages.find_by_number(3).image
   end
 end
+
+# page.first("#image-id-#{issue.pages.find_by_number(2)}").click
+# page.should have_css('img', text: "image1.jpg")
