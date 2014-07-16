@@ -10,7 +10,7 @@
       <i class="glyphicon glyphicon-chevron-right"></i>
     <% end %>
   <% end %>
-  <%= link_to "Thumbnails", issue_pages_path(@issue), :class => "form-control btn btn-default" %>
-  <%= link_to "#{@issue.title.genre.name}", genre_path(@issue.title.genre), :class => "form-control btn btn-default" %>
+  <%= link_to "Thumbnails", issue_pages_path(@issue), :class => "form-control btn btn-default", :id => "thumbnails-button" %>
+  <%= link_to "#{@issue.title.genre.name}", genre_path(@issue.title.genre), :class => "form-control btn btn-default", :id => "issue-genre-button" %>
   <%= submit_tag('Go to Page', style: "position: absolute; left: -9999px; width: 1px; height: 1px;") %>
 <% end %>
