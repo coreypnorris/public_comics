@@ -1,5 +1,5 @@
 
-superhero = Genre.create(name: "Super Hero")
+superhero = Genre.create(name: "SuperHero")
 
 superhero.titles << captain_marvel_adventures = Title.create(name: "Captain Marvel Adventures")
 
