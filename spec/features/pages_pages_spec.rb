@@ -25,12 +25,20 @@ feature "Viewing a comic book page" do
     page.find('img')['src'].should have_content page_3.image
   end
 
-  scenario "can use the left-arrow link to go to the previous page" do
+  scenario "can use the previous-arrow link to go to the previous page" do
     issue = FactoryGirl.create(:page, :image => "page_1_image_url").issue
     page_2 = issue.pages.create(:number => 2, :image => "page_2_image_url")
     visit issue_page_path(issue, page_2)
     find("#previous-arrow").click
     page.find('img')['src'].should have_content issue.pages.first.image
+  end
+
+  scenario "can use the next-arrow link to go to the next page" do
+    issue = FactoryGirl.create(:page, :image => "page_1_image_url").issue
+    page_2 = issue.pages.create(:number => 2, :image => "page_2_image_url")
+    visit issue_page_path(issue, issue.pages.first)
+    find("#next-arrow").click
+    page.find('img')['src'].should have_content page_2.image
   end
 end
 
