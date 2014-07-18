@@ -4,7 +4,15 @@
     <div class="well well-md">
       <%= comment.body %>
     </div>
-    <p><%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :remote => true %></p>
+    <%= link_to root_url, :class => "btn btn-xs btn-primary" do %>
+      <i class="glyphicon glyphicon-chevron-up"></i>
+    <% end %>
+    •
+    <%= link_to root_url, :class => "btn btn-xs btn-primary" do %>
+      <i class="glyphicon glyphicon-chevron-down"></i>
+    <% end %>
+    •
+    <%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :remote => true %>
   </div>
 </div>
 
