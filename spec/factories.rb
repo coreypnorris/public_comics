@@ -20,4 +20,11 @@ FactoryGirl.define do
     number 1
   end
 
+  factory :user do
+    sequence(:username) { |n| "johnny#{n}" }
+    sequence(:email) { |n| "#{n}@jla.org" }
+    password 'super'
+    password_confirmation 'super'
+    city
+  end
 end
