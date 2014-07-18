@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4">
-    <p class="subtext"><%= link_to comment.user.username, user_path(comment.user) %> • <%= time_ago_in_words(comment.created_at) %> ago</p>
+    <p class="subtext">Posted by <%= link_to comment.user.username, user_path(comment.user) %> • <%= comment.votes_for.size %> points • <%= time_ago_in_words(comment.created_at) %> ago</p>
     <div class="well well-md">
       <%= comment.body %>
     </div>
