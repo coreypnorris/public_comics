@@ -1,9 +1,11 @@
-<%= form_for([@parent_comment, @comment]) do |f| %>
-  <div class="form-group">
-    <%= f.text_area :body, :rows => "5", :cols => "50" %>
-  </div>
-  <br>
-  <div class="form-group">
-    <%= f.submit "Add Comment", :class => "btn btn-default" %>
-  </div>
-<% end %>
+<p>
+  <%= form_for([@parent_comment, @comment]) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, :rows => "5", :cols => "50" %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.submit "Add Comment", :class => "btn btn-default" %>
+    </div>
+  <% end %>
+</p>
