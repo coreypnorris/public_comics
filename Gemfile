@@ -12,6 +12,7 @@ gem 'will_paginate'
 gem 'mousetrap-rails'
 gem 'devise'
 gem 'acts_as_commentable_with_threading'
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'pry'
 
 group :development do

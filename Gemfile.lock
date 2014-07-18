@@ -29,6 +29,7 @@ GEM
       activerecord (>= 3.0)
       activesupport (>= 3.0)
       awesome_nested_set (>= 2.0)
+    acts_as_votable (0.10.0)
     addressable (2.3.6)
     arel (4.0.2)
     awesome_nested_set (2.1.6)
@@ -174,6 +175,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable_with_threading
+  acts_as_votable (~> 0.10.0)
   better_errors
   binding_of_caller
   bootstrap-sass
