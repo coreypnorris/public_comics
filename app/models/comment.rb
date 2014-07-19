@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
   validates :body, :presence => true
@@ -44,5 +46,11 @@ class Comment < ActiveRecord::Base
   # given the commentable class name and id
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
+  end
+
+  def sliced_time_ago
+    time_ago = time_ago_in_words(self.created_at)
+    time_ago.slice!("about ")
+    time_ago
   end
 end
