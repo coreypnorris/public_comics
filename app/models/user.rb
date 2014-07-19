@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates :username, :presence => true
   has_many :comments
 
+  acts_as_voter
+
   def to_param
     username
   end
