@@ -1,0 +1,9 @@
+<%= link_to new_comment_vote_path(comment, :kind => "upvote"), :class => "btn btn-xs btn-primary", :id => "upvote" do %>
+  <i class="glyphicon glyphicon-chevron-up"></i>
+<% end %>
+
+•
+
+<%= link_to root_url, :class => "btn btn-xs btn-primary", :id => "downvote" do %>
+  <i class="glyphicon glyphicon-chevron-down"></i>
+<% end %>
