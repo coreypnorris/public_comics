@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-4">
-    <p class="subtext">Posted by <%= link_to comment.user.username, user_path(comment.user) %> • <%= pluralize(comment.votes_for.size, 'point', 'points') %> • <%= time_ago_in_words(comment.created_at) %> ago</p>
+    <p class="subtext"><%= link_to comment.user.username, user_path(comment.user) %> <%= pluralize((comment.get_upvotes.size - comment.get_downvotes.size), 'point', 'points') %> <%= comment.sliced_time_ago %> ago</p>
     <div class="well well-md">
       <%= comment.body %>
     </div>
-    <%= render :partial => 'votes/vote_system', :locals => {:comment => comment} %>
+    <%= render :partial => 'votes/vote_system', :locals => {:comment => comment, :page => @page} %>
     •
     <%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :remote => true %>
   </div>
