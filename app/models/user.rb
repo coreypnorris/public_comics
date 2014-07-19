@@ -12,4 +12,20 @@ class User < ActiveRecord::Base
   def to_param
     username
   end
+
+  def up_vote_class(comment)
+    if voted_up_on? comment
+      return 'btn-success'
+    else
+      return 'btn-primary'
+    end
+  end
+
+  def down_vote_class(comment)
+    if voted_down_on? comment
+      return 'btn-danger'
+    else
+      return 'btn-primary'
+    end
+  end
 end
