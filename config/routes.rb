@@ -12,6 +12,7 @@ PublicComics::Application.routes.draw do
 
   resources :comments, only: [:new, :create, :show] do
     resources :comments, only: [:new, :create]
+    resources :votes, only: [:new, :create]
   end
 
   resources :genres, only: [:show]
