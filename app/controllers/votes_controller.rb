@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  before_filter :authenticate_user!, only: [:new]
 
   def new
     @comment = Comment.find(params[:comment_id])
