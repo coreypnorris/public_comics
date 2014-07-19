@@ -1,9 +1,9 @@
-<%= link_to new_comment_vote_path(comment, :kind => "upvote", :page_id => page.id), :class => "btn btn-xs btn-primary", :id => "upvote" do %>
+<%= link_to new_comment_vote_path(comment, :kind => "upvote", :page_id => page.id), :class => "btn btn-xs btn-primary", :id => "upvote", :remote => true do %>
   <i class="glyphicon glyphicon-chevron-up"></i>
 <% end %>
 
 •
 
-<%= link_to new_comment_vote_path(comment, :kind => "downvote", :page_id => page.id), :class => "btn btn-xs btn-primary", :id => "downvote" do %>
+<%= link_to new_comment_vote_path(comment, :kind => "downvote", :page_id => page.id), :class => "btn btn-xs btn-primary", :id => "downvote", :remote => true do %>
   <i class="glyphicon glyphicon-chevron-down"></i>
 <% end %>
