@@ -1,1 +1,2 @@
-$('#comment-<%= @comment.id %>-votes-num').replaceWith('<%= pluralize((@comment.get_upvotes.size - @comment.get_downvotes.size), 'point', 'points') %>');
+$('#comment-<%= @comment.id %>-votes-num').empty();
+$('#comment-<%= @comment.id %>-votes-num').append('<%= pluralize((@comment.get_upvotes.size - @comment.get_downvotes.size), 'point', 'points') %>');
