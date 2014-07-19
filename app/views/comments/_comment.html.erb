@@ -4,8 +4,9 @@
     <div class="well well-md">
       <%= comment.body %>
     </div>
-    <%= render :partial => 'votes/vote_system', :locals => {:comment => comment, :page => @page} %>
-    •
+    <% unless comment.user == current_user %>
+      <%= render :partial => 'votes/vote_system', :locals => {:comment => comment, :page => @page} %>
+    <% end %>
     <%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :remote => true %>
   </div>
 </div>
