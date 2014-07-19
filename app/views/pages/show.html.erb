@@ -25,5 +25,8 @@
     <p><%= pluralize(@page.issue.comments.count, 'Comment', 'Comments') %></p>
     <%= render "/comments/issue_comment_form" %>
   </div>
+
+  <br>
+
   <%= render @page.issue.root_comments.order("created_at ASC")%>
 </div>
