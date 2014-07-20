@@ -5,15 +5,18 @@
         <%= render :partial => 'votes/vote_system', :locals => {:comment => comment, :page => @page} %>
       <% end %>
     </p>
+
     <div class="well well-md">
       <%= comment.body %>
     </div>
 
-    <%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :class => "btn btn-sm btn-primary", :remote => true %>
+    <% if current_user %>
+      <%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :class => "btn btn-sm btn-default", :remote => true %>
+    <% end %>
   </div>
 </div>
 
-<BR>
+<br>
 
 <% comment.children.each do |child| %>
   <% if child.has_children? == false %>

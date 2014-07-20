@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     if voted_up_on? comment
       return 'btn-success'
     else
-      return 'btn-primary'
+      return 'btn-default'
     end
   end
 
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     if voted_down_on? comment
       return 'btn-danger'
     else
-      return 'btn-primary'
+      return 'btn-default'
     end
   end
 end

@@ -2,19 +2,19 @@ $('#comment-<%= @comment.id %>-votes-num').empty();
 $('#comment-<%= @comment.id %>-votes-num').append('<%= pluralize((@comment.get_upvotes.size - @comment.get_downvotes.size), 'point', 'points') %>');
 
 if ('<%= current_user.voted_up_on? @comment %>' == 'true') {
-  $('#comment-<%= @comment.id %>-upvote').removeClass("btn-primary");
+  $('#comment-<%= @comment.id %>-upvote').removeClass("btn-default");
   $('#comment-<%= @comment.id %>-upvote').addClass("btn-success");
 }
 else if('<%= current_user.voted_up_on? @comment %>' == 'false') {
   $('#comment-<%= @comment.id %>-upvote').removeClass("btn-success");
-  $('#comment-<%= @comment.id %>-upvote').addClass("btn-primary");
+  $('#comment-<%= @comment.id %>-upvote').addClass("btn-default");
 }
 
 if ('<%= current_user.voted_down_on? @comment %>' == 'true') {
-  $('#comment-<%= @comment.id %>-downvote').removeClass("btn-primary");
+  $('#comment-<%= @comment.id %>-downvote').removeClass("btn-default");
   $('#comment-<%= @comment.id %>-downvote').addClass("btn-danger");
 }
 else if('<%= current_user.voted_down_on? @comment %>' == 'false') {
   $('#comment-<%= @comment.id %>-downvote').removeClass("btn-danger");
-  $('#comment-<%= @comment.id %>-downvote').addClass("btn-primary");
+  $('#comment-<%= @comment.id %>-downvote').addClass("btn-default");
 }
