@@ -3,13 +3,13 @@
 </header>
 
 <div class='row text-center'>
-  <%= link_to "Back", :back, :class => "btn btn-xs btn-primary" %>
+  <%= link_to "Back", :back, :class => "btn btn-primary" %>
   <div class='col-sm-12'>
     <ul class='list-unstyled'>
       <% @pages.each do |page| %>
       <div class="col-sm-3">
         <%= link_to (image_tag("#{page.image}", :class => "img-thumbnail thumbnail-#{page.number}", :id => "thumbnail")), issue_page_path(@issue, page) %>
-        <li><%= link_to "#{page.number}", issue_page_path(@issue, page), :class => "text-center" %></li>
+        <li><%= link_to "#{page.number}", issue_page_path(@issue, page) %></li>
       </div>
       <% end %>
     </ul>
