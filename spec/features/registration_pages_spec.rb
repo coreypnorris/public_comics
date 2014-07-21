@@ -31,6 +31,12 @@ feature 'Signing Up' do
 end
 
 feature 'Signed in' do
+  scenario "can sign in" do
+    user = FactoryGirl.create(:user)
+    sign_in(user)
+    page.should have_content "successfully"
+  end
+
   scenario "can sign out" do
     user = FactoryGirl.create(:user)
     sign_in(user)
