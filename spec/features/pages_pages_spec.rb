@@ -20,7 +20,7 @@ feature "Viewing a comic book page" do
     page_2 = issue.pages.create(:number => 2, :image => "page_2_image_url")
     page_3 = issue.pages.create(:number => 3, :image => "page_3_image_url")
     visit issue_page_path(issue, issue.pages.first)
-    select("3", :from => "page_id")
+    select("3", :from => "page-selector")
     click_button "Go to Page"
     page.find('img')['src'].should have_content page_3.image
   end
