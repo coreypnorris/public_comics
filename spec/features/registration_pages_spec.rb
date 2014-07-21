@@ -127,4 +127,3 @@ feature "Editing account" do
     page.should have_content "successfully"
   end
 end
-
