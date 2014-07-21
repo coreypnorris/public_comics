@@ -4,7 +4,7 @@
       <i class="glyphicon glyphicon-chevron-left"></i>
     <% end %>
   <% end %>
-  <%= collection_select(:page, :id, @issue.pages, :id, :number, {}, {:class => 'form-control', :onchange => "this.form.submit()"}) %>
+  <%= collection_select(:page, :id, @issue.pages, :id, :number, {}, {:class => 'form-control', :id => 'page-selector', :onchange => "this.form.submit()"}) %>
   <% unless @page === @issue.pages.last %>
     <%= link_to issue_page_path(@issue, @page.number+1), data: { keybinding: "right" }, :class => "btn btn-default", :id => "next-arrow" do %>
       <i class="glyphicon glyphicon-chevron-right"></i>
