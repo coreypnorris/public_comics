@@ -49,20 +49,20 @@ end
 
 feature 'Signing in' do
   let(:user) { FactoryGirl.create(:user) }
+  before { sign_in(user) }
 
   scenario "can sign in" do
-    sign_in(user)
     page.should have_content "successfully"
   end
 
   scenario "can sign out" do
-    sign_in(user)
     visit root_path
     click_link "Sign Out"
     page.should have_content "successfully"
   end
 
   scenario "with incorrect information" do
+    sign_out
     visit new_user_session_path
     fill_in "Username", :with => "Wrong Username"
     fill_in "Password", :with => user.password
@@ -71,63 +71,60 @@ feature 'Signing in' do
   end
 
   scenario "navbar should have link to profile page" do
-    sign_in(user)
     visit root_path
     page.should have_content "Signed in as #{user.username}"
   end
 
   scenario "navbar should not have a 'sign up' link" do
-    sign_in(user)
     visit root_path
     page.should_not have_content "Sign Up"
   end
 
   scenario 'site should block access to signing up' do
-    sign_in(user)
     visit new_user_registration_path
     page.should have_content "You are already signed in."
   end
 
   scenario 'site should block access to signing in' do
-    sign_in(user)
     visit new_user_session_path
     page.should have_content "You are already signed in."
   end
+end
 
-  feature "Editing account" do
-    let(:user) { FactoryGirl.create(:user) }
-    before { sign_in(user) }
+feature "Editing account" do
+  let(:user) { FactoryGirl.create(:user) }
+  before { sign_in(user) }
 
-    scenario "logged in user is able to access edit account form" do
-      visit root_path
-      click_link "Signed in as #{user.username}"
-      click_link "Edit or cancel your account"
-      page.should have_content "Edit Account"
-    end
+  scenario "logged in user is able to access edit account form" do
+    visit root_path
+    click_link "Signed in as #{user.username}"
+    click_link "Edit or cancel your account"
+    page.should have_content "Edit Account"
+  end
 
-    scenario "logged in user is able to change their username" do
-      visit edit_user_registration_path
-      fill_in "Username", with: "NewUsername"
-      fill_in "Current Password", with: user.password
-      click_button "Update"
-      page.should have_content "successfully"
-    end
+  scenario "logged in user is able to change their username" do
+    visit edit_user_registration_path
+    fill_in "Username", with: "NewUsername"
+    fill_in "Current Password", with: user.password
+    click_button "Update"
+    page.should have_content "successfully"
+  end
 
-    scenario "logged in user is able to change their email" do
-      visit edit_user_registration_path
-      fill_in "Email", with: "newemail@example.com"
-      fill_in "Current Password", with: user.password
-      click_button "Update"
-      page.should have_content "successfully"
-    end
+  scenario "logged in user is able to change their email" do
+    visit edit_user_registration_path
+    fill_in "Email", with: "newemail@example.com"
+    fill_in "Current Password", with: user.password
+    click_button "Update"
+    page.should have_content "successfully"
+  end
 
-    scenario "logged in user is able to change their password" do
-      visit edit_user_registration_path
-      fill_in "Password", with: "NewPassword"
-      fill_in "Password Confirmation", with: "NewPassword"
-      fill_in "Current Password", with: user.password
-      click_button "Update"
-      page.should have_content "successfully"
-    end
+  scenario "logged in user is able to change their password" do
+    visit edit_user_registration_path
+    fill_in "Password", with: "NewPassword"
+    fill_in "Password Confirmation", with: "NewPassword"
+    fill_in "Current Password", with: user.password
+    click_button "Update"
+    page.should have_content "successfully"
   end
 end
+
