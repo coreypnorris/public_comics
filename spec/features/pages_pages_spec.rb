@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Viewing a comic book page" do
-  scenario "after choosing a book to read they can see the first page" do
+  scenario "clicking on an issue goes to that issue's first page" do
     issue = FactoryGirl.create(:page).issue
     visit issue_page_path(issue, issue.pages.first)
     page.find('img')['src'].should have_content issue.pages.first.image
@@ -56,14 +56,17 @@ feature "Viewing a comic book page" do
     horror = FactoryGirl.create(:genre, :name => "Horror")
     tomb_of_dracula = horror.titles.create(:name => "Tomb of Dracula")
     western = FactoryGirl.create(:genre, :name => "Western")
-    two_gun_kid = western.titles.create(:name => "Two Gun Kid")
+    raw_hide_kid = western.titles.create(:name => "Raw Hide Kid")
     tomb_of_dracula_1 = tomb_of_dracula.issues.create(:number => 1, :cover =>"tomb_of_dracula_1_cover")
-    two_gun_kid_1 = two_gun_kid.issues.create(:number => 1, :cover =>"two_gun_kid_1_cover")
-    tomb_of_dracula_1.pages.create(:number => 1, :image => "page_1_image_url")
-    two_gun_kid_1.pages.create(:number => 1, :image => "page_1_image_url")
+    raw_hide_kid_1 = raw_hide_kid.issues.create(:number => 1, :cover =>"raw_hide_kid_1_cover")
+    tomb_of_dracula_1.pages.create(:number => 1, :image => "tomb_of_dracula_1_page_1_image_url")
+    raw_hide_kid_1.pages.create(:number => 1, :image => "raw_hide_kid_1_page_1_image_url")
     visit issue_page_path(tomb_of_dracula_1, tomb_of_dracula_1.pages.first)
     find("#issue-genre-button").click
-    page.should have_css("img.#{tomb_of_dracula_1.title.name.delete(" ")}-#{tomb_of_dracula_1.number}")
-    page.should_not have_css("img.#{two_gun_kid_1.title.name.delete(" ")}-#{two_gun_kid_1.number}")
+
+    page.should have_content "#{horror.name} Comics"
+    page.should have_css("img.#{tomb_of_dracula.name.delete(' ')}-#{tomb_of_dracula_1.pages.first.number}")
+    page.should_not have_content "#{western.name} Comics"
+    page.should_not have_css("img.#{raw_hide_kid.name.delete(' ')}-#{raw_hide_kid_1.pages.first.number}")
   end
 end
