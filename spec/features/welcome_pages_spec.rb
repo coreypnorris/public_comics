@@ -6,7 +6,6 @@ feature "Viewing home page" do
     old_issue = FactoryGirl.create(:page).issue
     11.times { FactoryGirl.create(:page).issue }
     new_issue = FactoryGirl.create(:page).issue
-
     visit root_path
 
     page.should have_content new_issue.title.name
@@ -18,7 +17,6 @@ feature "Viewing home page" do
     11.times { FactoryGirl.create(:page).issue }
     new_issue = FactoryGirl.create(:page).issue
     visit root_path
-
     within("#paginate-one") do
         click_link "Next"
     end
