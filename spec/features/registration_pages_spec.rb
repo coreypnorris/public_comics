@@ -10,4 +10,10 @@ feature 'Signing Up' do
     click_button "Sign up"
     page.should have_content 'successfully'
   end
+
+  scenario "with no inputs" do
+    visit new_user_registration_path
+    click_button "Sign up"
+    page.should have_content 'blank'
+  end
 end
