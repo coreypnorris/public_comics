@@ -12,13 +12,35 @@ feature 'Signing Up' do
     page.should have_content 'successfully'
   end
 
-  scenario "with no inputs" do
+  scenario "with blank field" do
     visit new_user_registration_path
     click_button "Sign up"
-    page.should have_content 'blank'
+    page.should have_content "can't be blank"
   end
 
-  scenario "with nonmatching password" do
+  scenario "with invalid email" do
+    user = FactoryGirl.build(:user)
+    visit new_user_registration_path
+    fill_in 'Username', :with => user.username
+    fill_in "Email", :with => "my_email_address.com"
+    fill_in "Password", :with => user.password
+    fill_in "Password Confirmation", :with => "foobarbas"
+    click_button "Sign up"
+    page.should have_content 'invalid'
+  end
+
+  scenario "with password under 8 characters" do
+    user = FactoryGirl.build(:user)
+    visit new_user_registration_path
+    fill_in 'Username', :with => user.username
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => "1234"
+    fill_in "Password Confirmation", :with => "1234"
+    click_button "Sign up"
+    page.should have_content 'too short'
+  end
+
+  scenario "with nonmatching passwords" do
     user = FactoryGirl.build(:user)
     visit new_user_registration_path
     fill_in 'Username', :with => user.username
@@ -31,14 +53,21 @@ feature 'Signing Up' do
 end
 
 feature 'Signing in' do
+  let(:user) { FactoryGirl.create(:user) }
+
   scenario "can sign in" do
-    user = FactoryGirl.create(:user)
     sign_in(user)
     page.should have_content "successfully"
   end
 
-  scenario "using incorrect information" do
-    user = FactoryGirl.create(:user)
+  scenario "can sign out" do
+    sign_in(user)
+    visit root_path
+    click_link "Sign Out"
+    page.should have_content "successfully"
+  end
+
+  scenario "with incorrect information" do
     visit new_user_session_path
     fill_in "Username", :with => "Wrong Username"
     fill_in "Password", :with => user.password
@@ -46,37 +75,25 @@ feature 'Signing in' do
     page.should have_content 'Invalid'
   end
 
-  scenario "can sign out" do
-    user = FactoryGirl.create(:user)
-    sign_in(user)
-    visit root_path
-    click_link "Sign Out"
-    page.should have_content "successfully"
-  end
-
   scenario "navbar should have link to profile page" do
-    user = FactoryGirl.create(:user)
     sign_in(user)
     visit root_path
     page.should have_content "Signed in as #{user.username}"
   end
 
   scenario "navbar should not have a 'sign up' link" do
-    user = FactoryGirl.create(:user)
     sign_in(user)
     visit root_path
     page.should_not have_content "Sign Up"
   end
 
   scenario 'site should block access to signing up' do
-    user = FactoryGirl.create(:user)
     sign_in(user)
     visit new_user_registration_path
     page.should have_content "You are already signed in."
   end
 
   scenario 'site should block access to signing in' do
-    user = FactoryGirl.create(:user)
     sign_in(user)
     visit new_user_session_path
     page.should have_content "You are already signed in."
