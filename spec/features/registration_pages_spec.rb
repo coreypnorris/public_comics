@@ -17,4 +17,15 @@ feature 'Signing Up' do
     click_button "Sign up"
     page.should have_content 'blank'
   end
+
+  scenario "with nonmatching password" do
+    user = FactoryGirl.build(:user)
+    visit new_user_registration_path
+    fill_in 'Username', :with => user.username
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
+    fill_in "Password Confirmation", :with => "foobarbas"
+    click_button "Sign up"
+    page.should have_content 'match'
+  end
 end
