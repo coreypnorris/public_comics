@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 feature 'Signing Up' do
+  let(:user) { FactoryGirl.build(:user) }
+  before { visit new_user_registration_path }
+
   scenario 'with valid inputs' do
-    user = FactoryGirl.build(:user)
-    visit new_user_registration_path
     fill_in 'Username', :with => user.username
     fill_in 'Email', :with => user.email
     fill_in 'Password', :with => user.password
@@ -19,8 +20,6 @@ feature 'Signing Up' do
   end
 
   scenario "with invalid email" do
-    user = FactoryGirl.build(:user)
-    visit new_user_registration_path
     fill_in 'Username', :with => user.username
     fill_in "Email", :with => "my_email_address.com"
     fill_in "Password", :with => user.password
@@ -30,8 +29,6 @@ feature 'Signing Up' do
   end
 
   scenario "with password under 8 characters" do
-    user = FactoryGirl.build(:user)
-    visit new_user_registration_path
     fill_in 'Username', :with => user.username
     fill_in "Email", :with => user.email
     fill_in "Password", :with => "1234"
@@ -41,8 +38,6 @@ feature 'Signing Up' do
   end
 
   scenario "with nonmatching passwords" do
-    user = FactoryGirl.build(:user)
-    visit new_user_registration_path
     fill_in 'Username', :with => user.username
     fill_in "Email", :with => user.email
     fill_in "Password", :with => user.password
