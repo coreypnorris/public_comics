@@ -1,16 +1,20 @@
 <%= form_tag issue_page_path, :method => :get, :class => "form-inline", :role => "form" do %>
+
   <% unless @page === @issue.pages.first %>
     <%= link_to issue_page_path(@issue, @page.number-1), data: { keybinding: "left" }, :class => "btn btn-default", :id => "previous-arrow" do %>
       <i class="glyphicon glyphicon-chevron-left"></i>
     <% end %>
   <% end %>
+
   <%= collection_select(:page, :id, @issue.pages, :id, :number, {}, {:class => 'form-control', :id => 'page-selector', :onchange => "this.form.submit()"}) %>
+  <%= submit_tag('Go to Page', style: "position: absolute; left: -9999px; width: 1px; height: 1px;") %>
+
   <% unless @page === @issue.pages.last %>
     <%= link_to issue_page_path(@issue, @page.number+1), data: { keybinding: "right" }, :class => "btn btn-default", :id => "next-arrow" do %>
       <i class="glyphicon glyphicon-chevron-right"></i>
     <% end %>
   <% end %>
+
   <%= link_to "Thumbnails", issue_pages_path(@issue), :class => "form-control btn btn-default", :id => "thumbnails-button" %>
   <%= link_to "#{@issue.title.genre.name}", genre_path(@issue.title.genre), :class => "form-control btn btn-default", :id => "issue-genre-button" %>
-  <%= submit_tag('Go to Page', style: "position: absolute; left: -9999px; width: 1px; height: 1px;") %>
 <% end %>
