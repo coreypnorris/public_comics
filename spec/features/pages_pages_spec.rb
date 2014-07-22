@@ -70,3 +70,17 @@ feature "Viewing a comic book page" do
     page.should_not have_css("img.#{raw_hide_kid.name.delete(' ')}-#{raw_hide_kid_1.pages.first.number}")
   end
 end
+
+feature "Commenting on the page's issue" do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:comment) { FactoryGirl.build(:comment) }
+  before { sign_in(user) }
+
+  scenario "creating a comment" do
+    issue = FactoryGirl.create(:page).issue
+    visit issue_page_path(issue, issue.pages.first)
+    fill_in 'comment_body', :with => comment.body
+    click_button "Comment on this Issue"
+    page.should have_content 'posted'
+  end
+end
