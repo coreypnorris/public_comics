@@ -28,5 +28,5 @@
 
   <br>
 
-  <%= render @page.issue.root_comments.order("created_at ASC")%>
+  <%= render @page.issue.root_comments.order(:cached_weighted_score => :desc)%>
 </div>
