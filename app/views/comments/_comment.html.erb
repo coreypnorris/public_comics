@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4">
-    <p class="subtext"><%= link_to comment.user.username, user_path(comment.user) %> <span id="comment-<%= comment.id %>-votes-num"><%= pluralize((comment.get_upvotes.size - comment.get_downvotes.size), 'point', 'points') %></span> <%= comment.sliced_time_ago %> ago
+    <p class="subtext"><%= link_to comment.user.username, user_path(comment.user) %> <span id="comment-<%= comment.id %>-votes-num"><%= pluralize((comment.cached_weighted_score), 'point', 'points') %></span> <%= comment.sliced_time_ago %> ago
       <% unless comment.user == current_user %>
         <%= render :partial => 'votes/vote_system', :locals => {:comment => comment, :page => @page} %>
       <% end %>
@@ -18,7 +18,7 @@
 
 <br>
 
-<% comment.children.each do |child| %>
+<% comment.sorted_children.each do |child| %>
   <% if child.has_children? == false %>
     <div class="nested_comments"> <%= render child %></div>
   <% end %>
