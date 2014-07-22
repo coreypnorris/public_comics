@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @parent_comment = Comment.find(params[:comment_id]) if params[:comment_id]
     @comment = current_user.comments.build_from( @issue, current_user.id, comment_params[:body] )
     if @comment.save
-      flash[:notice] = "Your comment has been submitted."
+      flash[:notice] = "Your comment has been posted."
       if params[:issue_id]
         redirect_to :back
       elsif params[:comment_id]
