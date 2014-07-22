@@ -53,4 +53,8 @@ class Comment < ActiveRecord::Base
     time_ago.slice!("about ")
     time_ago
   end
+
+  def sorted_children
+    children.sort { |a,b| b.cached_weighted_score <=> a.cached_weighted_score }
+  end
 end
