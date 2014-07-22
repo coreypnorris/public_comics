@@ -26,4 +26,9 @@ FactoryGirl.define do
     password 'foobarbaz'
     password_confirmation 'foobarbaz'
   end
+
+  factory :comment do
+    user
+    sequence(:body) { |n| "Test comment#{n}" }
+  end
 end
