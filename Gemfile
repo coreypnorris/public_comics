@@ -30,6 +30,7 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'poltergeist'
 end
 
 group :production do
