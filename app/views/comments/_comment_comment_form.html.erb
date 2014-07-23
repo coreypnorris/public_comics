@@ -1,7 +1,7 @@
 <p>
   <%= form_for([@parent_comment, @comment]) do |f| %>
     <div class="form-group">
-      <%= f.text_area :body, :rows => "5", :cols => "50" %>
+      <%= f.text_area :body, :rows => "5", :cols => "50", :id => "comment-#{@parent_comment.id}-comment-body" %>
     </div>
     <br>
     <div class="form-group">

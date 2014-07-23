@@ -1,6 +1,6 @@
 <%= form_for([@issue, @comment]) do |f| %>
   <div class="form-group">
-    <%= f.text_area :body, :rows => "6", :cols => "60" %>
+    <%= f.text_area :body, :rows => "6", :cols => "60", :id => "issue-#{@issue.id}-comment-body" %>
   </div>
   <br>
   <div class="form-group">
