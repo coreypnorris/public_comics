@@ -32,6 +32,7 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'poltergeist'
+  gem 'faker'
 end
 
 group :production do
