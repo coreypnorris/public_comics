@@ -32,8 +32,8 @@ GEM
     acts_as_votable (0.10.0)
     addressable (2.3.6)
     arel (4.0.2)
-    awesome_nested_set (2.1.6)
-      activerecord (>= 3.0.0)
+    awesome_nested_set (3.0.0.rc.6)
+      activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -74,7 +74,7 @@ GEM
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
     hike (1.2.3)
-    i18n (0.6.9)
+    i18n (0.6.11)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -89,7 +89,7 @@ GEM
     mini_portile (0.5.3)
     minitest (4.7.5)
     mousetrap-rails (1.4.6)
-    multi_json (1.10.0)
+    multi_json (1.10.1)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
@@ -159,14 +159,14 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (0.3.39)
+    tzinfo (0.3.40)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -183,6 +183,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_commentable_with_threading
   acts_as_votable (~> 0.10.0)
+  awesome_nested_set (~> 3.0.0.rc.3)
   better_errors
   binding_of_caller
   bootstrap-sass
