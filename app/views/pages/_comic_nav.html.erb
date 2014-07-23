@@ -7,7 +7,7 @@
   <% end %>
 
   <%= collection_select(:page, :id, @issue.pages, :id, :number, {}, {:class => 'form-control', :id => 'page-selector', :onchange => "this.form.submit()"}) %>
-  <%= submit_tag('Go to Page', style: "position: absolute; left: -9999px; width: 1px; height: 1px;") %>
+  <%= submit_tag('Go to Page', style: "position: absolute; left: -9997px; width: 1px; height: 1px;") %>
 
   <% unless @page === @issue.pages.last %>
     <%= link_to issue_page_path(@issue, @page.number+1), data: { keybinding: "right" }, :class => "btn btn-default", :id => "next-arrow" do %>
