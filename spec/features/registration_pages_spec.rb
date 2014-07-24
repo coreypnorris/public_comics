@@ -48,8 +48,8 @@ feature 'Signing Up' do
 end
 
 feature 'Signing in' do
-  before { create_user }
-  before { sign_in(@user) }
+  before { create_and_sign_in_user }
+
 
   scenario "can sign in" do
     page.should have_content "successfully"
