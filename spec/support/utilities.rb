@@ -32,9 +32,8 @@ def sign_out
 end
 
 def create_page_and_post_comment
-  create_user
-  sign_in(@user)
   @issue = FactoryGirl.create(:page).issue
+  create_and_sign_in_user
   visit issue_page_path(@issue, @issue.pages.first)
   @comment = FactoryGirl.build(:comment, :user_id => @user.id)
   fill_in "issue-#{@issue.id}-comment-body", :with => @comment.body
