@@ -16,6 +16,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'pry'
 gem 'awesome_nested_set', '~> 3.0.0.rc.3'
 gem 'database_cleaner'
+gem 'rspec-retry'
 
 group :development do
   gem 'better_errors'
