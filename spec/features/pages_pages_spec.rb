@@ -54,7 +54,6 @@ feature "Viewing a comic book page" do
 end
 
 feature "Commenting on the page's issue" do
-  before { @user ? @user.destroy : visit(root_path) }
 
   scenario "creating a comment" do
     create_and_sign_in_user
@@ -81,5 +80,22 @@ feature "Commenting on the page's issue" do
     click_button "Add Comment"
     page.should have_content 'posted'
     page.should have_content '2 Comments'
+  end
+end
+
+feature "voting on a comment" do
+  before { create_page_and_post_comment }
+  before { sign_out }
+  before { create_and_sign_in_user_for_poltergeist }
+  before { visit issue_page_path(@issue, @issue.pages.first) }
+
+  scenario "upvoting a comment", :retry => 5, js: true do
+    click_on("comment-#{Comment.last.id}-upvote")
+    page.should have_content '1 point'
+  end
+
+  scenario "downvoting a comment", :retry => 5, js: true do
+    click_on("comment-#{Comment.last.id}-downvote")
+    page.should have_content '-1 points'
   end
 end
