@@ -54,15 +54,30 @@ feature "Viewing a comic book page" do
 end
 
 feature "Commenting on the page's issue" do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:comment) { FactoryGirl.build(:comment) }
-  before { sign_in(user) }
+  before { create_user }
+  before { sign_in(@user) }
+  let(:comment) { FactoryGirl.build(:comment, :user_id => user.id) }
+  let(:reply) { FactoryGirl.build(:comment, :user_id => user.id) }
 
   scenario "creating a comment" do
     issue = FactoryGirl.create(:page).issue
     visit issue_page_path(issue, issue.pages.first)
-    fill_in 'comment_body', :with => comment.body
+    fill_in "issue-#{issue.id}-comment-body", :with => comment.body
     click_button "Comment on this Issue"
     page.should have_content 'posted'
+  end
+
+  scenario "creating a reply to a comment", js: true do
+    issue = FactoryGirl.create(:page).issue
+    visit issue_page_path(issue, issue.pages.first)
+    fill_in "issue-#{issue.id}-comment-body", :with => comment.body
+    click_button "Comment on this Issue"
+    page.should have_content 'posted'
+    click_link "Reply"
+    page.execute_script("$('#reply-link-1').click()")
+    fill_in "comment-2-comment-body", :with => reply.body
+    click_button "Add Comment"
+    page.should have_content 'posted'
+    page.should have_content '2 Comments'
   end
 end
