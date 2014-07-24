@@ -56,8 +56,8 @@ end
 feature "Commenting on the page's issue" do
   before { create_user }
   before { sign_in(@user) }
-  let(:comment) { FactoryGirl.build(:comment, :user_id => user.id) }
-  let(:reply) { FactoryGirl.build(:comment, :user_id => user.id) }
+  let(:comment) { FactoryGirl.build(:comment, :user_id => @user.id) }
+  let(:reply) { FactoryGirl.build(:comment, :user_id => @user.id) }
 
   scenario "creating a comment" do
     issue = FactoryGirl.create(:page).issue
@@ -74,7 +74,6 @@ feature "Commenting on the page's issue" do
     click_button "Comment on this Issue"
     page.should have_content 'posted'
     click_link "Reply"
-    page.execute_script("$('#reply-link-1').click()")
     fill_in "comment-2-comment-body", :with => reply.body
     click_button "Add Comment"
     page.should have_content 'posted'
