@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 def create_user
-  @user ||= FactoryGirl.create(:user)
+  @user = FactoryGirl.create(:user)
 end
 
 def sign_in(user)
@@ -9,6 +9,21 @@ def sign_in(user)
   fill_in "Username", :with => user.username
   fill_in "Password", :with => user.password
   click_button "Sign in"
+end
+
+def create_and_sign_in_user
+  create_user
+  sign_in(@user)
+end
+
+def create_and_sign_in_user_for_poltergeist
+  @user = FactoryGirl.build(:user)
+  visit new_user_registration_path
+  fill_in 'Username', :with => @user.username
+  fill_in 'Email', :with => @user.email
+  fill_in 'Password', :with => @user.password
+  fill_in 'Password Confirmation', :with => @user.password_confirmation
+  click_button "Sign up"
 end
 
 def sign_out
