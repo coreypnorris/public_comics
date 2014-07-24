@@ -11,7 +11,7 @@
     </div>
 
     <% if current_user %>
-      <%= link_to "reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :class => "btn btn-sm btn-default", :remote => true %>
+      <%= link_to "Reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :class => "btn btn-sm btn-default", :remote => true %>
     <% end %>
   </div>
 </div>
