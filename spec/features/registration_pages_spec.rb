@@ -48,8 +48,8 @@ feature 'Signing Up' do
 end
 
 feature 'Signing in' do
-  let(:user) { FactoryGirl.create(:user) }
-  before { sign_in(user) }
+  before { create_user }
+  before { sign_in(@user) }
 
   scenario "can sign in" do
     page.should have_content "successfully"
@@ -65,14 +65,14 @@ feature 'Signing in' do
     sign_out
     visit new_user_session_path
     fill_in "Username", :with => "Wrong Username"
-    fill_in "Password", :with => user.password
+    fill_in "Password", :with => @user.password
     click_button "Sign in"
     page.should have_content 'Invalid'
   end
 
   scenario "navbar should have link to profile page" do
     visit root_path
-    page.should have_content "Signed in as #{user.username}"
+    page.should have_content "Signed in as #{@user.username}"
   end
 
   scenario "navbar should not have a 'sign up' link" do
@@ -92,12 +92,12 @@ feature 'Signing in' do
 end
 
 feature "Editing account" do
-  let(:user) { FactoryGirl.create(:user) }
-  before { sign_in(user) }
+  before { create_user }
+  before { sign_in(@user) }
 
   scenario "logged in user is able to access edit account form" do
-    visit root_path
-    click_link "Signed in as #{user.username}"
+    visit root_url
+    click_on "Signed in as #{@user.username}"
     click_link "Edit or cancel your account"
     page.should have_content "Edit Account"
   end
@@ -105,7 +105,7 @@ feature "Editing account" do
   scenario "logged in user is able to change their username" do
     visit edit_user_registration_path
     fill_in "Username", with: "NewUsername"
-    fill_in "Current Password", with: user.password
+    fill_in "Current Password", with: @user.password
     click_button "Update"
     page.should have_content "successfully"
   end
@@ -113,7 +113,7 @@ feature "Editing account" do
   scenario "logged in user is able to change their email" do
     visit edit_user_registration_path
     fill_in "Email", with: "newemail@example.com"
-    fill_in "Current Password", with: user.password
+    fill_in "Current Password", with: @user.password
     click_button "Update"
     page.should have_content "successfully"
   end
@@ -122,7 +122,7 @@ feature "Editing account" do
     visit edit_user_registration_path
     fill_in "Password", with: "NewPassword"
     fill_in "Password Confirmation", with: "NewPassword"
-    fill_in "Current Password", with: user.password
+    fill_in "Current Password", with: @user.password
     click_button "Update"
     page.should have_content "successfully"
   end
