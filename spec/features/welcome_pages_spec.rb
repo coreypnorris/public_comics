@@ -46,7 +46,7 @@ feature "Viewing home page" do
     page.should have_content tomb_of_dracula_1.title.name
   end
 
-  scenario "User can search for issues with search bar" do
+  scenario "User can search for issues with search bar", :retry => 3 do
     issue_1 = FactoryGirl.create(:page).issue
     issue_2 = FactoryGirl.create(:page).issue
     visit root_path

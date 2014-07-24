@@ -46,4 +46,9 @@ RSpec.configure do |config|
   config.order = "random"
   config.include FactoryGirl::Syntax::Methods
   config.include Rails.application.routes.url_helpers
+
+  config.verbose_retry       = true # show retry status in spec process
+    retry_count                = ENV['RSPEC_RETRY_COUNT']
+    config.default_retry_count = retry_count.try(:to_i) || 1
+    puts "RSpec retry count is #{config.default_retry_count}"
 end

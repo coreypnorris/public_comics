@@ -92,12 +92,10 @@ feature 'Signing in' do
 end
 
 feature "Editing account" do
-  before { create_user }
-  before { sign_in(@user) }
+  before { create_and_sign_in_user }
 
-  scenario "logged in user is able to access edit account form" do
-    visit root_url
-    click_on "Signed in as #{@user.username}"
+  scenario "logged in user is able to access edit account form", :retry => 5 do
+    click_on "Signed in as #{User.last.username}"
     click_link "Edit or cancel your account"
     page.should have_content "Edit Account"
   end
