@@ -57,4 +57,10 @@ class Comment < ActiveRecord::Base
   def sorted_children
     children.sort { |a,b| b.cached_weighted_score <=> a.cached_weighted_score }
   end
+
+  def edited_star
+    if created_at.to_s != updated_at.to_s
+      return "*"
+    end
+  end
 end
