@@ -4,6 +4,16 @@
   </div>
   <br>
   <div class="form-group">
-    <%= f.submit "Edit comment", :class => "btn btn-default" %>
+    <%= f.submit "Edit comment", :class => "btn btn-sm btn-default" %>
+    <%= button_tag "Cancel", :class => "btn btn-sm btn-default", :id => "cancel-edit-link-#{@comment.id}", :type => "button" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $( "#cancel-edit-link-<%= @comment.id %>" ).click(function() {
+    $(this).parent().parent().hide();
+    $('#comment-<%= @comment.id %>-body').show();
+    $('#edit-link-<%= @comment.id %>').show();
+    $('#reply-link-<%= @comment.id %>').show();
+  });
+</script>
