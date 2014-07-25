@@ -1,12 +1,19 @@
 <div class="row">
   <div class="col-md-4">
-    <p class="subtext"><%= link_to comment.user.username, user_path(comment.user) %> <span id="comment-<%= comment.id %>-votes-num"><%= pluralize((comment.cached_weighted_score), 'point', 'points') %></span> <%= comment.sliced_time_ago %> ago
+    <p class="subtext">
+      <%= link_to comment.user.username, user_path(comment.user) %>
+      <span id="comment-<%= comment.id %>-votes-num">
+        <%= pluralize((comment.cached_weighted_score), 'point', 'points') %>
+      </span>
+      <%= comment.sliced_time_ago %> ago
+      <%= link_to "edit", edit_comment_path(comment), :id => "edit-link-#{comment.id}", :remote => true %>
+
       <% unless comment.user == current_user %>
         <%= render :partial => 'votes/vote_system', :locals => {:comment => comment, :page => @page} %>
       <% end %>
     </p>
 
-    <div class="well well-md">
+    <div class="well well-md" id="comment-body">
       <%= comment.body %>
     </div>
 
