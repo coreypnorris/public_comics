@@ -6,7 +6,11 @@
         <%= pluralize((comment.cached_weighted_score), 'point', 'points') %>
       </span>
       <%= comment.sliced_time_ago %> ago
-      <%= link_to "edit", edit_comment_path(comment), :id => "edit-link-#{comment.id}", :remote => true %>
+      <%= comment.edited_star %>
+
+      <% if comment.user == current_user %>
+        <%= link_to "edit", edit_comment_path(comment), :id => "edit-link-#{comment.id}", :remote => true %>
+      <% end %>
 
       <% unless comment.user == current_user %>
         <%= render :partial => 'votes/vote_system', :locals => {:comment => comment, :page => @page} %>
