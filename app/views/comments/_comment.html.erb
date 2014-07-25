@@ -10,6 +10,8 @@
 
       <% if comment.user == current_user %>
         <%= link_to "edit", edit_comment_path(comment), :id => "edit-link-#{comment.id}", :remote => true %>
+        <%= link_to 'delete', comment_path(comment),
+                    :confirm => 'Are you sure?', :method => :delete %>
       <% end %>
 
       <% unless comment.user == current_user %>
@@ -17,7 +19,7 @@
       <% end %>
     </p>
 
-    <div class="well well-md" id="comment-body">
+    <div class="well well-md" id="comment-<%= comment.id %>-body">
       <%= comment.body %>
     </div>
 
