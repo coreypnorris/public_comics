@@ -1,1 +1,3 @@
 $('#comment-body').hide().after('<%= j render "edit_comment_form" %>');
+$('#edit-link-<%= @comment.id %>').hide();
+$('#reply-link-<%= @comment.id %>').hide();
