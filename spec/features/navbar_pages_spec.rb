@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Using navbar links" do
+feature "Using universal navbar links" do
   before { visit new_user_registration_path }
 
   scenario "can use homepage link to go to the homepage" do
@@ -34,5 +34,24 @@ feature "Using navbar links" do
     click_button "Go to Genre"
 
     page.should have_content tomb_of_dracula_1.title.name
+  end
+end
+
+feature "Using navbar links when not signed in" do
+  before { visit root_path }
+
+  scenario "User can access sign up form" do
+    click_link "Sign Up"
+    page.should have_content "Username"
+    page.should have_content "Email"
+    page.should have_content "Password"
+    page.should have_content "Password Confirmation"
+  end
+
+  scenario "User can access sign in form" do
+    click_link "Sign In"
+    page.should have_content "Username"
+    page.should have_content "Password"
+    page.should have_content "Forgot your password?"
   end
 end
