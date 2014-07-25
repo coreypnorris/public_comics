@@ -28,6 +28,17 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update comment_params
+      flash[:notice] = "Your comment has been changed."
+      redirect_to :back
+    else
+      flash[:error] = "Something went wrong. Please try to save your comment again."
+      redirect_to :back
+    end
+  end
+
 private
   def comment_params
     params.require(:comment).permit(:body)
