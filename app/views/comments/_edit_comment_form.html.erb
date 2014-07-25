@@ -1,0 +1,9 @@
+<%= form_for(@comment) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, :rows => "6", :cols => "60" %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= f.submit "Edit comment", :class => "btn btn-default" %>
+  </div>
+<% end %>
