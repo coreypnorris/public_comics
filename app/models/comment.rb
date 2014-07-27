@@ -64,4 +64,10 @@ class Comment < ActiveRecord::Base
     self.original_body = self.body
     self.save
   end
+
+  def edited_star
+    if body != original_body
+      return "*"
+    end
+  end
 end
