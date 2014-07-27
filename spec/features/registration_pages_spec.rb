@@ -93,6 +93,7 @@ end
 
 feature "Editing account" do
   before { create_and_sign_in_user }
+  before { visit edit_user_registration_path }
 
   scenario "logged in user is able to access edit account form", :retry => 5 do
     click_on "Signed in as #{User.last.username}"
