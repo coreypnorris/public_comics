@@ -11,7 +11,7 @@
       <% if comment.user == current_user %>
         <%= link_to "edit", edit_comment_path(comment), :id => "edit-link-#{comment.id}", :remote => true %>
         <%= link_to 'delete', comment_path(comment),
-                    :confirm => 'Are you sure?', :method => :delete %>
+                    data: { :confirm => 'Are you sure?' }, :method => :delete %>
       <% end %>
 
       <% unless comment.user == current_user %>
