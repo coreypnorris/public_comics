@@ -37,10 +37,20 @@ feature "Using universal navbar links" do
   end
 end
 
+feature "Using navbar links when signed in" do
+  before { create_and_sign_in_user }
+
+  scenario "User can access profile page" do
+    click_link "Signed in as #{@user.username}"
+    page.should have_content "Username: #{@user.username}"
+  end
+end
+
+
 feature "Using navbar links when not signed in" do
   before { visit root_path }
 
-  scenario "User can access sign up form" do
+  scenario "User can access profile page" do
     click_link "Sign Up"
     page.should have_content "Username"
     page.should have_content "Email"
