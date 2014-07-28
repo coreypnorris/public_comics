@@ -1,0 +1,7 @@
+<%= form_for(@user, multipart: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+    <%= f.submit "Add Avatar", :class => "btn btn-sm btn-default" %>
+  </div>
+<% end %>
