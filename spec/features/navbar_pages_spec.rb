@@ -50,7 +50,7 @@ end
 feature "Using navbar links when not signed in" do
   before { visit root_path }
 
-  scenario "User can access profile page" do
+  scenario "User can access sign up form" do
     click_link "Sign Up"
     page.should have_content "Username"
     page.should have_content "Email"
