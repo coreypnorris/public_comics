@@ -67,14 +67,8 @@ feature "Commenting on the page's issue" do
   end
 
   scenario "creating a reply to a comment", :retry => 5, js: true do
-    create_and_sign_in_user_for_poltergeist
-    comment = FactoryGirl.build(:comment, :user_id => @user.id)
+    create_user_and_page_and_post_comment
     reply = FactoryGirl.build(:comment, :user_id => @user.id)
-    issue = FactoryGirl.create(:page).issue
-    visit issue_page_path(issue, issue.pages.first)
-    fill_in "issue-#{issue.id}-comment-body", :with => comment.body
-    click_button "Comment on this issue"
-    page.should have_content 'posted'
     click_on "Reply"
     fill_in "comment-#{(Comment.last.id)}-comment-body", :with => reply.body
     click_button "Confirm"
@@ -100,7 +94,7 @@ feature "Commenting on the page's issue" do
 end
 
 feature "voting on a comment" do
-  before { create_page_and_post_comment }
+  before { create_user_and_page_and_post_comment }
   before { sign_out }
   before { create_and_sign_in_user_for_poltergeist }
   before { visit issue_page_path(@issue, @issue.pages.first) }
