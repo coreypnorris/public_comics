@@ -62,7 +62,7 @@ feature "Commenting on the page's issue" do
     issue = FactoryGirl.create(:page).issue
     visit issue_page_path(issue, issue.pages.first)
     fill_in "issue-#{issue.id}-comment-body", :with => comment.body
-    click_button "Comment on this Issue"
+    click_button "Comment on this issue"
     page.should have_content 'posted'
   end
 
@@ -73,11 +73,11 @@ feature "Commenting on the page's issue" do
     issue = FactoryGirl.create(:page).issue
     visit issue_page_path(issue, issue.pages.first)
     fill_in "issue-#{issue.id}-comment-body", :with => comment.body
-    click_button "Comment on this Issue"
+    click_button "Comment on this issue"
     page.should have_content 'posted'
     click_on "Reply"
     fill_in "comment-#{(Comment.last.id)}-comment-body", :with => reply.body
-    click_button "Add Comment"
+    click_button "Confirm"
     page.should have_content 'posted'
     page.should have_content '2 Comments'
   end
