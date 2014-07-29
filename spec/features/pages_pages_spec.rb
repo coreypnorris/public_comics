@@ -103,6 +103,14 @@ feature "editing a comment" do
   end
 end
 
+feature "deleting a comment" do
+  scenario "deleting a comment" do
+    create_user_and_page_and_post_comment
+    click_on 'delete'
+    page.should_not have_content @comment.body
+  end
+end
+
 feature "voting on a comment" do
   before { create_user_and_page_and_post_comment }
   before { sign_out }
