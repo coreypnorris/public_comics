@@ -51,4 +51,6 @@ RSpec.configure do |config|
     retry_count                = ENV['RSPEC_RETRY_COUNT']
     config.default_retry_count = retry_count.try(:to_i) || 1
     puts "RSpec retry count is #{config.default_retry_count}"
+
+  config.include ActionDispatch::TestProcess
 end
