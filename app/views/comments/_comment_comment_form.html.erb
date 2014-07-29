@@ -5,7 +5,7 @@
     </div>
     <br>
     <div class="form-group">
-      <%= f.submit "Add Comment", :class => "btn btn-sm btn-default" %>
+      <%= f.button "Confirm", class: "btn btn-sm btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
     </div>
   <% end %>
 </p>
