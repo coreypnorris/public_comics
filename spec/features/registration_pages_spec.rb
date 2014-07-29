@@ -97,7 +97,7 @@ feature "Editing account" do
 
   scenario "logged in user is able to access edit account form", :retry => 5 do
     click_on "Signed in as #{User.last.username}"
-    click_link "Edit or cancel your account"
+    click_link "Customize or cancel your account"
     page.should have_content "Edit Account"
   end
 
