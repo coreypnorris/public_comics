@@ -7976,6 +7976,14 @@ body {
   color: black !important;
 }
 
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar li:hover {
+  text-decoration: underline;
+}
+
 #page-title {
   margin-bottom: 0px;
 }
@@ -7983,4 +7991,24 @@ body {
 #logged-in-as {
   text-decoration: none;
   cursor: text;
+}
+
+.subtext {
+  color: #828282;
+  font-size: 9pt;
+}
+
+.nested_comments {
+  margin-left: 30px;
+}
+
+.nested_comments .nested_comments .nested_comments
+.nested_comments .nested_comments .nested_comments
+.nested_comments .nested_comments .nested_comments {
+  margin-left: 0;
+}
+
+#comment-avatar {
+  display: inline-block;
+  margin-bottom: 0px;
 }
