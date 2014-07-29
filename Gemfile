@@ -19,6 +19,7 @@ gem 'database_cleaner'
 gem 'rspec-retry'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'font-awesome-sass'
 
 group :development do
   gem 'better_errors'
