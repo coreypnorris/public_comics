@@ -81,6 +81,22 @@ feature "Commenting on the page's issue" do
     page.should have_content 'posted'
     page.should have_content '2 Comments'
   end
+
+  scenario "canceling a reply to a comment", :retry => 5, js: true do
+    create_and_sign_in_user_for_poltergeist
+    comment = FactoryGirl.build(:comment, :user_id => @user.id)
+    reply = FactoryGirl.build(:comment, :user_id => @user.id)
+    issue = FactoryGirl.create(:page).issue
+    visit issue_page_path(issue, issue.pages.first)
+    fill_in "issue-#{issue.id}-comment-body", :with => comment.body
+    click_button "Comment on this issue"
+    page.should have_content 'posted'
+    click_on "Reply"
+    fill_in "comment-#{(Comment.last.id)}-comment-body", :with => reply.body
+    click_button "Cancel"
+    page.should have_content 'Reply'
+    page.should_not have_content 'Confirm'
+  end
 end
 
 feature "voting on a comment" do
