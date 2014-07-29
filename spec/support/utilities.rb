@@ -31,7 +31,7 @@ def sign_out
   click_on "Sign Out"
 end
 
-def create_page_and_post_comment
+def create_user_and_page_and_post_comment
   @issue = FactoryGirl.create(:page).issue
   create_and_sign_in_user
   visit issue_page_path(@issue, @issue.pages.first)
