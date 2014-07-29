@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require bootstrap
+ *= require font-awesome
  *= require mousetrap
  *= require_tree .
  */
