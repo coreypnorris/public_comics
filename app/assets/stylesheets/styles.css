@@ -61,3 +61,8 @@ body {
 .nested_comments .nested_comments .nested_comments {
   margin-left: 0;
 }
+
+#comment-avatar {
+  display: inline-block;
+  margin-bottom: 0px;
+}
