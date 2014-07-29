@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   # This method associates the attribute ":avatar" with a file attachment
     has_attached_file :avatar,
       styles: { comment: '85x85>', profile: '150x150#' },
-      :default_url => "/assets/:style/missing.png"
+      :default_url => "/assets/:style/missing.png",
+      :bucket => ENV['S3_PRODUCTION_BUCKET_NAME']
 
     # Validate the attached image is image/jpg, image/png, etc
     validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
