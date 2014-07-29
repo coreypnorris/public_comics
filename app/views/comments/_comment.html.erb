@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-md-4">
+    <p><%= image_tag comment.user.avatar.url(:comment), :class => "thumbnail", :id => "comment-avatar" %></p>
     <p class="subtext">
-      <%= link_to comment.user.username, user_path(comment.user) %>
+      By <%= link_to comment.user.username, user_path(comment.user) %>
       <span id="comment-<%= comment.id %>-votes-num">
         <%= pluralize((comment.cached_weighted_score), 'point', 'points') %>
       </span>
@@ -19,13 +20,13 @@
       <% end %>
     </p>
 
-    <div class="well well-md" id="comment-<%= comment.id %>-body">
+    <div class="well well-lg" id="comment-<%= comment.id %>-body">
       <%= comment.body %>
     </div>
 
-    <% if current_user %>
+
       <%= link_to "Reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :class => "btn btn-sm btn-default", :remote => true %>
-    <% end %>
+
   </div>
 </div>
 
