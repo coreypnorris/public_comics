@@ -94,6 +94,13 @@ feature "editing a comment" do
     click_on 'Confirm'
     page.should have_content 'changed comment'
   end
+
+  scenario "cancel editing a comment", :retry => 5, js: true do
+    click_on 'edit'
+    click_button "Cancel"
+    page.should have_content 'edit'
+    page.should_not have_content 'Confirm'
+  end
 end
 
 feature "voting on a comment" do
