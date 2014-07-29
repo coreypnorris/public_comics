@@ -1,6 +1,6 @@
 <%= form_for(@user, multipart: true) do |f| %>
   <div class="form-group">
     <%= f.file_field :avatar %><br>
-    <%= f.submit "Upload", :class => "btn btn-sm btn-default" %>
+    <%= f.button "Upload", class: "btn btn-sm btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Uploading..."} %>
   </div>
 <% end %>
