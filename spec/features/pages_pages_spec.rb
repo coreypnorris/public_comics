@@ -85,6 +85,17 @@ feature "Commenting on the page's issue" do
   end
 end
 
+feature "editing a comment" do
+  before { create_user_and_page_and_post_comment }
+
+  scenario "changing the body a posted comment", :retry => 5, js: true do
+    click_on 'edit'
+    fill_in "comment_body", :with => "changed comment"
+    click_on 'Confirm'
+    page.should have_content 'changed comment'
+  end
+end
+
 feature "voting on a comment" do
   before { create_user_and_page_and_post_comment }
   before { sign_out }
