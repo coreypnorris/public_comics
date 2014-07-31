@@ -20,6 +20,7 @@ gem 'rspec-retry'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'font-awesome-sass'
+gem "jquery-ui-rails"
 
 group :development do
   gem 'better_errors'
