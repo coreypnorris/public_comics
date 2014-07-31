@@ -1,5 +1,9 @@
 class IssuesController < ApplicationController
+  before_filter :authenticate_user!
 
+def new
+  @issue = Issue.new
+end
 
 private
   def issue_params
