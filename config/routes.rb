@@ -5,7 +5,7 @@ PublicComics::Application.routes.draw do
     resources :issues
   end
 
-  resources :issues, only: [:index] do
+  resources :issues do
     resources :pages
     resources :comments, only: [:create]
   end
