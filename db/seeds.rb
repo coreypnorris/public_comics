@@ -728,9 +728,6 @@ bc_four.pages << page_thirtyfour = Page.create(image: "http://furycomics.com/Bat
 bc_four.pages << page_thirtyfive = Page.create(image: "http://furycomics.com/Battle_Cry/004/i/33.jpg", number: 34)
 bc_four.pages << page_thirtysix = Page.create(image: "http://furycomics.com/Battle_Cry/004/i/34.jpg", number: 35)
 
-
-war.titles << blackhawk = Title.create(name: "Blackhawk")
-
 blackhawk.issues << blackhawk_twelve = Issue.create(number: 12, cover: "http://furycomics.com/Blackhawk/012/i/Comic_Book_Cover_For_Blackhawk_Issue_12.jpg")
 
 blackhawk_twelve.pages << page_one = Page.create(image: "http://furycomics.com/Blackhawk/012/i/Comic_Book_Cover_For_Blackhawk_Issue_12.jpg", number: 1)
@@ -785,9 +782,6 @@ blackhawk_twelve.pages << page_fortynine = Page.create(image: "http://furycomics
 blackhawk_twelve.pages << page_fifty = Page.create(image: "http://furycomics.com/Blackhawk/012/i/49.jpg", number: 50)
 blackhawk_twelve.pages << page_fiftyone = Page.create(image: "http://furycomics.com/Blackhawk/012/i/50.jpg", number: 51)
 blackhawk_twelve.pages << page_fiftytwo = Page.create(image: "http://furycomics.com/Blackhawk/012/i/51.jpg", number: 52)
-
-
-romance.titles << young_romance = Title.create(name: "Young Romance")
 
 young_romance.issues << yr_sixty = Issue.create(number: 60, cover: "http://furycomics.com/Young_Romance/060/i/Comic_Book_Cover_For_Young_Romance_Issue_60.jpg")
 
