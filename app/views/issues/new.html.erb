@@ -3,8 +3,8 @@
     <h2>New Issue</h2>
     <br>
 
-    <%= form_for(@issue) do |f| %>
-      <div class="form-group" id="title-form-group">
+    <%= form_for(@issue, :multipart => true) do |f| %>
+      <div class="form-group">
         <%= f.label :title, "Title" %>
         <%= collection_select(:title, :id, Title.order(:name), :id, :name, { :prompt => "Select a title" }, { :class => 'form-control', :id => 'titles-collection' }) %>
 
@@ -16,7 +16,29 @@
       <br>
 
       <div class="form-group">
-        <%= f.button "Submit", class: "btn btn-sm btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
+        <%= f.label :number, "Number" %><br>
+        <%= f.text_field :number %>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <%= f.label :cover, "Cover" %><br>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-file">
+              Browse Files <%= f.file_field :cover %>
+            </span>
+          </span>
+          <input type="text" class="form-control" readonly>
+        </div>
+      </div>
+
+
+      <br>
+
+      <div class="form-group">
+        <%= f.button "Submit", class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
       </div>
     <% end %>
 
