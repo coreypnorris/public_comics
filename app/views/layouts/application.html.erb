@@ -9,47 +9,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container">
-
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to "Public Comics", root_url, :class => "navbar-brand", :id => "homepage-link" %>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li><%= link_to "Signed in as #{current_user.username}", user_path(current_user) %></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-            <% else %>
-              <li><%= link_to "Sign Up", new_user_registration_path %></li>
-              <li><%= link_to "Sign In", new_user_session_path %></li>
-            <% end %>
-          </ul>
-
-          <%= form_tag titles_path, :method => 'get', :class => "navbar-form navbar-left", :role => "search" do  %>
-            <div class="form-group">
-              <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "Search" %>
-            </div>
-              <%= submit_tag "Search", style: "position: absolute; left: -9999px; width: 1px; height: 1px;" %>
-          <% end %>
-
-          <%= form_tag genre_path(0), :method => :get, :class => "navbar-form navbar-left", :role => "search" do %>
-            <div class="form-group">
-              <%= collection_select(:genre, :id, Genre.all, :id, :name, {:prompt => "Browse By Genre"}, {:class => 'form-control', :id => 'genre-selector', :onchange => "this.form.submit()"}) %>
-              <%= submit_tag('Go to Genre', style: "position: absolute; left: -9998px; width: 1px; height: 1px;") %>
-            </div>
-          <% end %>
-
-        </div>
-      </div>
-    </nav>
+  <%= render "/layouts/navbar" %>
 
   <div class="container">
     <div class="row-fluid">
