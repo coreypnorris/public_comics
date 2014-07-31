@@ -10,7 +10,7 @@ FactoryGirl.define do
 
   factory :issue do
     title
-    number 1
+    number { Faker::Number.number(3) }
     cover { Faker::Company.logo }
   end
 
