@@ -5,6 +5,10 @@ class IssuesController < ApplicationController
     @issue = Issue.new
   end
 
+  def create
+
+  end
+
 private
   def issue_params
     params.require(:issue).permit(:number, :cover, :title_id)
