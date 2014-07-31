@@ -66,3 +66,7 @@ body {
   display: inline-block;
   margin-bottom: 0px;
 }
+
+#new-issue-or {
+  margin-left: 3px;
+}
