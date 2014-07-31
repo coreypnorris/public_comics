@@ -13,6 +13,6 @@ class Issue < ActiveRecord::Base
   end
 
   def title_name=(name)
-    self.title = Title.find_by_name(name) if name.present?
+    self.title = Title.find_or_create_by_name(name) if name.present?
   end
 end
