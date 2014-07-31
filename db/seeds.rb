@@ -1,4 +1,3 @@
-
 superhero = Genre.create(name: "SuperHero")
 
 superhero.titles << captain_marvel_adventures = Title.create(name: "Captain Marvel Adventures")
@@ -656,8 +655,6 @@ cma_thirteen.pages << page_sixtytwo = Page.create(image: "http://furycomics.com/
 cma_thirteen.pages << page_sixtythree = Page.create(image: "http://furycomics.com/Captain_Marvel_Adventures/013/i/62.jpg", number: 63)
 cma_thirteen.pages << page_sixtyfour = Page.create(image: "http://furycomics.com/Captain_Marvel_Adventures/013/i/63.jpg", number: 64)
 
-
-crime.titles << crime_smashers = Title.create(name: "Crime Smashers")
 
 crime_smashers.issues << cs_two = Issue.create(number: 2, cover: "http://furycomics.com/Crime_Smashers/002/i/Comic_Book_Cover_For_Crime_Smashers_Issue_2.jpg")
 
