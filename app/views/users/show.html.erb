@@ -1,10 +1,13 @@
-<%= render @user %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render @user %>
 
-<% if @user == current_user %>
-  <hr>
-  <h3>Account options</h3>
-  <p><%= link_to "Customize or cancel your account", edit_user_registration_path %></p>
-  <p>Upload an avatar</p>
-  <%= render "/users/avatar_form" %>
-  <br>
-<% end %>
+    <% if @user == current_user %>
+      <p><%= link_to "Customize or cancel your account", edit_user_registration_path %></p>
+      <hr>
+      <%= render "/users/avatar_form" %>
+      <br>
+    <% end %>
+
+  </div>
+</div>
