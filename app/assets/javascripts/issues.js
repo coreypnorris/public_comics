@@ -5,7 +5,7 @@ jQuery(function() {
   });
 });
 
-// Scripts for uploading covers and pages in new issue form
+// Scripts for uploading images
 $(document).on('change', '.btn-file :file', function() {
   var input = $(this),
       numFiles = input.get(0).files ? input.get(0).files.length : 1,
