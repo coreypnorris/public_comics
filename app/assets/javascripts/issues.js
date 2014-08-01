@@ -1,9 +1,11 @@
+// Autocomplete for title name in new issue form
 jQuery(function() {
   return $('#issue_title_name').autocomplete({
     source: $('#issue_title_name').data('autocomplete-source')
   });
 });
 
+// Scripts for uploading covers and pages in new issue form
 $(document).on('change', '.btn-file :file', function() {
   var input = $(this),
       numFiles = input.get(0).files ? input.get(0).files.length : 1,
