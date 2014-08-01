@@ -8,6 +8,14 @@ class Issue < ActiveRecord::Base
   has_many :comments, :as => :commentable
   belongs_to :title
 
+  def search
+    title.try(:name)
+  end
+
+  def search=(name)
+    self.title = Title.find_by_name(name) if name.present?
+  end
+
   def title_name
     title.try(:name)
   end
