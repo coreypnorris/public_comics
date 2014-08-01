@@ -27,7 +27,7 @@
 
         <%= form_tag titles_path, :method => 'get', :class => "navbar-form navbar-left", :role => "search" do  %>
           <div class="form-group">
-            <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "Search" %>
+            <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "Search", data: { autocomplete_source: titles_path } %>
           </div>
             <%= submit_tag "Search", style: "position: absolute; left: -9999px; width: 1px; height: 1px;" %>
         <% end %>
