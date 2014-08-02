@@ -7,11 +7,11 @@ class Issue < ActiveRecord::Base
   has_many :comments, :as => :commentable
   belongs_to :title
 
-  # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :cover
 
-  # Validate the attached image is image/jpg, image/png, etc
-  validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_presence :cover
+  validates_attachment_size :cover, :less_than => 5.megabytes
+  validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/png']
 
   def search
     title.try(:name)
