@@ -2,6 +2,7 @@ class Issue < ActiveRecord::Base
   acts_as_commentable
 
   validates :number, :presence => true
+  validates :title_id, :presence => true
 
   has_many :pages
   has_many :comments, :as => :commentable
