@@ -33,6 +33,13 @@
       <br>
 
       <div class="form-group">
+        <%= label_tag :genre, "Genre" %><br>
+        <%= text_field_tag :title_genre_name, params[:genre], data: { autocomplete_source: genres_path } %>
+      </div>
+
+      <br>
+
+      <div class="form-group">
         <%= f.button "Submit Issue", class: "btn btn-sm btn-default", id: "submit-issue", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
       </div>
     <% end %>

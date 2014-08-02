@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md-6">
+    <h2>New page for <%= @issue.title.name %> #<%= @issue.number %></h2>
+    <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <%= form_for([@issue, @page], :multipart => true) do |f| %>
+
+    <div class="form-group">
+      <%= f.label :number, "Page Number" %><br>
+      <%= f.text_field :number %>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <%= f.label :image, "Image" %><br>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <span class="btn btn-default btn-file">
+            Browse Files <%= f.file_field :image %>
+          </span>
+        </span>
+        <input type="text" class="form-control" readonly>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <%= f.button "Submit Page", class: "btn btn-sm btn-default", id: "submit-issue", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<hr>
+
+<h2>Current pages</h2><br>
+
+<div class='row text-center'>
+  <div class='col-sm-12'>
+    <ul class='list-unstyled'>
+      <% @issue.pages.each do |page| %>
+      <div class="col-sm-3">
+        <%= image_tag("#{page.image}", :class => "img-thumbnail thumbnail-#{page.number}", :id => "thumbnail") %>
+        <li><%= page.number %></li>
+        <%= link_to page_path(page), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
+          <i class="glyphicon glyphicon-trash"></i>
+        <% end %>
+      </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
