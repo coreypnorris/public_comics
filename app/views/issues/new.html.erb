@@ -5,18 +5,14 @@
 
     <%= form_for(@issue, :multipart => true) do |f| %>
       <div class="form-group">
-        <%= f.label :title, "Title" %>
-        <%= collection_select(:title, :id, Title.order(:name), :id, :name, { :prompt => "Select a title" }, { :class => 'form-control', :id => 'titles-collection' }) %>
-
-        <h5 id="new-issue-or">or</h5>
-
-        <%= f.text_field :title_name, :placeholder => "New title", data: { autocomplete_source: titles_path } %>
+        <%= label_tag :title, "Title" %><br>
+        <%= text_field_tag :title_name, params[:title], data: { autocomplete_source: titles_path } %>
       </div>
 
       <br>
 
       <div class="form-group">
-        <%= f.label :number, "Number" %><br>
+        <%= f.label :number, "Issue Number" %><br>
         <%= f.text_field :number %>
       </div>
 
@@ -37,9 +33,8 @@
       <br>
 
       <div class="form-group">
-        <%= f.button "Submit", class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
+        <%= f.button "Submit Issue", class: "btn btn-sm btn-default", id: "submit-issue", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
       </div>
     <% end %>
-
   </div>
 </div>
