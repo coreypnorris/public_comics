@@ -10,7 +10,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
     if @title.save && @issue.save
       @title.issues << @issue
-      flash[:notice] = "Your title has been submitted."
+      flash[:notice] = "Your issue has been submitted."
       redirect_to new_issue_page_path(@issue)
     else
       flash[:alert] = "Something went wrong. Please try to save your issue again."
