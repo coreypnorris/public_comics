@@ -15,8 +15,8 @@ PublicComics::Application.routes.draw do
     resources :votes, only: [:new, :create]
   end
 
+  resources :pages
   resources :genres, only: [:index, :show]
-  resources :pages, only: [:index, :show]
   resources :users, :path => 'profiles', only: [:show, :update]
 
   root to: "welcome#index"
