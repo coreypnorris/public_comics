@@ -4,3 +4,9 @@ jQuery(function() {
     source: $('#title_name').data('autocomplete-source')
   });
 });
+
+jQuery(function() {
+  return $('#title_genre_name').autocomplete({
+    source: $('#title_genre_name').data('autocomplete-source')
+  });
+});
