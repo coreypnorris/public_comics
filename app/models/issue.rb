@@ -28,4 +28,12 @@ class Issue < ActiveRecord::Base
   def title_name=(name)
     self.title = Title.find_or_create_by_name(name) if name.present?
   end
+
+  def title_genre_name
+    title.genre.try(:name)
+  end
+
+  def title_genre_name=(name)
+    self.title.genre = Genre.find_or_create_by_name(name) if name.present?
+  end
 end
