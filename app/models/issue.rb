@@ -6,6 +6,7 @@ class Issue < ActiveRecord::Base
   has_many :pages
   has_many :comments, :as => :commentable
   belongs_to :title
+  belongs_to :user
 
   has_attached_file :cover
 
