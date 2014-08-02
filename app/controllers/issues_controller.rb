@@ -9,7 +9,7 @@ class IssuesController < ApplicationController
     @title = Title.find_or_initialize_by_name(params[:title_name].titleize)
     @genre = Genre.find_or_initialize_by_name(params[:title_genre_name].titleize)
     @issue = Issue.new(issue_params)
-    if @title.save && @genre.save && @issue.save &&
+    if @title.save && @genre.save && @issue.save
       @genre.titles << @title
       @title.issues << @issue
       flash[:notice] = "Your issue has been submitted."
