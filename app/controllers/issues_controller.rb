@@ -12,6 +12,7 @@ class IssuesController < ApplicationController
     if @title.save && @genre.save && @issue.save
       @genre.titles << @title
       @title.issues << @issue
+      current_user.issues << @issue
       flash[:notice] = "Your issue has been submitted."
       redirect_to new_issue_page_path(@issue)
     else
@@ -22,6 +23,6 @@ class IssuesController < ApplicationController
 
 private
   def issue_params
-    params.require(:issue).permit(:number, :cover, :title_id)
+    params.require(:issue).permit(:number, :cover, :user_id, :title_id)
   end
 end
