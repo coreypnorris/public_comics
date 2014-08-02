@@ -2,6 +2,11 @@ class GenresController < ApplicationController
 
   require 'will_paginate/array'
 
+  def index
+    @genres = Genre.order(:name).where("name like ?", "%#{params[:term].titleize}%")
+    render json: @genres.map(&:name)
+  end
+
   def show
     if params[:genre]
       @genre = Genre.find(params[:genre][:id])
