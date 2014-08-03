@@ -1,5 +1,5 @@
 <div class="text-center">
-  <h3>Read comics from the public domain.</h3>
+  <h3>Manage Issues</h3>
 </div>
 
 <div class='row text-center' id="paginate-one">
@@ -10,11 +10,25 @@
   <div class='col-sm-12'>
     <ul class="list-unstyled">
       <% @issues.each do |issue| %>
-      <div class="col-sm-3">
-        <%= link_to (image_tag("#{issue.cover.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
-        <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
-        <li class="subtext">submitted by <%= link_to issue.user.username, user_path(issue.user) %></li>
-      </div>
+        <div class="col-sm-3">
+          <%= link_to (image_tag("#{issue.cover.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
+          <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
+          <li class="subtext">submitted by <%= link_to issue.user.username, user_path(issue.user) %></li>
+
+          <% if issue.approved == 0 %>
+            <%= link_to issue_path(issue, :kind => "approve"), :class => "btn btn-xs btn-default", :method => :patch do %>
+              <i class="glyphicon glyphicon-thumbs-up"></i>
+            <% end %>
+          <% else %>
+            <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-default", :method => :patch do %>
+              <i class="glyphicon glyphicon-thumbs-down"></i>
+            <% end %>
+          <% end %>
+
+          <%= link_to issue_path(issue), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
+            <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </div>
       <% end %>
     </ul>
   </div>
