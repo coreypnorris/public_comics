@@ -53,4 +53,5 @@ RSpec.configure do |config|
     puts "RSpec retry count is #{config.default_retry_count}"
 
   config.include ActionDispatch::TestProcess
+  FileUtils.rm_rf(Dir["#{Rails.root}/public/system/test"])
 end

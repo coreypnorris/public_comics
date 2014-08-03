@@ -31,7 +31,7 @@ FactoryGirl.define do
 
   factory :page do |p|
     issue
-    p.image { fixture_file_upload( 'spec/factories/test_page_1.jpg', 'image/jpg') }
+    p.image { fixture_file_upload( 'spec/factories/test_page.jpg', 'image/jpg') }
     p.number 1
   end
 end
