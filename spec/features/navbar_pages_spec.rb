@@ -24,11 +24,16 @@ feature "Using universal navbar links" do
     tomb_of_dracula = horror.titles.create(:name => "Tomb of Dracula")
     western = FactoryGirl.create(:genre, :name => "Western")
     two_gun_kid = western.titles.create(:name => "Two Gun Kid")
-    tomb_of_dracula_1 = tomb_of_dracula.issues.create(:number => 1, :cover =>"tomb_of_dracula_1_cover")
-    two_gun_kid_1 = two_gun_kid.issues.create(:number => 1, :cover =>"two_gun_kid_1_cover")
-    tomb_of_dracula_1.pages.create(:number => 1, :image => "page_1_image_url")
-    two_gun_kid_1.pages.create(:number => 1, :image => "page_1_image_url")
-    visit issue_page_path(tomb_of_dracula_1, tomb_of_dracula_1.pages.first)
+    tomb_of_dracula_1 = FactoryGirl.create(:issue)
+    tomb_of_dracula.issues << tomb_of_dracula_1
+    two_gun_kid_1 = FactoryGirl.create(:issue)
+    two_gun_kid.issues << two_gun_kid_1
+    tomb_of_dracula_1_page_1 = FactoryGirl.create(:page)
+    tomb_of_dracula_1.pages << tomb_of_dracula_1_page_1
+    two_gun_kid_1_page_1 = FactoryGirl.create(:page)
+    two_gun_kid_1.pages << two_gun_kid_1_page_1
+
+    visit issue_page_path(tomb_of_dracula_1, tomb_of_dracula_1_page_1)
 
     select("Horror", :from => "genre-selector")
     click_button "Go to Genre"
@@ -42,7 +47,7 @@ feature "Using navbar links when signed in" do
 
   scenario "User can access profile page", :retry => 3 do
     click_link "Signed in as #{@user.username}"
-    page.should have_content "Username: #{@user.username}"
+    page.should have_content "#{@user.username}"
   end
 end
 

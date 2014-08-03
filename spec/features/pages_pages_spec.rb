@@ -3,10 +3,10 @@ require 'spec_helper'
 feature "Viewing a comic book page" do
   let(:superhero) { FactoryGirl.create(:genre, :name => "Super Hero") }
   let(:action_comics) { FactoryGirl.create(:title, :name => "Action Comics", :genre_id => superhero.id) }
-  let(:action_comics_1) { FactoryGirl.create(:issue, :number => 1, :cover =>"action_comics_1_cover", :title_id => action_comics.id) }
-  let!(:action_comics_1_page_1) { FactoryGirl.create(:page, :number => 1, :image => "action_comics_1_page_1_image_url", :issue_id => action_comics_1.id) }
-  let!(:action_comics_1_page_2) { FactoryGirl.create(:page, :number => 2, :image => "action_comics_1_page_2_image_url", :issue_id => action_comics_1.id) }
-  let!(:action_comics_1_page_3) { FactoryGirl.create(:page, :number => 3, :image => "action_comics_1_page_3_image_url", :issue_id => action_comics_1.id) }
+  let(:action_comics_1) { FactoryGirl.create(:issue, :number => 1, :title_id => action_comics.id) }
+  let!(:action_comics_1_page_1) { FactoryGirl.create(:page, :number => 1, :issue_id => action_comics_1.id) }
+  let!(:action_comics_1_page_2) { FactoryGirl.create(:page, :number => 2, :issue_id => action_comics_1.id) }
+  let!(:action_comics_1_page_3) { FactoryGirl.create(:page, :number => 3, :issue_id => action_comics_1.id) }
 
   before { visit issue_page_path(action_comics_1, action_comics_1_page_1) }
 
@@ -44,8 +44,10 @@ feature "Viewing a comic book page" do
   end
 
   scenario "can use the genre button to view all titles with that genre" do
-    action_comics_2 = action_comics.issues.create(:number => 2, :cover =>"action_comics_2_cover")
-    action_comics_2.pages.create(:number => 1, :image => "action_comics_2_page_1_image_url")
+    action_comics_2 = FactoryGirl.create(:issue, :number => 2)
+    action_comics.issues << action_comics_2
+    action_comics_2_page_1 = FactoryGirl.create(:page, :number => 1)
+    action_comics_2.pages << action_comics_2_page_1
     find("#issue-genre-button").click
     page.should have_content "#{superhero.name} Comics"
     page.should have_css("img.#{action_comics.name.delete(' ')}-#{action_comics_1.pages.first.number}")
