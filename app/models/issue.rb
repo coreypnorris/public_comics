@@ -13,7 +13,7 @@ class Issue < ActiveRecord::Base
 
   validates_attachment_presence :cover
   validates_attachment_size :cover, :less_than => 5.megabytes
-  validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/png']
+  validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
 
   def search
     title.try(:name)
