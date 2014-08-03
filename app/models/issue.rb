@@ -3,6 +3,7 @@ class Issue < ActiveRecord::Base
 
   validates :number, :presence => true
   validates :title_id, :presence => true
+  validates :approved, :presence => true
 
   has_many :pages
   has_many :comments, :as => :commentable
@@ -14,6 +15,8 @@ class Issue < ActiveRecord::Base
   validates_attachment_presence :cover
   validates_attachment_size :cover, :less_than => 5.megabytes
   validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
+
+  scope :approved, -> { where(approved: 1) }
 
   def search
     title.try(:name)

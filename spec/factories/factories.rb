@@ -27,6 +27,7 @@ FactoryGirl.define do
     title
     i.number { Faker::Number.number(3) }
     i.cover { fixture_file_upload( 'spec/factories/test_cover.jpg', 'image/jpg') }
+    i.approved 1
   end
 
   factory :page do |p|
