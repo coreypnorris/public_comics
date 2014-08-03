@@ -17,6 +17,7 @@ class Issue < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
 
   scope :approved, -> { where(approved: 1) }
+  scope :unapproved, -> { where(approved: 0) }
 
   def search
     title.try(:name)
