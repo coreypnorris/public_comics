@@ -1,0 +1,28 @@
+<div class="text-center">
+  <h3>Read comics from the public domain.</h3>
+</div>
+
+<div class='row text-center' id="paginate-one">
+  <%= will_paginate @issues %>
+</div>
+
+<div class='row text-center'>
+  <div class='col-sm-12'>
+    <ul class="list-unstyled">
+      <% @issues.each do |issue| %>
+      <div class="col-sm-3">
+        <%= link_to (image_tag("#{issue.cover.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
+        <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
+        <li class="subtext">posted by <%= link_to issue.user.username, user_path(issue.user) %></li>
+        <i class="subtext">
+          (<%= issue.comments.count %> comments)
+        </i>
+      </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class='row text-center' id="paginate-two">
+  <%= will_paginate @issues %>
+</div>
