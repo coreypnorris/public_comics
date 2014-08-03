@@ -1,6 +1,11 @@
 class IssuesController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @issues = Issue.all.sort_by { |issue| issue.created_at }
+    @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
+  end
+
   def new
     @issue = Issue.new
   end
