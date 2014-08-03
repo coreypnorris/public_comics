@@ -29,6 +29,10 @@ class PagesController < ApplicationController
     @issue = @page.issue
     @title = @page.issue.title
     @comment = Comment.new
+    if @issue.approved == 0
+      flash[:alert] = "That issue hasn't been approved yet"
+      redirect_to root_url
+    end
   end
 
   def destroy
