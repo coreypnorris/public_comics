@@ -28,6 +28,35 @@ class IssuesController < ApplicationController
     end
   end
 
+  def update
+    if current_user.username != "admin"
+      flash[:alert] = "You aren't approved to use this method"
+      redirect_to :back
+    end
+    @issue = Issue.find(params[:id])
+    if params[:kind] == "approve"
+      @issue.approved = 1
+      @issue.save
+      flash[:notice] = "#{@issue.title.name} ##{@issue.number} has been approved."
+      redirect_to :back
+    elsif params[:kind] == "unapprove"
+      @issue.approved = 0
+      @issue.save
+      flash[:notice] = "#{@issue.title.name} ##{@issue.number} has been unapproved."
+      redirect_to :back
+    else
+      flash[:error] = "Something went wrong. Please try to save your issue again."
+      redirect_to :back
+    end
+  end
+
+  def destroy
+    @issue = Issue.find(params[:id])
+    @issue.destroy
+    flash[:notice] = "The issue has been removed."
+    redirect_to :back
+  end
+
 private
   def issue_params
     params.require(:issue).permit(:number, :cover, :approved, :user_id, :title_id)
