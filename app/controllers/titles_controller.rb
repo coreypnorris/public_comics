@@ -13,7 +13,9 @@ class TitlesController < ApplicationController
 
       @titles.each do |title|
         title.issues.each do |issue|
-          @issues << issue
+          if issue.approved == 1
+            @issues << issue
+          end
         end
       end
       @issues = @issues.sort_by { |issue| issue.created_at }
