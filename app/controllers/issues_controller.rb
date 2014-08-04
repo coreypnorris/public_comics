@@ -4,6 +4,9 @@ class IssuesController < ApplicationController
   require 'will_paginate/array'
 
   def index
+    unless current_user.try(:admin?)
+      redirect_to root_url
+    end
     @issues = Issue.all.sort_by { |issue| issue.created_at }
     @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
   end
@@ -29,9 +32,8 @@ class IssuesController < ApplicationController
   end
 
   def update
-    if current_user.username != "admin"
-      flash[:alert] = "You aren't approved to use this method"
-      redirect_to :back
+    unless current_user.try(:admin?)
+      redirect_to :new_user_session_path
     end
     @issue = Issue.find(params[:id])
     if params[:kind] == "approve"
