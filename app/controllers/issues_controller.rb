@@ -33,7 +33,7 @@ class IssuesController < ApplicationController
 
   def update
     unless current_user.try(:admin?)
-      redirect_to :new_user_session_path
+      redirect_to root_url
     end
     @issue = Issue.find(params[:id])
     if params[:kind] == "approve"
