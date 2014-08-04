@@ -29,7 +29,9 @@ class PagesController < ApplicationController
     @issue = @page.issue
     @title = @page.issue.title
     @comment = Comment.new
-    if @issue.approved == 0
+    if @issue.approved == 1 || current_user.try(:admin?)
+
+    else
       flash[:alert] = "That issue hasn't been approved yet"
       redirect_to root_url
     end
