@@ -19,20 +19,6 @@
       <br>
 
       <div class="form-group">
-        <%= f.label :cover, "Cover" %><br>
-        <div class="input-group">
-          <span class="input-group-btn">
-            <span class="btn btn-default btn-file">
-              Browse Files <%= f.file_field :cover %>
-            </span>
-          </span>
-          <input type="text" class="form-control" readonly>
-        </div>
-      </div>
-
-      <br>
-
-      <div class="form-group">
         <%= label_tag :genre, "Genre" %><br>
         <%= text_field_tag :title_genre_name, params[:genre], data: { autocomplete_source: genres_path } %>
       </div>

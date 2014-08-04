@@ -10,12 +10,6 @@ class Issue < ActiveRecord::Base
   belongs_to :title
   belongs_to :user
 
-  has_attached_file :cover
-
-  validates_attachment_presence :cover
-  validates_attachment_size :cover, :less_than => 5.megabytes
-  validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
-
   scope :approved, -> { where(approved: 1) }
   scope :unapproved, -> { where(approved: 0) }
 
