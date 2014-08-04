@@ -1,10 +1,3 @@
-// Autocomplete for title name navbar search field
-jQuery(function() {
-  return $('#search').autocomplete({
-    source: $('#search').data('autocomplete-source')
-  });
-});
-
 // Scripts for uploading images
 $(document).on('change', '.btn-file :file', function() {
   var input = $(this),
