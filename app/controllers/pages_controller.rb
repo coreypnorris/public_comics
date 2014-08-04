@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     @issue = Issue.find(params[:issue_id])
     if @issue.save
       @issue.pages << @page
-      flash[:notice] = "Your page has been added to #{@issue.title.name} ##{@issue.number}."
+      flash[:notice] = "Page #{@page.number} has been added to #{@issue.title.name} ##{@issue.number}."
       redirect_to new_issue_page_path(@issue)
     else
       flash[:alert] = "Something went wrong. Please try to save your page again."
