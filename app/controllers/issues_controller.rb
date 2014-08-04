@@ -16,13 +16,13 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @title = Title.find_or_initialize_by_name(params[:title_name].titleize)
-    @genre = Genre.find_or_initialize_by_name(params[:title_genre_name].titleize)
+    @title = Title.find_or_create_by_name(:name => params[:title_name].titleize)
+    @genre = Genre.find_or_create_by_name(:name => params[:title_genre_name].titleize)
     @issue = Issue.new(issue_params)
     @genre.titles << @title
     @title.issues << @issue
     current_user.issues << @issue
-    if @title.save && @genre.save && @issue.save
+    if @issue.save
       flash[:notice] = "Your issue has been submitted."
       redirect_to new_issue_page_path(@issue)
     else
