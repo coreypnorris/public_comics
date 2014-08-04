@@ -10,13 +10,6 @@
     <%= form_for([@issue, @page], :multipart => true) do |f| %>
 
     <div class="form-group">
-      <%= f.label :number, "Page Number" %><br>
-      <%= f.text_field :number %>
-    </div>
-
-    <br>
-
-    <div class="form-group">
       <%= f.label :image, "Image" %><br>
       <div class="input-group">
         <span class="input-group-btn">
@@ -26,6 +19,13 @@
         </span>
         <input type="text" class="form-control" readonly>
       </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <%= f.label :number, "Page Number" %><br>
+      <%= f.text_field :number %>
     </div>
 
     <br>
