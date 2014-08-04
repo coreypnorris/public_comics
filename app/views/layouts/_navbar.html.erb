@@ -35,7 +35,7 @@
 
         <%= form_tag genre_path(0), :method => :get, :class => "navbar-form navbar-left", :role => "search" do %>
           <div class="form-group">
-            <%= collection_select(:genre, :id, Genre.all, :id, :name, {:prompt => "Browse By Genre"}, {:class => 'form-control', :id => 'genre-selector', :onchange => "this.form.submit()"}) %>
+            <%= collection_select(:genre, :id, Genre.order(:name), :id, :name, {:prompt => "Browse By Genre"}, {:class => 'form-control', :id => 'genre-selector', :onchange => "this.form.submit()"}) %>
             <%= submit_tag('Go to Genre', style: "position: absolute; left: -9998px; width: 1px; height: 1px;") %>
           </div>
         <% end %>
