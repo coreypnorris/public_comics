@@ -19,4 +19,4 @@ You can visit a live version of the site at http://public-comics.herokuapp.com/
 * Users can vote on other users comments
 * Users can submit thier own comics, and if approved by an admin, that issue can be viewed publicly on the site.
 
-####When downloading the app, make sure to add your own password for the admin account in db/seeds.rb
+####After downloading the app, make sure to replace ENV['ADMIN_PASSWORD'] and ENV['TEST_USER_PASSWORD'] with your own passwords in db/seeds.rb before you run `rake db:seed`.
