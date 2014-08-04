@@ -48,7 +48,7 @@
       <div class="col-sm-3">
         <%= image_tag("#{page.image}", :class => "img-thumbnail thumbnail-#{page.number}", :id => "thumbnail") %>
         <li><%= page.number %></li>
-        <%= link_to page_path(page), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
+        <%= link_to page_path(page.id), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
           <i class="glyphicon glyphicon-trash"></i>
         <% end %>
       </div>
