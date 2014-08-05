@@ -21,6 +21,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'font-awesome-sass'
 gem "jquery-ui-rails"
+gem 'jquery-turbolinks'
 
 group :development do
   gem 'better_errors'
