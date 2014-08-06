@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true
   validates :username, :uniqueness => true
-  has_many :comments
-  has_many :issues
+  has_many :comments, dependent: :destroy
+  has_many :issues, dependent: :destroy
 
   acts_as_voter
 
