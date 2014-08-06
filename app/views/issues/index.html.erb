@@ -13,7 +13,7 @@
         <div class="col-sm-3">
           <% if issue.pages.count == 0 %>
             <%= image_tag("/assets/no_pages.png", :class => "img-thumbnail", :id => "thumbnail") %>
-            <li><%= "#{issue.title.name} ##{issue.number} has no pages yet" %></li>
+            <li><%= "#{issue.title.name} ##{issue.number}" %></li>
           <% else %>
             <%= link_to (image_tag("#{issue.pages.first.image.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
             <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
