@@ -10,29 +10,35 @@
   <div class='col-sm-12'>
     <ul class="list-unstyled">
       <% @issues.each do |issue| %>
-        <div class="col-sm-3">
-          <%= link_to (image_tag("#{issue.pages.first.image.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
-          <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
-          <li class="subtext">submitted by <%= link_to issue.user.username, user_path(issue.user) %></li>
+        <% if issue.pages.count == 0 %>
+          <div class="col-sm-3">
+            <%= "#{issue.title.name} ##{issue.number} has no pages yet" %>
+          </div>
+        <% else %>
+          <div class="col-sm-3">
+            <%= link_to (image_tag("#{issue.pages.first.image.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
+            <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
+            <li class="subtext">submitted by <%= link_to issue.user.username, user_path(issue.user) %></li>
 
-          <% if issue.approved == 0 %>
-            <%= link_to issue_path(issue, :kind => "approve"), :class => "btn btn-xs btn-default", :method => :patch do %>
-              <i class="glyphicon glyphicon-thumbs-up"></i>
+            <% if issue.approved == 0 %>
+              <%= link_to issue_path(issue, :kind => "approve"), :class => "btn btn-xs btn-default", :method => :patch do %>
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+              <% end %>
+            <% else %>
+              <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-default", :method => :patch do %>
+                <i class="glyphicon glyphicon-thumbs-down"></i>
+              <% end %>
             <% end %>
-          <% else %>
-            <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-default", :method => :patch do %>
-              <i class="glyphicon glyphicon-thumbs-down"></i>
+
+            <%= link_to new_issue_page_path(issue), :class => "btn btn-xs btn-success" do %>
+              <i class="glyphicon glyphicon-plus"></i>
             <% end %>
-          <% end %>
 
-          <%= link_to new_issue_page_path(issue), :class => "btn btn-xs btn-success" do %>
-            <i class="glyphicon glyphicon-plus"></i>
-          <% end %>
-
-          <%= link_to issue_path(issue), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
-            <i class="glyphicon glyphicon-trash"></i>
-          <% end %>
-        </div>
+            <%= link_to issue_path(issue), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
+              <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </ul>
   </div>
