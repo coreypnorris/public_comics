@@ -12,7 +12,7 @@
       <% @issues.each do |issue| %>
         <div class="col-sm-3">
           <% if issue.pages.count == 0 %>
-            <%= image_tag("/assets/missing.png", :class => "img-thumbnail", :id => "thumbnail") %>
+            <%= image_tag("/assets/no_pages.png", :class => "img-thumbnail", :id => "thumbnail") %>
             <li><%= "#{issue.title.name} ##{issue.number} has no pages yet" %></li>
           <% else %>
             <%= link_to (image_tag("#{issue.pages.first.image.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
