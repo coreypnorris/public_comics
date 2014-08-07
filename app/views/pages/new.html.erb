@@ -7,33 +7,7 @@
 
 <div class="row">
   <div class="col-md-3">
-    <%= form_for([@issue, @page], :multipart => true) do |f| %>
-
-    <div class="form-group">
-      <%= f.label :image, "Image" %><br>
-      <div class="input-group">
-        <span class="input-group-btn">
-          <span class="btn btn-default btn-file">
-            Browse Files <%= f.file_field :image %>
-          </span>
-        </span>
-        <input type="text" class="form-control" readonly>
-      </div>
-    </div>
-
-    <br>
-
-    <div class="form-group">
-      <%= f.label :number, "Page Number" %><br>
-      <%= f.text_field :number %>
-    </div>
-
-    <br>
-
-    <div class="form-group">
-      <%= f.button "Add Page", class: "btn btn-default", id: "submit-issue", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
-    </div>
-    <% end %>
+    <%= render "form" %>
   </div>
 </div>
 

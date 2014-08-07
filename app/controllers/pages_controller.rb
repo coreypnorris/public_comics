@@ -12,11 +12,14 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new(page_params)
     @issue = Issue.find(params[:issue_id])
-    @issue.pages << @page
+    if params[:images]
+      params[:images].each { |image|
+        @issue.pages.create(image: image, number: (@issue.pages.count + 1))
+      }
+    end
     if @issue.save
-      flash[:notice] = "Page #{@page.number} has been added to #{@issue.title.name} ##{@issue.number}."
+      flash[:notice] = "Your pages were added to #{@issue.title.name} ##{@issue.number}."
       redirect_to new_issue_page_path(@issue)
     else
       flash[:alert] = "Something went wrong. Please try to save your page again."
