@@ -14,8 +14,8 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     @issue = Issue.find(params[:issue_id])
+    @issue.pages << @page
     if @issue.save
-      @issue.pages << @page
       flash[:notice] = "Page #{@page.number} has been added to #{@issue.title.name} ##{@issue.number}."
       redirect_to new_issue_page_path(@issue)
     else
