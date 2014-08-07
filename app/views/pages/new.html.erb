@@ -3,7 +3,7 @@
     <h2><%= @issue.title.name %> #<%= @issue.number %></h2>
     <p class="subtext">submitted by <%= link_to @issue.user.username, user_path(@issue.user) %></p>
     <% if @issue.approved == 0 %>
-      <p>This issue has not yet been approved.</p>
+      <p class="subtext">This issue has not yet been approved.</p>
     <% elsif @issue.approved == 1 %>
       <p class="subtext">This issue has been approved and can be seen publicly <%= link_to "here", issue_page_path(@issue, @issue.pages.first) %></p>
     <% end %>
