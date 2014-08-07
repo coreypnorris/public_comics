@@ -18,20 +18,29 @@
             <%= link_to (image_tag("#{issue.pages.first.image.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
             <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
           <% end %>
+
           <li class="subtext">submitted by <%= link_to issue.user.username, user_path(issue.user) %></li>
 
-          <% if issue.approved == 0 %>
-            <%= link_to issue_path(issue, :kind => "approve"), :class => "btn btn-xs btn-default", :method => :patch do %>
-              <i class="glyphicon glyphicon-thumbs-up"></i>
-            <% end %>
-          <% else %>
-            <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-default", :method => :patch do %>
-              <i class="glyphicon glyphicon-thumbs-down"></i>
-            <% end %>
-          <% end %>
+          <% if current_user.try(:admin?) %>
+            <% if issue.approved == 0 %>
+              <i class="subtext">unapproved</i><br>
 
-          <%= link_to new_issue_page_path(issue), :class => "btn btn-xs btn-success" do %>
-            <i class="glyphicon glyphicon-plus"></i>
+            <% else %>
+              <i class="subtext">approved</i><br>
+
+            <% end %>
+
+            <%= link_to issue_path(issue, :kind => "approve"), :class => "btn btn-xs btn-success", :method => :patch do %>
+              <i class="glyphicon glyphicon-ok"></i>
+            <% end %>
+
+            <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-warning", :method => :patch do %>
+              <i class="glyphicon glyphicon-remove"></i>
+            <% end %>
+
+            <%= link_to new_issue_page_path(issue), :class => "btn btn-xs btn-info" do %>
+              <i class="glyphicon glyphicon-plus"></i>
+            <% end %>
           <% end %>
 
           <%= link_to issue_path(issue), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
