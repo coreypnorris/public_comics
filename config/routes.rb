@@ -16,8 +16,13 @@ PublicComics::Application.routes.draw do
   end
 
   resources :pages
+
   resources :genres, only: [:index, :show]
+
   resources :users, :path => 'profiles', only: [:show, :update]
+  resources :users, :path => '', only: [:show] do
+    resources :issues
+  end
 
   root to: "welcome#index"
 
