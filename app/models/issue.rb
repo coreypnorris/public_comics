@@ -5,8 +5,8 @@ class Issue < ActiveRecord::Base
   validates :title_id, :presence => true
   validates :approved, :presence => true
 
-  has_many :pages
-  has_many :comments, :as => :commentable
+  has_many :pages, dependent: :destroy
+  has_many :comments, :as => :commentable, dependent: :destroy
   belongs_to :title
   belongs_to :user
 
