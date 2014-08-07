@@ -1,9 +1,19 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-12">
     <h2>New Issue</h2>
+    <p class="subtext">Each page will be numbered in the order they're uploaded in so you can save yourself some time if they're already in the proper order.</p>
+    <p class="subtext">Also, be aware that it can take a few minutes if you're uploading many images at once.</p>
     <br>
 
-    <%= form_for(@issue, :multipart => true) do |f| %>
+    <%= form_for @issue, :html => { :multipart => true } do |f| %>
+
+      <div class="form-group">
+        <%= f.label :pages %>
+        <%= file_field_tag "images[]", type: :file, multiple: true %>
+      </div>
+
+      <br>
+
       <div class="form-group">
         <%= label_tag :title, "Title" %><br>
         <%= text_field_tag :title_name, params[:title], data: { autocomplete_source: titles_path } %>

@@ -22,6 +22,11 @@ class IssuesController < ApplicationController
     @genre.titles << @title
     @title.issues << @issue
     current_user.issues << @issue
+    if params[:images]
+      params[:images].each { |image|
+        @issue.pages.create(image: image, number: (@issue.pages.count + 1))
+      }
+    end
     if @issue.save
       flash[:notice] = "Your issue has been submitted."
       redirect_to new_issue_page_path(@issue)
