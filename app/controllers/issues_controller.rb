@@ -4,10 +4,12 @@ class IssuesController < ApplicationController
   require 'will_paginate/array'
 
   def index
-    unless current_user.try(:admin?)
-      redirect_to root_url
+    @user = User.find_by_username(params[:user_id])
+    if @user.admin == 1
+      @issues = Issue.all.sort_by { |issue| issue.created_at }
+    else
+      @issues = @user.issues.all.sort_by { |issue| issue.created_at }
     end
-    @issues = Issue.all.sort_by { |issue| issue.created_at }
     @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
   end
 

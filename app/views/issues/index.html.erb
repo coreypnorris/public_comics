@@ -1,5 +1,7 @@
 <div class="text-center">
-  <h3>Manage Issues</h3>
+  <% if @issues.count == 0 %>
+    <h4>You havent uploaded any issues yet.</h4>
+  <% end %>
 </div>
 
 <div class='row text-center' id="paginate-one">
