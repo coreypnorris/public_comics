@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
-  validates :number, :presence => true
+  validates_presence_of :number
+  validates_uniqueness_of :number, :scope => :issue_id
 
   belongs_to :issue
 
