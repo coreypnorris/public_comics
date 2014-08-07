@@ -1,19 +1,27 @@
 <div class="row">
-  <div class="col-md-6">
-    <h2>New page for <%= @issue.title.name %> #<%= @issue.number %></h2>
-    <br>
+  <div class="col-md-12">
+    <h2><%= @issue.title.name %> #<%= @issue.number %></h2>
+    <p class="subtext">submitted by <%= link_to @issue.user.username, user_path(@issue.user) %></p>
+    <% if @issue.approved == 0 %>
+      <p>This issue has not yet been approved.</p>
+    <% elsif @issue.approved == 1 %>
+      <p class="subtext">This issue has been approved and can be seen publicly <%= link_to "here", issue_page_path(@issue, @issue.pages.first) %></p>
+    <% end %>
   </div>
 </div>
 
+<br>
+
 <div class="row">
   <div class="col-md-3">
+    <h4>Add pages</h4><br>
     <%= render "form" %>
   </div>
 </div>
 
 <hr>
 
-<h2>Current pages</h2><br>
+<h4>Current pages</h4><br>
 
 <div class='row text-center'>
   <div class='col-sm-12'>
