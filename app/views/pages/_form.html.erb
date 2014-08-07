@@ -1,0 +1,20 @@
+<%= form_for([@issue, @page], :html => { :multipart => true }) do |f| %>
+
+<div class="form-group">
+  <%= f.label :pages, "Images" %><br>
+  <div class="input-group">
+    <span class="input-group-btn">
+      <span class="btn btn-default btn-file">
+        Browse Files <%= file_field_tag "images[]", type: :file, multiple: true %>
+      </span>
+    </span>
+    <input type="text" class="form-control" readonly>
+  </div>
+</div>
+
+<br>
+
+<div class="form-group">
+  <%= f.button "Add Pages", class: "btn btn-default", id: "submit-issue", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
+</div>
+<% end %>
