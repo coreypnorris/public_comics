@@ -46,7 +46,7 @@ feature "Using navbar links when signed in" do
   before { create_and_sign_in_user }
 
   scenario "User can access profile page", :retry => 3 do
-    click_link "Signed in as #{@user.username}"
+    click_link "Your Profile"
     page.should have_content "#{@user.username}"
   end
 end
