@@ -31,7 +31,7 @@ class IssuesController < ApplicationController
     end
     if @issue.save
       flash[:notice] = "Your issue has been submitted."
-      redirect_to new_issue_page_path(@issue)
+      redirect_to user_issues_path(current_user)
     else
       flash[:alert] = "Something went wrong. Please try to save your issue again."
       redirect_to :back
