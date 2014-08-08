@@ -1,0 +1,40 @@
+<%= form_for @issue, :html => { :multipart => true } do |f| %>
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <span class="btn btn-default btn-file">
+          Browse Files <%= file_field_tag "images[]", type: :file, multiple: true %>
+        </span>
+      </span>
+      <input type="text" class="form-control" readonly>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= label_tag :title, "Title" %><br>
+    <%= text_field_tag :title_name, params[:title], data: { autocomplete_source: titles_path } %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :number, "Issue Number" %><br>
+    <%= f.text_field :number %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= label_tag :genre, "Genre" %><br>
+    <%= text_field_tag :title_genre_name, params[:genre], data: { autocomplete_source: genres_path } %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.button "Submit Issue", class: "btn btn-sm btn-default", id: "submit-issue", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
+  </div>
+<% end %>
