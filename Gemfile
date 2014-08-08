@@ -22,6 +22,7 @@ gem 'aws-sdk'
 gem 'font-awesome-sass'
 gem "jquery-ui-rails"
 gem 'jquery-turbolinks'
+gem 'redcarpet'
 
 group :development do
   gem 'better_errors'
