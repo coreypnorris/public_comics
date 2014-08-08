@@ -1,6 +1,8 @@
 <div class="text-center">
   <% if @issues.count == 0 %>
-    <h4>You havent uploaded any issues yet.</h4>
+    <h3>You havent uploaded any issues yet.</h3>
+  <% else %>
+    <h3><%= current_user.username %>'s issues</h3>
   <% end %>
 </div>
 
