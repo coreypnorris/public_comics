@@ -1,8 +1,6 @@
 class IssuesController < ApplicationController
   before_filter :authenticate_user!
 
-  require 'will_paginate/array'
-
   def index
     @user = User.find_by_username(params[:user_id])
     if @user.admin == 1
