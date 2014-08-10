@@ -20,7 +20,29 @@
 <div class="row">
   <div class="col-md-12">
     <hr>
-    <h3>Issues</h3>
+    <h3>Comments</h3>
+    <p class="subtext">
+      <%= @user.comments.size  %> total comments
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <br>
+  <% @user.comments.each do |comment| %>
+    <% if comment.parent_id == nil %>
+      <%= render comment %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+    <h3>Comics</h3>
+    <% if @user.issues.count == 0 %>
+      <p class="subtext">You havent uploaded any comics yet</p>
+    <% end %>
   </div>
 </div>
 
@@ -49,29 +71,3 @@
 <div class='row text-center' id="paginate-two">
   <%= will_paginate @paginated_issues %>
 </div>
-
-<div class="row">
-  <div class="col-md-12">
-    <hr>
-    <h3>Comments</h3>
-  </div>
-</div>
-
-<div class="row">
-  <div id="comments-div" class="">
-    <%= pluralize(@user.comments.size, 'Comment', 'Comments') %>
-  </div>
-
-  <br>
-
-  <% @user.comments.each do |comment| %>
-    <% if comment.parent_id == nil %>
-      <%= render comment %>
-    <% end %>
-  <% end %>
-
-</div>
-
-
-
-
