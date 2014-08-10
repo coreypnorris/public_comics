@@ -1,20 +1,20 @@
 <% if current_user.nil? %>
 
-  <%= link_to new_comment_vote_path(comment, :kind => "upvote", :page_id => page.id), :class => "btn btn-xs btn-default", :id => "comment-" + comment.id.to_s + "-upvote" do %>
+  <%= link_to new_comment_vote_path(comment, :kind => "upvote"), :class => "btn btn-xs btn-default", :id => "comment-" + comment.id.to_s + "-upvote" do %>
     <i class="glyphicon glyphicon-thumbs-up"></i>
   <% end %>
 
-  <%= link_to new_comment_vote_path(comment, :kind => "downvote", :page_id => page.id), :class => "btn btn-xs btn-default", :id => "comment-" + comment.id.to_s + "-downvote" do %>
+  <%= link_to new_comment_vote_path(comment, :kind => "downvote"), :class => "btn btn-xs btn-default", :id => "comment-" + comment.id.to_s + "-downvote" do %>
     <i class="glyphicon glyphicon-thumbs-down"></i>
   <% end %>
 
 <% else %>
 
-  <%= link_to new_comment_vote_path(comment, :kind => "upvote", :page_id => page.id), :class => "btn btn-xs " + current_user.up_vote_class(comment), :id => "comment-" + comment.id.to_s + "-upvote", :remote => true do %>
+  <%= link_to new_comment_vote_path(comment, :kind => "upvote"), :class => "btn btn-xs " + current_user.up_vote_class(comment), :id => "comment-" + comment.id.to_s + "-upvote", :remote => true do %>
     <i class="glyphicon glyphicon-thumbs-up"></i>
   <% end %>
 
-  <%= link_to new_comment_vote_path(comment, :kind => "downvote", :page_id => page.id), :class => "btn btn-xs " + current_user.down_vote_class(comment), :id => "comment-" + comment.id.to_s + "-downvote", :remote => true do %>
+  <%= link_to new_comment_vote_path(comment, :kind => "downvote"), :class => "btn btn-xs " + current_user.down_vote_class(comment), :id => "comment-" + comment.id.to_s + "-downvote", :remote => true do %>
     <i class="glyphicon glyphicon-thumbs-down"></i>
   <% end %>
 

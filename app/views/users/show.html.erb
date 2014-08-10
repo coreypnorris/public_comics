@@ -1,38 +1,37 @@
 <div class="row">
   <div class="col-md-12">
-    <%= render @user %>
+    <%= image_tag @user.avatar.url(:profile), :class => "thumbnail" %>
+    <h3><%= @user.username %></h3>
+    <h6>Joined: <%= time_ago_in_words(@user.created_at) %> ago</h6>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-3">
-
     <% if @user == current_user %>
       <p><%= link_to "Customize or cancel your account", edit_user_registration_path %></p>
       <hr>
       <%= render "/users/avatar_form" %>
       <br>
     <% end %>
-
   </div>
 </div>
-
 
 <div class="row">
   <div class="col-md-12">
     <hr>
-    <h4><%= @issues.count == 0 ? "No issues have been uploaded by #{@user.username} yet" : "#{@user.username}'s issues" %></h4>
+    <h3>Issues</h3>
   </div>
 </div>
 
 <div class='row text-center' id="paginate-one">
-  <%= will_paginate @issues %>
+  <%= will_paginate @paginated_issues %>
 </div>
 
 <div class='row text-center'>
   <div class='col-sm-12'>
     <ul class="list-unstyled">
-      <% @issues.each do |issue| %>
+      <% @paginated_issues.each do |issue| %>
         <div class="col-sm-3">
           <% if issue.pages.count == 0 %>
             <%= image_tag("/assets/no_pages.png", :class => "img-thumbnail", :id => "thumbnail") %>
@@ -48,5 +47,31 @@
 </div>
 
 <div class='row text-center' id="paginate-two">
-  <%= will_paginate @issues %>
+  <%= will_paginate @paginated_issues %>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+    <h3>Comments</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div id="comments-div" class="">
+    <%= pluralize(@user.comments.size, 'Comment', 'Comments') %>
+  </div>
+
+  <br>
+
+  <% @user.comments.each do |comment| %>
+    <% if comment.parent_id == nil %>
+      <%= render comment %>
+    <% end %>
+  <% end %>
+
+</div>
+
+
+
+

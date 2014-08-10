@@ -3,7 +3,6 @@ class VotesController < ApplicationController
 
   def new
     @comment = Comment.find(params[:comment_id])
-    @page = Page.find(params[:page_id])
 
     if @comment.user == current_user
       redirect_to :back
@@ -19,7 +18,7 @@ class VotesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to issue_page_path(@page.issue, @page) }
+      format.html
       format.js
     end
   end

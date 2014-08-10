@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
 
+  require 'will_paginate/array'
+
   def show
     @user = User.find_by_username(params[:id].downcase)
-    @issues = @user.issues.approved.sort_by { |issue| issue.created_at }
-    @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
+    @sorted_issues = @user.issues.approved.sort_by { |issue| issue.created_at }
+    @paginated_issues = @sorted_issues.reverse.paginate(:per_page => 12, :page => params[:page])
   end
 
   def update
