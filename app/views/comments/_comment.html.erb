@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4">
     <p><%= image_tag comment.user.avatar.url(:comment), :class => "thumbnail", :id => "comment-avatar" %></p>
-    <p class="subtext">
+    <p class="subtext" id ="comment-<%= comment.id %>-controls">
       By <%= link_to comment.user.username, user_path(comment.user) %>
       <span id="comment-<%= comment.id %>-votes-num">
         <%= pluralize((comment.cached_weighted_score), 'point', 'points') %>
@@ -24,19 +24,9 @@
       <%= markdown comment.body %>
     </div>
 
-
     <%= link_to "Reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :class => "btn btn-sm btn-default", :remote => true %>
 
   </div>
 </div>
 
 <br>
-
-<% comment.sorted_children.each do |child| %>
-  <% if child.has_children? == false %>
-    <div class="nested_comments"> <%= render child %></div>
-  <% end %>
-  <% if child.has_children? == true %>
-    <div class="nested_comments"> <%= render child %></div>
-  <% end %>
-<% end %>

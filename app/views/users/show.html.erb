@@ -30,10 +30,14 @@
 <div class="row">
   <br>
   <% @user.comments.each do |comment| %>
-    <% if comment.parent_id == nil %>
-      <%= render comment %>
-    <% end %>
+    <%= render comment %>
+    <script type="text/javascript">
+      $('#comment-<%= comment.id %>-controls').append('(<%= link_to "full comments", issue_page_path(comment.commentable, comment.commentable.pages.first) %>)')
+    </script>
+    <br>
   <% end %>
+
+
 </div>
 
 <div class="row">

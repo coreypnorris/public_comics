@@ -28,5 +28,16 @@
 
   <br>
 
-  <%= render @page.issue.root_comments.order(:cached_weighted_score => :desc) %>
+  <% @page.issue.root_comments.order(:cached_weighted_score => :desc).each do |root_comment| %>
+    <%= render root_comment %>
+
+    <% root_comment.sorted_children.each do |child| %>
+      <% if child.has_children? == false %>
+        <div class="nested_comments"> <%= render child %></div>
+      <% end %>
+      <% if child.has_children? == true %>
+        <div class="nested_comments"> <%= render child %></div>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
