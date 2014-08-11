@@ -38,6 +38,12 @@ body {
   text-decoration: underline;
 }
 
+.navbar-non-link-li {
+  font-size:93%;
+  margin-top:15px;
+  text-decoration:none;
+}
+
 #page-title {
   margin-bottom: 0px;
 }
