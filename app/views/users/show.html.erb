@@ -2,7 +2,10 @@
   <div class="col-md-12">
     <%= image_tag @user.avatar.url(:profile), :class => "thumbnail" %>
     <h3><%= @user.username %></h3>
-    <h6>Joined: <%= time_ago_in_words(@user.created_at) %> ago</h6>
+    <h5>Joined: <%= time_ago_in_words(@user.created_at) %> ago</h5>
+    <h5>Comics uploaded: <%= @user.issues.size %></h5>
+    <h5>Comment score: <%= @user.score %></h5>
+    <h5>Comments posted: <%= @user.comments.size %></h5>
   </div>
 </div>
 
@@ -21,9 +24,9 @@
   <div class="col-md-12">
     <hr>
     <h3>Comments</h3>
-    <p class="subtext">
-      <%= pluralize(@user.comments.size, 'total comment', 'total comments') %>
-    </p>
+    <% if @user.comments.count == 0 %>
+      <p class="subtext"><%= @user.username %> hasn't posted any comments yet.</p>
+    <% end %>
   </div>
 </div>
 
@@ -45,11 +48,7 @@
     <hr>
     <h3>Comics</h3>
     <% if @user.issues.count == 0 %>
-      <p class="subtext">You havent uploaded any comics yet</p>
-    <% else %>
-      <p class="subtext">
-        <%= pluralize(@user.issues.size, 'total comics', 'total comics') %>
-      </p>
+      <p class="subtext"><%= @user.username %> hasn't uploaded any comics yet.</p>
     <% end %>
   </div>
 </div>
