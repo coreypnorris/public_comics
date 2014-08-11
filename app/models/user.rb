@@ -37,4 +37,20 @@ class User < ActiveRecord::Base
       return 'btn-default'
     end
   end
+
+  def score
+    points = 0
+    comments.each do |comment|
+      points += comment.get_upvotes.size
+    end
+    return points
+  end
 end
+
+
+
+
+
+
+
+
