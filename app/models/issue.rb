@@ -1,4 +1,6 @@
 class Issue < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
   acts_as_commentable
 
   validates :number, :presence => true
@@ -35,5 +37,11 @@ class Issue < ActiveRecord::Base
 
   def title_genre_name=(name)
     self.title.genre = Genre.find_or_create_by_name(name) if name.present?
+  end
+
+  def sliced_time
+    time_ago = time_ago_in_words(self.created_at)
+    time_ago.slice!("about ")
+    time_ago
   end
 end

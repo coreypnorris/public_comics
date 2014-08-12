@@ -13,7 +13,7 @@
         <div class="col-sm-3">
           <%= link_to (image_tag("#{issue.pages.first.image.url}", :class => "img-thumbnail", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
           <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
-          <li class="subtext">posted by <%= link_to issue.user.username, user_path(issue.user) %></li>
+          <li class="subtext">posted by <%= link_to issue.user.username, user_path(issue.user) %> about <%= issue.sliced_time %> ago</li>
           <i class="subtext">
             (<%= issue.comments.count %> comments)
           </i>
