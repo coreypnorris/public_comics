@@ -72,7 +72,7 @@ feature 'Signing in' do
 
   scenario "navbar should have link to profile page" do
     visit root_path
-    page.should have_content "Your Profile"
+    page.should have_content "#{@user.username}"
   end
 
   scenario "navbar should not have a 'sign up' link" do
@@ -96,7 +96,7 @@ feature "Editing account" do
   before { visit edit_user_registration_path }
 
   scenario "logged in user is able to access edit account form", :retry => 5 do
-    click_on "Your Profile"
+    click_on "#{@user.username}"
     click_link "Customize or cancel your account"
     page.should have_content "Edit Account"
   end

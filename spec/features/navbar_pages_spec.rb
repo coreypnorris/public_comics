@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 feature "Using universal navbar links" do
-  before { visit new_user_registration_path }
 
   scenario "can use homepage link to go to the homepage" do
+    visit new_user_registration_path
     click_link "homepage-link"
     page.should have_content "Read comics from the public domain."
   end
@@ -46,7 +46,7 @@ feature "Using navbar links when signed in" do
   before { create_and_sign_in_user }
 
   scenario "User can access profile page", :retry => 3 do
-    click_link "Your Profile"
+    click_link "#{@user.username}"
     page.should have_content "#{@user.username}"
   end
 end
