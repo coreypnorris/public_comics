@@ -8,7 +8,7 @@ class IssuesController < ApplicationController
     if @user.admin == 1
       @issues = Issue.all.sort_by { |issue| issue.created_at }
     else
-      @issues = @user.issues.all.sort_by { |issue| issue.created_at }
+      @issues = @user.issues.sort_by { |issue| issue.created_at }
     end
     @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
   end
