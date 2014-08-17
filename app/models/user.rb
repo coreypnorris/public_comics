@@ -46,11 +46,3 @@ class User < ActiveRecord::Base
     return points
   end
 end
-
-
-
-
-
-
-
-
