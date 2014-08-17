@@ -47,7 +47,7 @@
             <% end %>
           <% end %>
 
-          <%= link_to issue_path(issue), :class => "btn btn-xs btn-danger", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
+          <%= link_to issue_path(issue), :class => "btn btn-xs btn-danger", :id => "issue-#{issue.id}-delete-btn", data: { :confirm => 'Are you sure?' }, :method => :delete do %>
             <i class="glyphicon glyphicon-trash"></i>
           <% end %>
         </div>
