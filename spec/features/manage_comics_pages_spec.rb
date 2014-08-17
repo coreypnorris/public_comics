@@ -8,7 +8,7 @@ feature 'A user managing his/her uploaded comics' do
     page.should have_content("You havent uploaded any comics yet.")
   end
 
-  scenario "a user can see the comics they've uploaded" do
+  scenario "a user can see the comics they've uploaded", :retry => 5 do
     @issue = FactoryGirl.create(:issue, :user_id => @user.id)
     visit user_issues_path(@user.username)
     page.should have_content @issue.title.name
@@ -19,5 +19,6 @@ feature 'A user managing his/her uploaded comics' do
     FactoryGirl.create(:page, :issue_id => @issue.id)
     visit user_issues_path(@user.username)
     click_link "issue-#{@issue.id}-delete-btn"
+    page.should_not have_content @issue.title.name
   end
 end
