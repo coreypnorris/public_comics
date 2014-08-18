@@ -4,6 +4,10 @@ def create_user
   @user = FactoryGirl.create(:user)
 end
 
+def create_admin
+  @admin = FactoryGirl.create(:user, :admin => true)
+end
+
 def sign_in(user)
   visit new_user_session_path
   fill_in "Username", :with => user.username
@@ -14,6 +18,11 @@ end
 def create_and_sign_in_user
   create_user
   sign_in(@user)
+end
+
+def create_and_sign_in_admin
+  create_admin
+  sign_in(@admin)
 end
 
 def create_and_sign_in_user_for_poltergeist
