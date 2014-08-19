@@ -31,6 +31,16 @@ feature 'A user managing his/her uploaded comics' do
     page.should have_content "approved"
   end
 
+  scenario "as an admin I can approve a comic another user has uploaded", :retry => 5 do
+    @issue = FactoryGirl.create(:issue, :user_id => @user.id)
+    FactoryGirl.create(:page, :issue_id => @issue.id)
+    click_link "Sign Out"
+    create_and_sign_in_admin
+    click_link "Manage Comics"
+    click_link "issue-#{@issue.id}-unapprove-btn"
+    page.should have_content "unapproved"
+  end
+
   scenario "as an admin I can delete a comic another user has uploaded" do
     @issue = FactoryGirl.create(:issue, :user_id => @user.id)
     FactoryGirl.create(:page, :issue_id => @issue.id)
