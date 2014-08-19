@@ -36,7 +36,7 @@
               <i class="glyphicon glyphicon-ok"></i>
             <% end %>
 
-            <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-warning", :method => :patch do %>
+            <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-warning", :id => "issue-#{issue.id}-unapprove-btn", :method => :patch do %>
               <i class="glyphicon glyphicon-remove"></i>
             <% end %>
 
