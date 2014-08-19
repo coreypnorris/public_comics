@@ -20,34 +20,27 @@ feature 'A user managing his/her uploaded comics' do
     click_link "issue-#{@issue.id}-delete-btn"
     page.should_not have_content @issue.title.name
   end
+end
+
+feature 'An admin managing other users comics' do
+  let!(:test_user) { FactoryGirl.create(:user) }
+  let!(:test_issue) { FactoryGirl.create(:issue, :user_id => test_user.id) }
+  let!(:test_page) { FactoryGirl.create(:page, :issue_id => test_issue.id) }
+  before { create_and_sign_in_admin }
+  before { visit user_issues_path(@admin) }
 
   scenario "as an admin I can approve a comic another user has uploaded", :retry => 5 do
-    @issue = FactoryGirl.create(:issue, :user_id => @user.id)
-    FactoryGirl.create(:page, :issue_id => @issue.id)
-    click_link "Sign Out"
-    create_and_sign_in_admin
-    click_link "Manage Comics"
-    click_link "issue-#{@issue.id}-approve-btn"
+    click_link "issue-#{test_issue.id}-approve-btn"
     page.should have_content "approved"
   end
 
   scenario "as an admin I can approve a comic another user has uploaded", :retry => 5 do
-    @issue = FactoryGirl.create(:issue, :user_id => @user.id)
-    FactoryGirl.create(:page, :issue_id => @issue.id)
-    click_link "Sign Out"
-    create_and_sign_in_admin
-    click_link "Manage Comics"
-    click_link "issue-#{@issue.id}-unapprove-btn"
+    click_link "issue-#{test_issue.id}-unapprove-btn"
     page.should have_content "unapproved"
   end
 
   scenario "as an admin I can delete a comic another user has uploaded", :retry => 5 do
-    @issue = FactoryGirl.create(:issue, :user_id => @user.id)
-    FactoryGirl.create(:page, :issue_id => @issue.id)
-    click_link "Sign Out"
-    create_and_sign_in_admin
-    click_link "Manage Comics"
-    click_link "issue-#{@issue.id}-delete-btn"
-    page.should_not have_content @issue.title.name
+    click_link "issue-#{test_issue.id}-delete-btn"
+    page.should_not have_content test_issue.title.name
   end
 end
