@@ -28,13 +28,11 @@
           <% if current_user.try(:admin?) %>
             <% if issue.approved == 0 %>
               <i class="subtext">unapproved</i><br>
-
             <% else %>
               <i class="subtext">approved</i><br>
-
             <% end %>
 
-            <%= link_to issue_path(issue, :kind => "approve"), :class => "btn btn-xs btn-success", :method => :patch do %>
+            <%= link_to issue_path(issue, :kind => "approve"), :class => "btn btn-xs btn-success", :id => "issue-#{issue.id}-approve-btn", :method => :patch do %>
               <i class="glyphicon glyphicon-ok"></i>
             <% end %>
 
