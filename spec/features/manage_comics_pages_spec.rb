@@ -27,7 +27,7 @@ feature 'An admin managing other users comics' do
   let!(:test_issue) { FactoryGirl.create(:issue, :user_id => test_user.id) }
   let!(:test_page) { FactoryGirl.create(:page, :issue_id => test_issue.id) }
   before { create_and_sign_in_admin }
-  before { visit user_issues_path(@admin) }
+  before { click_link "Manage Comics" }
 
   scenario "as an admin I can approve a comic another user has uploaded", :retry => 5 do
     click_link "issue-#{test_issue.id}-approve-btn"
@@ -42,5 +42,12 @@ feature 'An admin managing other users comics' do
   scenario "as an admin I can delete a comic another user has uploaded", :retry => 5 do
     click_link "issue-#{test_issue.id}-delete-btn"
     page.should_not have_content test_issue.title.name
+  end
+
+  scenario "as an admin I can add a page to a comic another user has uploaded", :retry => 5 do
+    click_link "issue-#{test_issue.id}-add-pages-btn"
+    page.attach_file('new-page', File.join(Rails.root, '/spec/support/test_image.png'))
+    click_button 'Add Pages'
+    page.should have_content "Your pages were added"
   end
 end

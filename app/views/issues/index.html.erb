@@ -42,7 +42,7 @@
               <i class="glyphicon glyphicon-remove"></i>
             <% end %>
 
-            <%= link_to new_issue_page_path(issue), :class => "btn btn-xs btn-info" do %>
+            <%= link_to new_issue_page_path(issue), :class => "btn btn-xs btn-info", :id => "issue-#{issue.id}-add-pages-btn" do %>
               <i class="glyphicon glyphicon-plus"></i>
             <% end %>
           <% end %>
