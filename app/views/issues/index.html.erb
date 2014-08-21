@@ -1,8 +1,10 @@
 <div class="text-center">
   <% if @issues.count == 0 %>
     <h3>You havent uploaded any comics yet.</h3>
+  <% elsif current_user.try(:admin?) %>
+    <h3>All Comics</h3>
   <% else %>
-    <h3><%= current_user.username %>'s issues</h3>
+    <h3>Your Comics</h3>
   <% end %>
 </div>
 
