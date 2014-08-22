@@ -18,8 +18,8 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @title = Title.find_or_create_by_name(name: params[:title_name].titleize)
-    @genre = Genre.find_or_create_by_name(name: params[:title_genre_name].titleize)
+    @title = Title.find_or_create_by(name: params[:title_name].titleize)
+    @genre = Genre.find_or_create_by(name: params[:title_genre_name].titleize)
     @issue = Issue.new(issue_params)
     @genre.titles << @title
     @title.issues << @issue
