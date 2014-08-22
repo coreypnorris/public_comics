@@ -46,7 +46,7 @@ feature 'An admin managing other users comics' do
 
   scenario "as an admin I can add a page to a comic another user has uploaded", :retry => 5 do
     click_link "issue-#{test_issue.id}-add-pages-btn"
-    page.attach_file('new-page', File.join(Rails.root, '/spec/support/test_image.png'))
+    page.attach_file('new-pages', File.join(Rails.root, '/spec/support/test_image.png'))
     click_button 'Add Pages'
     page.should have_content "Your pages were added"
   end
