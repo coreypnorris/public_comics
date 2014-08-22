@@ -5,7 +5,7 @@ class IssuesController < ApplicationController
 
   def index
     @user = User.find_by_username(params[:user_id])
-    if @user.admin == true
+    if @user.try(:admin?)
       @issues = Issue.all.sort_by { |issue| issue.created_at }
     else
       @issues = @user.issues.sort_by { |issue| issue.created_at }
