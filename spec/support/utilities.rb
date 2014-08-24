@@ -37,6 +37,7 @@ end
 
 def sign_out
   visit root_path
+  click_link "dropdown-toggle"
   click_on "Sign Out"
 end
 
