@@ -24,7 +24,7 @@ class TitlesController < ApplicationController
 
   def show
     @title = Title.find(params[:title][:id])
-    @issues = @title.issues
+    @issues = @title.issues.where(:approved => 1)
     @issues = @issues.sort_by { |issue| issue.created_at }
     @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
   end
