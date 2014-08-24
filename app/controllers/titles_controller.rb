@@ -3,7 +3,6 @@ class TitlesController < ApplicationController
   require 'will_paginate/array'
 
   def index
-
     if params[:term]
       @titles = Title.order(:name).where("name like ?", "%#{params[:term].titleize}%")
       render json: @titles.map(&:name)
@@ -21,6 +20,13 @@ class TitlesController < ApplicationController
       @issues = @issues.sort_by { |issue| issue.created_at }
       @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
     end
+  end
+
+  def show
+    @title = Title.find(params[:title][:id])
+    @issues = @title.issues
+    @issues = @issues.sort_by { |issue| issue.created_at }
+    @issues = @issues.reverse.paginate(:per_page => 12, :page => params[:page])
   end
 
 private

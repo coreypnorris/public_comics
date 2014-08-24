@@ -22,7 +22,7 @@
 
   <div class="form-group">
     <%= f.label :number, "Issue Number" %><br>
-    <%= f.text_field :number %>
+    <%= f.select :number, (0..1000) %>
   </div>
 
   <br>
