@@ -9,7 +9,7 @@
 <div class='row text-center'>
   <div class='col-sm-12'>
     <ul class="list-unstyled">
-      <% @title.issues.each do |issue| %>
+      <% @issues.each do |issue| %>
         <div class="col-sm-3">
           <%= link_to (image_tag("#{issue.pages.first.image.url}", :class => "img-thumbnail #{issue.title.name.delete(" ")}-#{issue.number}", :id => "thumbnail")), issue_page_path(issue, issue.pages.first) %>
           <li><%= link_to "#{issue.title.name} ##{issue.number}", issue_page_path(issue, issue.pages.first), :class => "text-center" %></li>
