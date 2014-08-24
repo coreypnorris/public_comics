@@ -14,9 +14,10 @@ feature "Using universal navbar links" do
     visit root_path
     fill_in 'search', with: issue_2.title.name
     click_button 'Search'
-
-    page.should_not have_content issue_1.title.name
-    page.should have_content issue_2.title.name
+    within("#main") do
+      page.should have_content issue_2.title.name
+      page.should_not have_content issue_1.title.name
+    end
   end
 
   scenario "User can filter issues by genre with genre selector" do

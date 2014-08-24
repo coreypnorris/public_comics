@@ -12,7 +12,7 @@ feature 'A user uploading comics' do
     page.attach_file('new-issue-pages', File.join(Rails.root, '/spec/support/test_image_2.jpg'))
     page.attach_file('new-issue-pages', File.join(Rails.root, '/spec/support/test_image_3.jpg'))
     fill_in 'title_name', :with => test_issue.title.name
-    fill_in 'Issue Number', :with => test_issue.number
+    select("1", :from => "issue_number")
     fill_in 'title_genre_name', :with => test_issue.title.genre
     click_button 'Submit Issue'
     page.should have_content "has been submitted."

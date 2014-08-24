@@ -18,9 +18,10 @@ feature "Viewing home page" do
     last_issue = FactoryGirl.create(:page, :number => 13).issue
 
     visit root_url
-
-    page.should have_content last_issue.title.name, last_issue.pages.first.image
-    page.should_not have_content first_issue.title.name, first_issue.pages.first.image
+    within("#main") do
+      page.should have_content last_issue.title.name, last_issue.pages.first.image
+      page.should_not have_content first_issue.title.name, first_issue.pages.first.image
+    end
   end
 
   scenario "User can use pagination links to see issues added earlier" do
@@ -41,10 +42,12 @@ feature "Viewing home page" do
     visit root_path
 
     within("#paginate-one") do
-        click_link "Next"
+      click_link "Next"
     end
 
-    page.should have_content first_issue.title.name, first_issue.pages.first.image
-    page.should_not have_content last_issue.title.name, last_issue.pages.first.image
+    within("#main") do
+      page.should have_content first_issue.title.name, first_issue.pages.first.image
+      page.should_not have_content last_issue.title.name, last_issue.pages.first.image
+    end
   end
 end
