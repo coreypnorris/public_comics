@@ -76,3 +76,7 @@ body {
 #new-issue-or {
   margin-left: 3px;
 }
+
+#dropdown-toggle {
+  background-color: #FF4D00;
+}

@@ -18,7 +18,7 @@ feature 'A user uploading comics' do
     page.should have_content "has been submitted."
   end
 
-  scenario "if a comic has been uploaded by a user, that user can view it even if it's not approved" do
+  scenario "if a comic has been uploaded by a user, that user can view it even if it's not approved", :retry => 5 do
     test_issue = FactoryGirl.create(:issue, :user_id => @user.id)
     test_page = FactoryGirl.create(:page, :issue_id => test_issue.id)
     visit user_issues_path(@user.username)
