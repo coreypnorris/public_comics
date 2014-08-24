@@ -31,5 +31,8 @@ feature 'A user uploading comics' do
     test_page = FactoryGirl.create(:page, :issue_id => test_issue.id)
     visit root_url
     page.should_not have_content test_issue
+    test_issue.approved == 1
+    visit root_url
+    page.should have_content "#{test_issue.title.name} ##{test_issue.number}"
   end
 end
