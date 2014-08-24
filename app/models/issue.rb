@@ -9,7 +9,7 @@ class Issue < ActiveRecord::Base
 
   has_many :pages, dependent: :destroy
   has_many :comments, :as => :commentable, dependent: :destroy
-  belongs_to :title
+  belongs_to :title, dependent: :destroy
   belongs_to :user
 
   scope :approved, -> { where(approved: 1) }
