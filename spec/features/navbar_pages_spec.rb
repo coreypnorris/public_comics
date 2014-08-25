@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 feature "Using universal navbar links" do
+  let(:superhero) { FactoryGirl.create(:genre, :name => "Super Hero") }
+  let(:action_comics) { FactoryGirl.create(:title, :name => "Action Comics", :genre_id => superhero.id) }
+  let(:action_comics_1) { FactoryGirl.create(:issue, :number => 1, :title_id => action_comics.id) }
+  let!(:action_comics_1_page_1) { FactoryGirl.create(:page, :number => 1, :issue_id => action_comics_1.id) }
+  let(:horror) { FactoryGirl.create(:genre, :name => "Horror") }
+  let(:tomb_of_dracula) { FactoryGirl.create(:title, :name => "Tomb of Dracula", :genre_id => horror.id) }
+  let(:tomb_of_dracula_1) { FactoryGirl.create(:issue, :number => 1, :title_id => tomb_of_dracula.id) }
+  let!(:tomb_of_dracula_1_page_1) { FactoryGirl.create(:page, :number => 1, :issue_id => tomb_of_dracula_1.id) }
+  before { visit root_path }
+
 
   scenario "can use homepage link to go to the homepage" do
     visit new_user_registration_path
@@ -11,7 +21,6 @@ feature "Using universal navbar links" do
   scenario "User can search for issues with search bar", :retry => 3 do
     issue_1 = FactoryGirl.create(:page).issue
     issue_2 = FactoryGirl.create(:page).issue
-    visit root_path
     fill_in 'search', with: issue_2.title.name
     click_button 'Search'
     within("#main") do
@@ -20,26 +29,22 @@ feature "Using universal navbar links" do
     end
   end
 
+  scenario "User can filter issues by title with title selector" do
+    select("Action Comics", :from => "title-selector")
+    click_button "Go to Title"
+    within("#main") do
+      page.should have_content action_comics_1.title.name
+      page.should_not have_content tomb_of_dracula_1.title.name
+    end
+  end
+
   scenario "User can filter issues by genre with genre selector" do
-    horror = FactoryGirl.create(:genre, :name => "Horror")
-    tomb_of_dracula = horror.titles.create(:name => "Tomb of Dracula")
-    western = FactoryGirl.create(:genre, :name => "Western")
-    two_gun_kid = western.titles.create(:name => "Two Gun Kid")
-    tomb_of_dracula_1 = FactoryGirl.create(:issue)
-    tomb_of_dracula.issues << tomb_of_dracula_1
-    two_gun_kid_1 = FactoryGirl.create(:issue)
-    two_gun_kid.issues << two_gun_kid_1
-    tomb_of_dracula_1_page_1 = FactoryGirl.create(:page)
-    tomb_of_dracula_1.pages << tomb_of_dracula_1_page_1
-    two_gun_kid_1_page_1 = FactoryGirl.create(:page)
-    two_gun_kid_1.pages << two_gun_kid_1_page_1
-
-    visit issue_page_path(tomb_of_dracula_1, tomb_of_dracula_1_page_1)
-
     select("Horror", :from => "genre-selector")
     click_button "Go to Genre"
-
-    page.should have_content tomb_of_dracula_1.title.name
+    within("#main") do
+      page.should have_content tomb_of_dracula_1.title.name
+      page.should_not have_content action_comics_1.title.name
+    end
   end
 end
 
