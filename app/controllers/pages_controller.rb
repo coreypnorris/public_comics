@@ -20,7 +20,7 @@ class PagesController < ApplicationController
     end
     if @issue.save
       flash[:notice] = "Your pages were added to #{@issue.title.name} ##{@issue.number}."
-      redirect_to new_issue_page_path(@issue)
+      redirect_to edit_issue_path(@issue)
     else
       flash[:alert] = "Something went wrong. Please try to save your page again."
       redirect_to :back

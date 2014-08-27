@@ -41,10 +41,10 @@
             <%= link_to issue_path(issue, :kind => "unapprove"), :class => "btn btn-xs btn-warning", :id => "issue-#{issue.id}-unapprove-btn", :method => :patch do %>
               <i class="glyphicon glyphicon-remove"></i>
             <% end %>
+          <% end %>
 
-            <%= link_to new_issue_page_path(issue), :class => "btn btn-xs btn-info", :id => "issue-#{issue.id}-add-pages-btn" do %>
-              <i class="glyphicon glyphicon-plus"></i>
-            <% end %>
+          <%= link_to edit_issue_path(issue), :class => "btn btn-xs btn-info", :id => "issue-#{issue.id}-edit-btn" do %>
+            <i class="glyphicon glyphicon-edit"></i>
           <% end %>
 
           <%= link_to issue_path(issue), :class => "btn btn-xs btn-danger", :id => "issue-#{issue.id}-delete-btn", data: { :confirm => 'Are you sure?' }, :method => :delete do %>

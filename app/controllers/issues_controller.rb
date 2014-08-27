@@ -38,6 +38,11 @@ class IssuesController < ApplicationController
     end
   end
 
+  def edit
+    @page = Page.new
+    @issue = Issue.find(params[:id])
+  end
+
   def update
     unless current_user.try(:admin?)
       redirect_to root_url
