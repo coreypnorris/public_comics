@@ -80,3 +80,7 @@ body {
 #dropdown-toggle {
   background-color: #FF4D00;
 }
+
+#comment-body {
+  width: 40%;
+}

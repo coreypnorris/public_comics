@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-13">
     <h2><%= @issue.title.name %> #<%= @issue.number %></h2>
     <p class="subtext">submitted by <%= link_to @issue.user.username, user_path(@issue.user) %></p>
     <% if @issue.approved == 0 %>
@@ -22,7 +22,7 @@
 <hr>
 
 <div class='row text-center'>
-  <div class='col-sm-12'>
+  <div class='col-sm-13'>
     <ul class='list-unstyled'>
       <% @issue.pages.each do |page| %>
       <div class="col-sm-3">

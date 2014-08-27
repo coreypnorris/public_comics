@@ -20,24 +20,14 @@
 
 <br>
 
-<div class="row">
-  <div id="comments-div" class="text-center">
-    <p><%= pluralize(@page.issue.comments.count, 'Comment', 'Comments') %></p>
-    <%= render "/comments/issue_comment_form" %>
-  </div>
-
-  <br>
-
-  <% @page.issue.root_comments.order(:cached_weighted_score => :desc).each do |root_comment| %>
-    <%= render root_comment %>
-
-    <% root_comment.sorted_children.each do |child| %>
-      <% if child.has_children? == false %>
-        <div class="nested_comments"> <%= render child %></div>
-      <% end %>
-      <% if child.has_children? == true %>
-        <div class="nested_comments"> <%= render child %></div>
-      <% end %>
-    <% end %>
-  <% end %>
+<div id="comments-div" class="text-center">
+  <p><%= pluralize(@page.issue.comments.count, 'Comment', 'Comments') %></p>
+  <%= render "/comments/issue_comment_form" %>
 </div>
+
+<br>
+
+
+<% @page.issue.root_comments.order(:cached_weighted_score => :desc).each do |root_comment| %>
+  <div class="nested_comments"><%= render root_comment %></div>
+<% end %>

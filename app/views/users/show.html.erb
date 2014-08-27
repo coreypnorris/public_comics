@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-13">
     <%= image_tag @user.avatar.url(:profile), :class => "thumbnail" %>
     <h3><%= @user.username %></h3>
     <h5>Comment score: <%= @user.score %></h5>
@@ -21,7 +21,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-13">
     <hr>
     <h3>Comments</h3>
     <% if @user.comments.count == 0 %>
@@ -44,7 +44,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-13">
     <hr>
     <h3>Comics</h3>
     <% if @user.issues.count == 0 %>
@@ -58,7 +58,7 @@
 </div>
 
 <div class='row text-center'>
-  <div class='col-sm-12'>
+  <div class='col-sm-13'>
     <ul class="list-unstyled">
       <% @paginated_issues.each do |issue| %>
         <div class="col-sm-3">
