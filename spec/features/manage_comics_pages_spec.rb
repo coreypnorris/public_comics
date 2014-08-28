@@ -62,4 +62,11 @@ feature 'An admin managing other users comics' do
     click_button 'Submit'
     page.should have_content "Your pages were added"
   end
+
+  scenario "deleting a comic doesn't delete the title", :retry => 5 do
+    test_issue_two = FactoryGirl.create(:issue, :user_id => test_user.id, :title_id => test_issue.title.id)
+    click_link "Manage Comics"
+    click_link "issue-#{test_issue_two.id}-delete-btn"
+    page.should have_content test_issue.title.name
+  end
 end
