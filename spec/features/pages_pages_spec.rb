@@ -70,12 +70,22 @@ feature "Commenting on the page's issue" do
 
   scenario "creating a reply to a comment", :retry => 5, js: true do
     create_user_and_page_and_post_comment
-    reply = FactoryGirl.build(:comment, :user_id => @user.id)
-    click_on "Reply"
-    fill_in "comment-#{(Comment.last.id)}-comment-body", :with => reply.body
-    click_button "Confirm"
+    create_reply_to_comment
     page.should have_content 'posted'
     page.should have_content '2 Comments'
+  end
+
+  scenario "creating a reply to a reply", :retry => 5, js: true do
+    create_user_and_page_and_post_comment
+    create_reply_to_comment
+    reply_to_reply = FactoryGirl.build(:comment, :user_id => @user.id)
+    within(:css, "div#comment-#{Comment.last.id}-div") do
+      click_on "Reply"
+    end
+    fill_in "comment-#{(Comment.last.id)}-comment-body", :with => reply_to_reply.body
+    click_button "Confirm"
+    page.should have_content 'posted'
+    page.should have_content '3 Comments'
   end
 
   scenario "canceling a reply to a comment", :retry => 5, js: true do

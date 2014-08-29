@@ -29,5 +29,5 @@
 <%= link_to "Reply", new_comment_comment_path(:comment_id => comment), :id => "reply-link-#{comment.id}", :class => "btn btn-sm btn-default", :remote => true %>
 
 <% comment.sorted_children.each do |child| %>
-  <div class="nested_comments"><%= render child %></div>
+  <div class="nested_comments" id="comment-<%= child.id %>-div"><%= render child %></div>
 <% end %>

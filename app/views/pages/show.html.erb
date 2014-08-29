@@ -29,5 +29,5 @@
 
 
 <% @page.issue.root_comments.order(:cached_weighted_score => :desc).each do |root_comment| %>
-  <div class="nested_comments"><%= render root_comment %></div>
+  <div class="nested_comments" id="comment-<%= root_comment.id %>-div"><%= render root_comment %></div>
 <% end %>

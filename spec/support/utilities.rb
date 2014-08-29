@@ -49,3 +49,10 @@ def create_user_and_page_and_post_comment
   fill_in "issue-#{@issue.id}-comment-body", :with => @comment.body
   click_button "Comment on this issue"
 end
+
+def create_reply_to_comment
+  @reply = FactoryGirl.build(:comment, :user_id => @user.id)
+  click_on "Reply"
+  fill_in "comment-#{(Comment.last.id)}-comment-body", :with => @reply.body
+  click_button "Confirm"
+end
