@@ -3,7 +3,7 @@
 </header>
 
 <div class='row text-center'>
-  <%= will_paginate @issues %>
+  <%= will_paginate @issues, renderer: BootstrapPagination::Rails %>
 </div>
 
 <div class='row text-center'>
@@ -22,5 +22,5 @@
 </div>
 
 <div class='row text-center' id="paginate-two">
-  <%= will_paginate @issues %>
+  <%= will_paginate @issues, renderer: BootstrapPagination::Rails %>
 </div>

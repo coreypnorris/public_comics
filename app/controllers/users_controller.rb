@@ -4,8 +4,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:id].downcase)
-    @sorted_issues = @user.issues.approved.sort_by { |issue| issue.created_at }
-    @paginated_issues = @sorted_issues.reverse.paginate(:per_page => 12, :page => params[:page])
+    @comments = @user.comments.sort_by { |comment| comment.created_at }
+    sorted_issues = @user.issues.approved.sort_by { |issue| issue.created_at }
+    @paginated_issues = sorted_issues.reverse.paginate(:per_page => 4, :page => params[:page])
   end
 
   def update
@@ -19,10 +20,8 @@ class UsersController < ApplicationController
     end
   end
 
-
   private
     def user_params
       params.require(:user).permit(:avatar)
     end
-
 end
