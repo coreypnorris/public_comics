@@ -2,4 +2,8 @@ UserMailer#signup_confirmation
 
 <%= @user.username %>,
 
-Thank you for signing up.
+Thank you for signing up for an account.
+
+You can view your account at this link.
+
+<%= user_url(@user) %>
