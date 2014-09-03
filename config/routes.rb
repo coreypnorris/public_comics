@@ -6,6 +6,7 @@ PublicComics::Application.routes.draw do
   end
 
   resources :issues do
+    get "export"
     resources :pages
     resources :comments, only: [:create]
   end

@@ -2,6 +2,9 @@ class IssuesController < ApplicationController
   before_filter :authenticate_user!
 
   require 'will_paginate/array'
+  require 'rubygems'
+  require 'zip'
+  require 'open-uri'
 
   def index
     @user = User.find_by_username(params[:user_id])
@@ -69,6 +72,25 @@ class IssuesController < ApplicationController
     @issue.destroy
     flash[:notice] = "The issue has been removed."
     redirect_to :back
+  end
+
+  def export
+    @issue = Issue.find(params[:issue_id])
+    t = Tempfile.new("my-temp-filename-#{Time.now}")
+    Zip::OutputStream.open(t.path) do |z|
+      @issue.pages.each do |page|
+        title = page.image_file_name
+        z.put_next_entry("images/#{title}")
+        url1 = page.image.url
+        url1_data = open(url1)
+        z.print IO.read(url1_data)
+    end
+
+    send_file t.path, :type => 'application/zip',
+                      :disposition => 'attachment',
+                      :filename => "#{@issue.title.name}_##{@issue.number}.zip"
+              t.close
+    end
   end
 
 private

@@ -24,6 +24,7 @@ gem 'font-awesome-sass'
 gem "jquery-ui-rails"
 gem 'jquery-turbolinks'
 gem 'redcarpet'
+gem 'rubyzip'
 
 group :development do
   gem 'better_errors'

@@ -15,6 +15,8 @@
     <% else %>
       <%= image_tag @page.image %>
     <% end %>
+    <br><br>
+    <%= link_to "Download zipped images", issue_export_path(@issue), :class => "btn btn-default" %>
   </div>
 </div>
 
@@ -26,7 +28,6 @@
 </div>
 
 <br>
-
 
 <% @page.issue.root_comments.order(:cached_weighted_score => :desc).each do |root_comment| %>
   <div class="nested_comments" id="comment-<%= root_comment.id %>-div"><%= render root_comment %></div>
