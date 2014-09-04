@@ -16,7 +16,7 @@
       <%= image_tag @page.image %>
     <% end %>
     <br><br>
-    <%= link_to "Download zipped images", issue_export_path(@issue), :class => "btn btn-default" %>
+    <%= link_to "Download zipped images", issue_export_path(@issue, @page), :id => "download-images", :class => "btn btn-sm btn-default" %>
   </div>
 </div>
 

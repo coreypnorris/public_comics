@@ -9,4 +9,11 @@ feature 'Viewing profile' do
     click_button 'Upload Image'
     page.should have_content("Your avatar has been added.")
   end
+
+  scenario 'a user can cancel their account', js: true do
+    click_link 'Customize or cancel your account'
+    click_button 'cancel-account'
+    page.evaluate_script('window.confirm = function() { return true; }')
+    page.should have_content("Bye! Your account was successfully cancelled. We hope to see you again soon.")
+  end
 end

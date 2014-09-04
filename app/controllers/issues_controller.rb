@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:export]
 
   require 'will_paginate/array'
   require 'rubygems'
@@ -84,12 +84,12 @@ class IssuesController < ApplicationController
         url1 = page.image.url
         url1_data = open(url1)
         z.print IO.read(url1_data)
-    end
+      end
 
-    send_file t.path, :type => 'application/zip',
-                      :disposition => 'attachment',
-                      :filename => "#{@issue.title.name}_##{@issue.number}.zip"
-              t.close
+      send_file t.path, :type => 'application/zip',
+                        :disposition => 'attachment',
+                        :filename => "#{@issue.title.name}_##{@issue.number}.zip"
+                t.close
     end
   end
 
