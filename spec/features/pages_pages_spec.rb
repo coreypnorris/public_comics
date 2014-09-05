@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Viewing a comic book page" do
   let(:superhero) { FactoryGirl.create(:genre, :name => "Super Hero") }
-  let(:action_comics) { FactoryGirl.create(:title, :name => "Action Comics", :genre_id => superhero.id) }
+  let(:action_comics) { FactoryGirl.create(:title, :name => "Action Comics", :genres => [superhero]) }
   let(:action_comics_1) { FactoryGirl.create(:issue, :number => 1, :title_id => action_comics.id) }
   let!(:action_comics_1_page_1) { FactoryGirl.create(:page, :number => 1, :issue_id => action_comics_1.id) }
   let!(:action_comics_1_page_2) { FactoryGirl.create(:page, :number => 2, :issue_id => action_comics_1.id) }

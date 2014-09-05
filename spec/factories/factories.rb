@@ -19,7 +19,7 @@ FactoryGirl.define do
   end
 
   factory :title do
-    genre
+    genres {[FactoryGirl.create(:genre)]}
     name { Faker::Name.name }
   end
 

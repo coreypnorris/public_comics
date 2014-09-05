@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804000326) do
+ActiveRecord::Schema.define(version: 20140905040830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(version: 20140804000326) do
     t.datetime "updated_at"
   end
 
+  create_table "genres_titles", id: false, force: true do |t|
+    t.integer "genre_id", null: false
+    t.integer "title_id", null: false
+  end
+
   create_table "issues", force: true do |t|
     t.integer  "number"
     t.integer  "title_id"
@@ -80,7 +85,6 @@ ActiveRecord::Schema.define(version: 20140804000326) do
 
   create_table "titles", force: true do |t|
     t.string   "name"
-    t.integer  "genre_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

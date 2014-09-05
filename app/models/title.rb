@@ -2,7 +2,7 @@ class Title < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
 
   has_many :issues
-  belongs_to :genre
+  has_and_belongs_to_many :genres, join_table: :genres_titles
 
   def self.search(search)
     if search

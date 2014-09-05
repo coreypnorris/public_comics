@@ -2,15 +2,15 @@ require 'spec_helper'
 
 feature "Using universal navbar links" do
   let(:superhero) { FactoryGirl.create(:genre, :name => "Super Hero") }
-  let(:action_comics) { FactoryGirl.create(:title, :name => "Action Comics", :genre_id => superhero.id) }
+  let(:action_comics) { FactoryGirl.create(:title, :name => "Action Comics", :genres => [superhero]) }
   let(:action_comics_1) { FactoryGirl.create(:issue, :number => 1, :title_id => action_comics.id) }
   let!(:action_comics_1_page_1) { FactoryGirl.create(:page, :number => 1, :issue_id => action_comics_1.id) }
   let(:horror) { FactoryGirl.create(:genre, :name => "Horror") }
-  let(:tomb_of_dracula) { FactoryGirl.create(:title, :name => "Tomb of Dracula", :genre_id => horror.id) }
+  let(:tomb_of_dracula) { FactoryGirl.create(:title, :name => "Tomb of Dracula", :genres => [horror]) }
   let(:tomb_of_dracula_1) { FactoryGirl.create(:issue, :number => 1, :title_id => tomb_of_dracula.id) }
   let!(:tomb_of_dracula_1_page_1) { FactoryGirl.create(:page, :number => 1, :issue_id => tomb_of_dracula_1.id) }
-  before { visit root_path }
 
+  before { visit root_path }
 
   scenario "can use homepage link to go to the homepage" do
     visit new_user_registration_path

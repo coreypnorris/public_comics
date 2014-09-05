@@ -4,5 +4,5 @@ describe Title do
   it { should validate_presence_of :name }
 
   it { should have_many :issues }
-  it { should belong_to :genre }
+  it { should have_and_belong_to_many :genres }
 end
