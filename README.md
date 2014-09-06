@@ -19,4 +19,4 @@ You can visit a live version of the site at http://public-comics.herokuapp.com/
 * Users can vote on other users comments
 * Users can submit thier own comics, and if approved by an admin, that issue can be viewed publicly on the site.
 
-####After downloading the app run `rake db:seed` to create an test user accounts.
+####After downloading the app run `rake db:seed` to create the test user accounts.
