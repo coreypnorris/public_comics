@@ -16,5 +16,5 @@
   <% end %>
 
   <%= link_to "Thumbnails", issue_pages_path(@issue), :class => "form-control btn btn-default", :id => "thumbnails-button" %>
-  <%= link_to "#{@issue.title.genres.first.name}", genre_path(@issue.title.genres.first), :class => "form-control btn btn-default", :id => "issue-genre-button" %>
+  <%= link_to "#{@issue.title.genre.name}", genre_path(@issue.title.genre.name), :class => "form-control btn btn-default", :id => "issue-genre-button" %>
 <% end %>
